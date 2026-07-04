@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ひなた珈琲店｜自家焙煎コーヒーと手作りおやつ（サンプルサイト）</title>
+<meta name="description" content="住宅街の小さな自家焙煎コーヒー店。丁寧に淹れる一杯と、毎朝焼くおやつでほっとひと息。">
+<style>
+  :root {
+    --cream: #faf6ef;
+    --milk: #ffffff;
+    --coffee: #4a3428;
+    --caramel: #b9825a;
+    --caramel-soft: #f0e2d4;
+    --leaf: #7a8b6f;
+    --ink: #443a32;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: "Hiragino Sans", "Yu Gothic", sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    line-height: 1.95;
+    letter-spacing: 0.04em;
+    overflow-x: hidden;
+  }
+
+  header {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 20;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 16px 22px;
+    background: rgba(250, 246, 239, 0.88);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+  .logo {
+    font-family: "Hiragino Mincho ProN", serif;
+    font-size: 19px; letter-spacing: 0.28em; color: var(--coffee);
+  }
+  nav a {
+    color: var(--ink); text-decoration: none; font-size: 12.5px;
+    margin-left: 20px; letter-spacing: 0.12em;
+    border-bottom: 1px solid transparent; transition: 0.2s;
+  }
+  nav a:hover { color: var(--caramel); border-color: var(--caramel); }
+
+  /* ヒーロー */
+  .hero {
+    min-height: 96vh;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    text-align: center; padding: 100px 20px 60px;
+    position: relative;
+    background:
+      radial-gradient(circle at 82% 18%, #f6e7ca 0%, transparent 34%),
+      radial-gradient(circle at 12% 78%, #e9eee4 0%, transparent 36%),
+      var(--cream);
+  }
+  .hero .sun {
+    width: 130px; height: 130px; border-radius: 50%;
+    background: radial-gradient(circle at 38% 34%, #ffe9b8, #f3c876);
+    box-shadow: 0 0 70px rgba(243, 200, 118, 0.55);
+    margin-bottom: 34px;
+    animation: floaty 5.5s ease-in-out infinite;
+  }
+  @keyframes floaty {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-13px); }
+  }
+  .hero h1 {
+    font-family: "Hiragino Mincho ProN", serif;
+    font-size: clamp(30px, 7vw, 52px);
+    color: var(--coffee); font-weight: 600;
+    letter-spacing: 0.3em; line-height: 1.6;
+    opacity: 0; animation: fadeUp 1s ease 0.25s forwards;
+  }
+  .hero p.catch {
+    margin-top: 20px; font-size: clamp(13.5px, 3vw, 16px);
+    letter-spacing: 0.22em; color: #7d6d5d;
+    opacity: 0; animation: fadeUp 1s ease 0.6s forwards;
+  }
+  .hero .hours-chip {
+    margin-top: 36px; display: inline-block;
+    background: var(--milk); border: 1.5px solid var(--caramel-soft);
+    border-radius: 999px; padding: 10px 30px;
+    font-size: 13.5px; color: var(--coffee);
+    box-shadow: 0 8px 22px rgba(74, 52, 40, 0.08);
+    opacity: 0; animation: fadeUp 1s ease 0.95s forwards;
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0; transform: translateY(40px);
+    transition: opacity 0.9s ease, transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .reveal.show { opacity: 1; transform: translateY(0); }
+  .reveal.delay-1 { transition-delay: 0.12s; }
+  .reveal.delay-2 { transition-delay: 0.24s; }
+
+  section { padding: 84px 20px; }
+  .inner { max-width: 880px; margin: 0 auto; }
+  .sec-title { text-align: center; margin-bottom: 46px; }
+  .sec-title .en {
+    display: block; font-size: 11px; letter-spacing: 0.42em;
+    color: var(--caramel); text-transform: uppercase; margin-bottom: 8px;
+  }
+  .sec-title h2 {
+    font-family: "Hiragino Mincho ProN", serif;
+    font-size: 25px; letter-spacing: 0.28em; color: var(--coffee); font-weight: 600;
+  }
+
+  /* コンセプト */
+  .concept { background: var(--milk); }
+  .concept .lead {
+    text-align: center; font-size: 15.5px; line-height: 2.4;
+    font-family: "Hiragino Mincho ProN", serif;
+  }
+  .concept .lead b { color: var(--caramel); font-weight: 600; }
+
+  /* メニュー */
+  .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; }
+  .menu-card {
+    background: var(--milk); border-radius: 18px; overflow: hidden;
+    box-shadow: 0 10px 28px rgba(74, 52, 40, 0.08);
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s;
+  }
+  .menu-card:hover { transform: translateY(-8px); box-shadow: 0 22px 40px rgba(74, 52, 40, 0.14); }
+  .menu-card .ph { height: 170px; overflow: hidden; }
+  .menu-card .ph img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+    transition: transform 0.5s ease;
+  }
+  .menu-card:hover .ph img { transform: scale(1.07); }
+  .menu-card .body { padding: 20px 22px 24px; }
+  .menu-card h3 {
+    font-family: "Hiragino Mincho ProN", serif;
+    font-size: 17px; color: var(--coffee); letter-spacing: 0.1em;
+  }
+  .menu-card ul { list-style: none; margin-top: 10px; font-size: 13.5px; }
+  .menu-card li {
+    display: flex; justify-content: space-between;
+    padding: 6px 0; border-bottom: 1px dotted var(--caramel-soft);
+  }
+  .menu-card .price { color: var(--caramel); }
+
+  /* 店内・写真 */
+  .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 14px; }
+  .shot {
+    height: 190px; width: 100%; border-radius: 14px; object-fit: cover; display: block;
+    transition: transform 0.3s; box-shadow: 0 8px 20px rgba(74, 52, 40, 0.1);
+  }
+  .shot:hover { transform: scale(1.04) rotate(-1deg); }
+  .gallery-note { text-align: center; font-size: 12.5px; color: #97836f; margin-top: 18px; }
+
+  /* お知らせ */
+  .news { background: var(--milk); }
+  .news-list { max-width: 640px; margin: 0 auto; }
+  .news-item {
+    display: flex; gap: 18px; padding: 16px 6px;
+    border-bottom: 1px solid var(--caramel-soft); font-size: 14px;
+    flex-wrap: wrap;
+  }
+  .news-item .date { color: var(--caramel); flex: 0 0 90px; }
+
+  /* 店舗情報 */
+  .info-table { width: 100%; max-width: 640px; margin: 0 auto; border-collapse: collapse; font-size: 14.5px; }
+  .info-table th, .info-table td { padding: 14px 10px; border-bottom: 1px solid var(--caramel-soft); text-align: left; }
+  .info-table th { width: 30%; color: var(--caramel); font-weight: 600; letter-spacing: 0.12em; }
+  .map-box {
+    max-width: 640px; margin: 26px auto 0; height: 210px; border-radius: 14px;
+    background: repeating-linear-gradient(45deg, #efe6d8, #efe6d8 12px, #f5eee2 12px, #f5eee2 24px);
+    display: flex; align-items: center; justify-content: center;
+    color: #97836f; font-size: 13px; letter-spacing: 0.2em;
+  }
+
+  footer {
+    background: var(--coffee); color: rgba(250, 246, 239, 0.75);
+    text-align: center; padding: 30px 20px; font-size: 12px; letter-spacing: 0.12em;
+  }
+  .sample-note {
+    background: var(--caramel); color: #fff; text-align: center;
+    font-size: 12px; padding: 6px; letter-spacing: 0.15em;
+    position: relative; z-index: 30;
+  }
+  @media (max-width: 600px) {
+    nav a { margin-left: 12px; font-size: 11px; }
+    section { padding: 60px 16px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    .reveal { opacity: 1; transform: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="sample-note">※これはデザインサンプルです。店舗・住所・電話番号はすべて架空のものです。</div>
+
+<header>
+  <div class="logo">ひなた珈琲店</div>
+  <nav>
+    <a href="#concept">私たちのこと</a>
+    <a href="#menu">メニュー</a>
+    <a href="#shop">店内</a>
+    <a href="#access">アクセス</a>
+  </nav>
+</header>
+
+<div class="hero">
+  <div class="sun" aria-hidden="true"></div>
+  <h1>今日も、<br>ひとやすみ。</h1>
+  <p class="catch">自家焙煎コーヒーと、毎朝焼くおやつの店</p>
+  <span class="hours-chip">☕ 8:00 − 18:00｜水曜おやすみ</span>
+</div>
+
+<section class="concept" id="concept">
+  <div class="inner">
+    <div class="sec-title reveal">
+      <span class="en">About</span>
+      <h2>私たちのこと</h2>
+    </div>
+    <p class="lead reveal">
+      商店街のはずれ、住宅街のまんなかにある小さな喫茶店です。<br>
+      店の奥の焙煎機で、週に三度、豆を焼いています。<br>
+      <b>いちばん美味しい瞬間のコーヒー</b>と、<br>
+      甘さひかえめの手作りおやつをご用意して、<br>
+      あなたの「ひとやすみ」をお待ちしています。
+    </p>
+  </div>
+</section>
+
+<section id="menu">
+  <div class="inner">
+    <div class="sec-title reveal">
+      <span class="en">Menu</span>
+      <h2>メニュー</h2>
+    </div>
+    <div class="menu-grid">
+      <div class="menu-card reveal">
+        <div class="ph"><img src="images/coffee.jpg" alt="ラテアートのカフェラテ"></div>
+        <div class="body">
+          <h3>コーヒー</h3>
+          <ul>
+            <li><span>本日のハンドドリップ</span><span class="price">520円</span></li>
+            <li><span>カフェラテ</span><span class="price">580円</span></li>
+            <li><span>水出しアイスコーヒー</span><span class="price">560円</span></li>
+            <li><span>豆の量り売り（100g〜）</span><span class="price">750円〜</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="menu-card reveal delay-1">
+        <div class="ph"><img src="images/cake.jpg" alt="ラズベリーのケーキ"></div>
+        <div class="body">
+          <h3>おやつ</h3>
+          <ul>
+            <li><span>バスクチーズケーキ</span><span class="price">520円</span></li>
+            <li><span>本日の焼き菓子</span><span class="price">380円〜</span></li>
+            <li><span>厚切りバタートースト</span><span class="price">450円</span></li>
+            <li><span>季節のプリン</span><span class="price">480円</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="menu-card reveal delay-2">
+        <div class="ph"><img src="images/latte.jpg" alt="カフェラテを注ぐようす"></div>
+        <div class="body">
+          <h3>コーヒー以外も</h3>
+          <ul>
+            <li><span>ほうじ茶ラテ</span><span class="price">560円</span></li>
+            <li><span>自家製レモネード</span><span class="price">540円</span></li>
+            <li><span>りんごジュース</span><span class="price">480円</span></li>
+            <li><span>お子さまミルク</span><span class="price">200円</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="shop">
+  <div class="inner">
+    <div class="sec-title reveal">
+      <span class="en">Gallery</span>
+      <h2>店内のようす</h2>
+    </div>
+    <div class="gallery">
+      <img class="shot reveal" src="images/interior.jpg" alt="店内のようす">
+      <img class="shot reveal delay-1" src="images/latte.jpg" alt="ラテを淹れるようす">
+      <img class="shot reveal delay-2" src="images/coffee.jpg" alt="コーヒーと観葉植物">
+      <img class="shot reveal delay-2" src="images/cake.jpg" alt="本日のおやつ">
+    </div>
+    <p class="gallery-note reveal">※写真はイメージです。実際の制作ではお店の写真に差し替えます（スマホ写真でOK）。</p>
+  </div>
+</section>
+
+<section class="news">
+  <div class="inner">
+    <div class="sec-title reveal">
+      <span class="en">News</span>
+      <h2>お知らせ</h2>
+    </div>
+    <div class="news-list">
+      <div class="news-item reveal"><span class="date">7月1日</span><span>夏限定「水出しコーヒーゼリー」はじめました</span></div>
+      <div class="news-item reveal"><span class="date">6月20日</span><span>エチオピアの新豆、量り売りに登場です</span></div>
+      <div class="news-item reveal"><span class="date">6月10日</span><span>7月の連休は通常どおり営業します</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="access">
+  <div class="inner">
+    <div class="sec-title reveal">
+      <span class="en">Access</span>
+      <h2>店舗情報</h2>
+    </div>
+    <table class="info-table reveal">
+      <tr><th>店名</th><td>ひなた珈琲店</td></tr>
+      <tr><th>住所</th><td>東京都〇〇区ひなた町4-5-6（〇〇駅 徒歩7分）</td></tr>
+      <tr><th>営業時間</th><td>8:00〜18:00（L.O. 17:30）</td></tr>
+      <tr><th>定休日</th><td>水曜日</td></tr>
+      <tr><th>席数</th><td>14席（ベビーカーのまま入れます）</td></tr>
+      <tr><th>お支払い</th><td>現金・クレジットカード・QRコード決済</td></tr>
+    </table>
+    <div class="map-box reveal">（ここに Googleマップ が入ります）</div>
+  </div>
+</section>
+
+<footer>© ひなた珈琲店（このページはHP制作サービスのデザインサンプルです）</footer>
+
+<script>
+(function () {
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('show');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.14 });
+  document.querySelectorAll('.reveal').forEach(function (el) { observer.observe(el); });
+})();
+</script>
+
+</body>
+</html>

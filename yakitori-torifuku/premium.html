@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>炭火焼鳥 とり福｜プレミアム版（動き・3Dあり）</title>
+<meta name="description" content="備長炭でじっくり焼き上げる本格焼鳥と地酒の店。宴会コース・貸切もご相談ください。">
+<style>
+  :root {
+    --sumi: #1b1713;
+    --kin: #c9a227;
+    --shu: #b5432a;
+    --kami: #f5efe3;
+    --kami-2: #ece2cd;
+    --moji: #3a3128;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+    background: var(--kami);
+    color: var(--moji);
+    line-height: 1.9;
+    overflow-x: hidden;
+  }
+
+  /* ヘッダー */
+  header {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 20;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 14px 20px;
+    background: rgba(27, 23, 19, 0.75);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: var(--kami);
+    transition: transform 0.35s ease;
+  }
+  header.hidden { transform: translateY(-100%); }
+  .logo { font-size: 18px; letter-spacing: 0.2em; }
+  .logo b { color: var(--kin); }
+  nav a {
+    color: var(--kami); text-decoration: none; font-size: 13px;
+    margin-left: 18px; letter-spacing: 0.1em; transition: color 0.2s;
+  }
+  nav a:hover { color: var(--kin); }
+
+  /* ヒーロー（パララックス＋火の粉） */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    text-align: center; color: var(--kami);
+    background:
+      linear-gradient(rgba(27, 20, 14, 0.74), rgba(18, 13, 9, 0.86)),
+      url("images/yakitori.jpg") center 45% / cover no-repeat #14100c;
+    padding: 90px 20px 60px;
+    perspective: 800px;
+  }
+  .hero-inner { position: relative; z-index: 2; transform-style: preserve-3d; }
+  .hero .en {
+    font-size: 12px; letter-spacing: 0.5em; color: var(--kin);
+    text-transform: uppercase; margin-bottom: 18px;
+    opacity: 0; animation: fadeUp 1s ease 0.2s forwards;
+  }
+  .hero h1 {
+    font-size: clamp(36px, 8vw, 68px);
+    font-weight: 600; letter-spacing: 0.18em; line-height: 1.4;
+    opacity: 0; animation: fadeUp 1.1s ease 0.5s forwards;
+    text-shadow: 0 6px 30px rgba(201,162,39,0.25);
+  }
+  .hero p.catch {
+    margin-top: 22px; font-size: clamp(14px, 3vw, 17px);
+    letter-spacing: 0.25em; color: var(--kami-2);
+    opacity: 0; animation: fadeUp 1s ease 0.9s forwards;
+  }
+  .hero .cta {
+    margin-top: 40px; display: inline-block;
+    border: 1px solid var(--kin); color: var(--kin);
+    padding: 14px 46px; text-decoration: none; font-size: 15px;
+    letter-spacing: 0.3em; transition: all 0.3s;
+    opacity: 0; animation: fadeUp 1s ease 1.2s forwards;
+    position: relative; overflow: hidden;
+  }
+  .hero .cta::before {
+    content: ""; position: absolute; inset: 0;
+    background: var(--kin); transform: scaleX(0); transform-origin: left;
+    transition: transform 0.3s; z-index: -1;
+  }
+  .hero .cta:hover { color: var(--sumi); }
+  .hero .cta:hover::before { transform: scaleX(1); }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* 火の粉パーティクル */
+  .ember {
+    position: absolute; bottom: -10px;
+    width: 5px; height: 5px; border-radius: 50%;
+    background: radial-gradient(circle, #ffd98a 0%, #e0762f 60%, transparent 100%);
+    filter: blur(0.4px);
+    animation: rise linear infinite;
+    z-index: 1; pointer-events: none;
+  }
+  @keyframes rise {
+    0%   { transform: translate(0, 0) scale(1); opacity: 0; }
+    8%   { opacity: 0.95; }
+    60%  { opacity: 0.7; }
+    100% { transform: translate(var(--drift), -105vh) scale(0.2); opacity: 0; }
+  }
+
+  /* スクロール出現アニメーション */
+  .reveal {
+    opacity: 0; transform: translateY(46px);
+    transition: opacity 0.9s ease, transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .reveal.show { opacity: 1; transform: translateY(0); }
+  .reveal.delay-1 { transition-delay: 0.12s; }
+  .reveal.delay-2 { transition-delay: 0.24s; }
+
+  /* セクション共通 */
+  section { padding: 80px 20px; }
+  .inner { max-width: 860px; margin: 0 auto; }
+  .sec-title { text-align: center; margin-bottom: 44px; }
+  .sec-title .en {
+    display: block; font-size: 11px; letter-spacing: 0.4em;
+    color: var(--shu); text-transform: uppercase; margin-bottom: 8px;
+  }
+  .sec-title h2 { font-size: 26px; letter-spacing: 0.3em; font-weight: 600; }
+  .sec-title h2::after {
+    content: ""; display: block; width: 36px; height: 2px;
+    background: var(--kin); margin: 14px auto 0;
+  }
+
+  /* こだわり（3Dチルトカード） */
+  .features {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 22px; perspective: 900px;
+  }
+  .feature {
+    background: #fff; border: 1px solid var(--kami-2);
+    padding: 30px 24px; text-align: center;
+    transform-style: preserve-3d;
+    transition: transform 0.18s ease-out, box-shadow 0.3s;
+    will-change: transform;
+  }
+  .feature:hover { box-shadow: 0 24px 48px rgba(27,23,19,0.18); }
+  .feature .icon { font-size: 36px; display: inline-block; transform: translateZ(34px); }
+  .feature h3 { font-size: 17px; margin: 14px 0 10px; letter-spacing: 0.15em; transform: translateZ(22px); }
+  .feature p { font-size: 13.5px; text-align: left; transform: translateZ(12px); }
+
+  /* お品書き */
+  .menu-sec { background: var(--sumi); color: var(--kami); position: relative; overflow: hidden; }
+  .menu-sec::before {
+    content: "焼"; position: absolute; right: -40px; top: 30px;
+    font-size: 280px; color: rgba(201,162,39,0.05); line-height: 1;
+    pointer-events: none;
+  }
+  .menu-sec .sec-title h2 { color: var(--kami); }
+  .menu-list { max-width: 560px; margin: 0 auto; position: relative; }
+  .menu-item {
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding: 13px 6px; border-bottom: 1px dashed rgba(245,239,227,0.25);
+    font-size: 15px; letter-spacing: 0.08em;
+    transition: background 0.25s, padding-left 0.25s;
+  }
+  .menu-item:hover { background: rgba(201,162,39,0.08); padding-left: 14px; }
+  .menu-item .price { color: var(--kin); }
+  .menu-note { text-align: center; font-size: 12px; margin-top: 22px; color: rgba(245,239,227,0.6); }
+
+  /* コース */
+  .courses { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 22px; perspective: 900px; }
+  .course {
+    border: 1px solid var(--kami-2); background: #fff; padding: 28px 24px;
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s;
+  }
+  .course:hover { transform: translateY(-10px) rotateX(3deg); box-shadow: 0 26px 40px rgba(27,23,19,0.16); }
+  .course.osusume { border: 2px solid var(--shu); position: relative; }
+  .course.osusume::before {
+    content: "人気No.1"; position: absolute; top: -13px; left: 20px;
+    background: var(--shu); color: #fff; font-size: 12px;
+    padding: 2px 14px; letter-spacing: 0.2em;
+  }
+  .course h3 { font-size: 18px; letter-spacing: 0.12em; }
+  .course .price { font-size: 24px; color: var(--shu); margin: 10px 0; }
+  .course .price small { font-size: 13px; color: var(--moji); }
+  .course ul { list-style: none; font-size: 13.5px; margin-top: 8px; }
+  .course li::before { content: "─ "; color: var(--kin); }
+
+  /* 店のようす */
+  .duo { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+  .duo img {
+    width: 100%; height: 250px; object-fit: cover; display: block;
+    box-shadow: 0 14px 30px rgba(27, 23, 19, 0.2);
+    transition: transform 0.4s ease;
+  }
+  .duo img:hover { transform: scale(1.03); }
+  .duo-note { text-align: center; font-size: 12px; color: #8a7a5e; margin-top: 16px; }
+
+  /* 店舗情報 */
+  .info-table { width: 100%; max-width: 640px; margin: 0 auto; border-collapse: collapse; font-size: 14.5px; }
+  .info-table th, .info-table td { padding: 14px 10px; border-bottom: 1px solid var(--kami-2); text-align: left; vertical-align: top; }
+  .info-table th { width: 30%; letter-spacing: 0.15em; color: var(--shu); font-weight: 600; }
+  .map-box {
+    max-width: 640px; margin: 26px auto 0; height: 220px;
+    background: repeating-linear-gradient(45deg, #e7dcc4, #e7dcc4 12px, #efe6d2 12px, #efe6d2 24px);
+    display: flex; align-items: center; justify-content: center;
+    color: #8a7a5e; font-size: 13px; letter-spacing: 0.2em;
+    border: 1px solid var(--kami-2);
+  }
+
+  /* 予約CTA */
+  .reserve {
+    background: linear-gradient(160deg, #2a2118, #181209);
+    color: var(--kami); text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .reserve .sec-title h2 { color: var(--kami); }
+  .reserve .tel {
+    font-size: clamp(28px, 7vw, 44px); color: var(--kin);
+    letter-spacing: 0.08em; margin: 18px 0 6px; font-weight: 600;
+    display: inline-block;
+    animation: glow 2.6s ease-in-out infinite;
+  }
+  @keyframes glow {
+    0%, 100% { text-shadow: 0 0 8px rgba(201,162,39,0.15); }
+    50% { text-shadow: 0 0 26px rgba(201,162,39,0.55); }
+  }
+  .reserve .hours { font-size: 13px; color: rgba(245,239,227,0.7); }
+
+  footer {
+    background: var(--sumi); color: rgba(245,239,227,0.55);
+    text-align: center; padding: 26px 20px; font-size: 12px; letter-spacing: 0.1em;
+  }
+  .sample-note {
+    background: var(--shu); color: #fff; text-align: center;
+    font-size: 12px; padding: 6px; letter-spacing: 0.15em;
+    font-family: "Hiragino Sans", sans-serif;
+    position: relative; z-index: 30;
+  }
+  @media (max-width: 600px) {
+    nav a { margin-left: 12px; font-size: 11.5px; }
+    section { padding: 56px 16px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    .reveal { opacity: 1; transform: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="sample-note">※デザインサンプル（プレミアム版：動き・3D演出あり）。店舗情報はすべて架空です。</div>
+
+<header id="header">
+  <div class="logo">炭火焼鳥 <b>とり福</b></div>
+  <nav>
+    <a href="#kodawari">こだわり</a>
+    <a href="#menu">お品書き</a>
+    <a href="#course">宴会コース</a>
+    <a href="#access">アクセス</a>
+  </nav>
+</header>
+
+<div class="hero" id="hero">
+  <div class="hero-inner" id="heroInner">
+    <p class="en">Sumibi Yakitori Torifuku</p>
+    <h1>一串に、<br>心を灯す。</h1>
+    <p class="catch">備長炭と朝引き鶏。駅前路地裏の隠れ家。</p>
+    <a class="cta" href="#reserve">ご予約はこちら</a>
+  </div>
+</div>
+
+<section id="kodawari">
+  <div class="inner">
+    <div class="sec-title reveal">
+      <span class="en">Our Craft</span>
+      <h2>三つのこだわり</h2>
+    </div>
+    <div class="features">
+      <div class="feature tilt reveal">
+        <div class="icon">🔥</div>
+        <h3>備長炭の遠火</h3>
+        <p>高温の熾火で表面を香ばしく、中はふっくら。炭でしか出せない香りを一串ずつ丁寧に。</p>
+      </div>
+      <div class="feature tilt reveal delay-1">
+        <div class="icon">🐓</div>
+        <h3>朝引き地鶏</h3>
+        <p>毎朝仕入れる新鮮な地鶏のみを使用。希少部位は数量限定、売り切れ御免です。</p>
+      </div>
+      <div class="feature tilt reveal delay-2">
+        <div class="icon">🍶</div>
+        <h3>店主厳選の地酒</h3>
+        <p>焼鳥に合う日本酒を全国から。季節替わりの銘柄はスタッフまでお尋ねください。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="menu-sec" id="menu">
+  <div class="inner">
+    <div class="sec-title reveal">
+      <span class="en">Menu</span>
+      <h2>お品書き</h2>
+    </div>
+    <div class="menu-list">
+      <div class="menu-item reveal"><span>ねぎま（塩・タレ）</span><span class="price">220円</span></div>
+      <div class="menu-item reveal"><span>もも</span><span class="price">200円</span></div>
+      <div class="menu-item reveal"><span>つくね 月見仕立て</span><span class="price">280円</span></div>
+      <div class="menu-item reveal"><span>ぼんじり</span><span class="price">240円</span></div>
+      <div class="menu-item reveal"><span>ささみ 山わさび</span><span class="price">260円</span></div>
+      <div class="menu-item reveal"><span>白レバー（数量限定）</span><span class="price">320円</span></div>
+      <div class="menu-item reveal"><span>鶏スープ茶漬け</span><span class="price">580円</span></div>
+    </div>
+    <p class="menu-note reveal">※価格はすべて税込です。仕入れにより内容が変わることがあります。</p>
+  </div>
+</section>
+
+<section id="course">
+  <div class="inner">
+    <div class="sec-title reveal">
+      <span class="en">Course</span>
+      <h2>宴会コース</h2>
+    </div>
+    <div class="courses">
+      <div class="course reveal">
+        <h3>気軽にとり福コース</h3>
+        <p class="price">3,500円<small>／人（税込）</small></p>
+        <ul>
+          <li>焼鳥5本盛り合わせ</li>
+          <li>季節の小鉢 三種</li>
+          <li>鶏スープ茶漬け</li>
+          <li>2時間飲み放題付き</li>
+        </ul>
+      </div>
+      <div class="course osusume reveal delay-1">
+        <h3>店主おまかせコース</h3>
+        <p class="price">5,000円<small>／人（税込）</small></p>
+        <ul>
+          <li>焼鳥8本（希少部位入り）</li>
+          <li>白レバーの低温焼き</li>
+          <li>季節の逸品 二種</li>
+          <li>〆の親子丼</li>
+          <li>2.5時間飲み放題付き</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="gallery">
+  <div class="inner">
+    <div class="sec-title reveal">
+      <span class="en">Gallery</span>
+      <h2>店のようす</h2>
+    </div>
+    <div class="duo">
+      <img class="reveal" src="images/naikan.jpg" alt="あたたかみのある店内">
+      <img class="reveal delay-1" src="images/yakitori.jpg" alt="炭火で焼き上げる串の盛り合わせ">
+    </div>
+    <p class="duo-note reveal">※写真はイメージです。実際の制作ではお店の写真に差し替えます（スマホ写真でOK）。</p>
+  </div>
+</section>
+
+<section id="access">
+  <div class="inner">
+    <div class="sec-title reveal">
+      <span class="en">Access</span>
+      <h2>店舗情報</h2>
+    </div>
+    <table class="info-table reveal">
+      <tr><th>店名</th><td>炭火焼鳥 とり福</td></tr>
+      <tr><th>住所</th><td>東京都〇〇区福町1-2-3 とりビル1F（〇〇駅 徒歩3分）</td></tr>
+      <tr><th>営業時間</th><td>17:00〜23:30（L.O. 23:00）</td></tr>
+      <tr><th>定休日</th><td>日曜・祝日の月曜</td></tr>
+      <tr><th>席数</th><td>カウンター8席・テーブル16席（貸切は20名様〜）</td></tr>
+      <tr><th>お支払い</th><td>現金・各種クレジットカード・QRコード決済</td></tr>
+    </table>
+    <div class="map-box reveal">（ここに Googleマップ が入ります）</div>
+  </div>
+</section>
+
+<section class="reserve" id="reserve">
+  <div class="inner">
+    <div class="sec-title reveal">
+      <span class="en">Reservation</span>
+      <h2>ご予約・お問い合わせ</h2>
+    </div>
+    <p class="reveal">お席のご予約、貸切のご相談はお電話にてどうぞ。</p>
+    <p class="tel reveal">03-0000-0000</p>
+    <p class="hours reveal">受付時間 15:00〜22:00（定休日を除く）</p>
+  </div>
+</section>
+
+<footer>© 炭火焼鳥 とり福（このページはHP制作サービスのデザインサンプル・プレミアム版です）</footer>
+
+<script>
+(function () {
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // 火の粉を生成
+  if (!reduceMotion) {
+    var hero = document.getElementById('hero');
+    for (var i = 0; i < 26; i++) {
+      var e = document.createElement('span');
+      e.className = 'ember';
+      e.style.left = Math.random() * 100 + '%';
+      e.style.setProperty('--drift', (Math.random() * 120 - 60) + 'px');
+      e.style.animationDuration = (5 + Math.random() * 7) + 's';
+      e.style.animationDelay = (Math.random() * 8) + 's';
+      var s = 3 + Math.random() * 4;
+      e.style.width = s + 'px';
+      e.style.height = s + 'px';
+      hero.appendChild(e);
+    }
+  }
+
+  // スクロールで要素をふわっと出現させる
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('show');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.14 });
+  document.querySelectorAll('.reveal').forEach(function (el) { observer.observe(el); });
+
+  // ヒーローの視差（マウスに合わせて奥行きが動く）
+  var heroInner = document.getElementById('heroInner');
+  if (!reduceMotion && heroInner && window.matchMedia('(pointer: fine)').matches) {
+    document.getElementById('hero').addEventListener('mousemove', function (ev) {
+      var x = (ev.clientX / window.innerWidth - 0.5) * 2;
+      var y = (ev.clientY / window.innerHeight - 0.5) * 2;
+      heroInner.style.transform = 'rotateY(' + (x * 3.5) + 'deg) rotateX(' + (-y * 3.5) + 'deg)';
+    });
+    document.getElementById('hero').addEventListener('mouseleave', function () {
+      heroInner.style.transform = 'rotateY(0deg) rotateX(0deg)';
+    });
+  }
+
+  // こだわりカードの3Dチルト
+  if (!reduceMotion && window.matchMedia('(pointer: fine)').matches) {
+    document.querySelectorAll('.tilt').forEach(function (card) {
+      card.addEventListener('mousemove', function (ev) {
+        var r = card.getBoundingClientRect();
+        var x = (ev.clientX - r.left) / r.width - 0.5;
+        var y = (ev.clientY - r.top) / r.height - 0.5;
+        card.style.transform = 'rotateY(' + (x * 10) + 'deg) rotateX(' + (-y * 10) + 'deg) translateZ(6px)';
+      });
+      card.addEventListener('mouseleave', function () {
+        card.style.transform = 'rotateY(0) rotateX(0) translateZ(0)';
+      });
+    });
+  }
+
+  // 下スクロールでヘッダーを隠し、上スクロールで出す
+  var lastY = 0, header = document.getElementById('header');
+  window.addEventListener('scroll', function () {
+    var y = window.scrollY;
+    header.classList.toggle('hidden', y > lastY && y > 140);
+    lastY = y;
+  }, { passive: true });
+})();
+</script>
+
+</body>
+</html>

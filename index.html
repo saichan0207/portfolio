@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yutaka Web Works｜制作実績</title>
+<meta name="description" content="飲食店向けホームページ制作の実績サンプル集">
+<style>
+  :root{
+    --bg:#0b0e14;
+    --bg2:#11151f;
+    --card:rgba(255,255,255,.045);
+    --card-border:rgba(255,255,255,.10);
+    --text:#e8eaf0;
+    --muted:#9aa3b2;
+    --accent:#d8b465;
+    --accent-soft:rgba(216,180,101,.14);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic",-apple-system,BlinkMacSystemFont,sans-serif;
+    background:
+      radial-gradient(900px 500px at 85% -10%, rgba(216,180,101,.08), transparent 60%),
+      radial-gradient(700px 500px at -10% 30%, rgba(90,130,255,.06), transparent 60%),
+      linear-gradient(180deg,var(--bg) 0%,var(--bg2) 100%);
+    color:var(--text);
+    min-height:100vh;
+    line-height:1.7;
+  }
+  .wrap{max-width:640px;margin:0 auto;padding:56px 20px 48px}
+  header{margin-bottom:40px}
+  .brand{
+    display:inline-flex;align-items:center;gap:10px;
+    font-size:12px;letter-spacing:.22em;color:var(--accent);
+    text-transform:uppercase;margin-bottom:14px;
+  }
+  .brand::before{content:"";display:block;width:26px;height:1px;background:var(--accent)}
+  h1{font-size:clamp(26px,7vw,34px);font-weight:700;letter-spacing:.04em;line-height:1.35}
+  h1 span{color:var(--accent)}
+  .lead{margin-top:12px;color:var(--muted);font-size:14px}
+  .cards{display:grid;gap:18px;margin:34px 0 30px}
+  .card{
+    display:block;color:inherit;
+    background:var(--card);
+    border:1px solid var(--card-border);
+    border-radius:18px;
+    padding:24px 22px;
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+    box-shadow:0 8px 30px rgba(0,0,0,.35);
+    transition:transform .25s ease,border-color .25s ease,background .25s ease;
+    position:relative;overflow:hidden;
+  }
+  .card::before{
+    content:"";position:absolute;inset:0 0 auto 0;height:1px;
+    background:linear-gradient(90deg,transparent,rgba(255,255,255,.25),transparent);
+  }
+  .card:hover,.card:active{transform:translateY(-2px);border-color:rgba(216,180,101,.45);background:rgba(255,255,255,.07)}
+  .tag{
+    display:inline-block;font-size:11px;letter-spacing:.12em;
+    color:var(--accent);background:var(--accent-soft);
+    border:1px solid rgba(216,180,101,.3);
+    border-radius:999px;padding:3px 12px;margin-bottom:12px;
+  }
+  .card h2{font-size:20px;font-weight:700;letter-spacing:.03em;margin-bottom:6px}
+  .card p{font-size:13.5px;color:var(--muted)}
+  .card .go{
+    display:inline-flex;align-items:center;gap:6px;
+    margin-top:14px;font-size:13px;color:var(--accent);letter-spacing:.06em;
+  }
+  .go{text-decoration:none}
+  .go::after{content:"→";transition:transform .25s ease}
+  .card:hover .go::after{transform:translateX(4px)}
+  .go::before{content:"";position:absolute;inset:0;z-index:1}
+  .sub{position:relative;z-index:2;
+    margin-top:12px;padding-top:12px;
+    border-top:1px dashed rgba(255,255,255,.12);
+    font-size:12.5px;color:var(--muted);
+  }
+  .sub a{color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(216,180,101,.4)}
+  .note{
+    background:rgba(255,255,255,.03);
+    border:1px solid var(--card-border);
+    border-radius:14px;padding:18px 20px;
+    font-size:13px;color:var(--muted);
+  }
+  .note strong{color:var(--text);font-weight:600}
+  .note p+p{margin-top:8px}
+  .ig{color:var(--accent);font-weight:600;letter-spacing:.03em}
+  footer{margin-top:36px;text-align:center;font-size:11.5px;color:#5b6372;letter-spacing:.08em}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brand">Portfolio</div>
+    <h1>Yutaka Web Works<br><span>制作実績</span></h1>
+    <p class="lead">飲食店さま向けのホームページ制作サンプルです。<br>スマホでの見やすさ・お店の魅力が伝わるデザインを大切にしています。</p>
+  </header>
+
+  <div class="cards">
+    <div class="card">
+      <span class="tag">CAFE</span>
+      <h2>カフェひなた</h2>
+      <p>やわらかな光と木のぬくもりを感じる、ナチュラル系カフェのサイト。メニュー写真が映えるあたたかいデザイン。</p>
+      <a class="go" href="./cafe-hinata/">サイトを見る</a>
+    </div>
+
+    <div class="card">
+      <span class="tag">YAKITORI</span>
+      <h2>焼き鳥 とり福</h2>
+      <p>炭火の香ばしさと大人の落ち着きを表現した、和モダンな焼き鳥店のサイト。シズル感重視の構成。</p>
+      <a class="go" href="./yakitori-torifuku/">サイトを見る</a>
+      <div class="sub">上位デザイン案：<a href="./yakitori-torifuku/premium.html">プレミアム版はこちら</a></div>
+    </div>
+  </div>
+
+  <div class="note">
+    <p><strong>※ 掲載サイトはすべて架空店舗のサンプルです。</strong>実在の店舗・団体とは関係ありません。</p>
+    <p>制作のご相談は Instagram <span class="ig">@（準備中）</span> へDMにてお気軽にどうぞ。</p>
+  </div>
+
+  <footer>&copy; 2026 Yutaka Web Works</footer>
+</div>
+</body>
+</html>

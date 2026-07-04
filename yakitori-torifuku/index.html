@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>炭火焼鳥 とり福｜駅前の隠れ家居酒屋（サンプルサイト）</title>
+<meta name="description" content="備長炭でじっくり焼き上げる本格焼鳥と地酒の店。宴会コース・貸切もご相談ください。">
+<style>
+  :root {
+    --sumi: #1b1713;
+    --sumi-2: #262019;
+    --kin: #c9a227;
+    --shu: #b5432a;
+    --kami: #f5efe3;
+    --kami-2: #ece2cd;
+    --moji: #3a3128;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+    background: var(--kami);
+    color: var(--moji);
+    line-height: 1.9;
+  }
+  img { max-width: 100%; }
+
+  /* ヘッダー */
+  header {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 10;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 14px 20px;
+    background: rgba(27, 23, 19, 0.92);
+    color: var(--kami);
+  }
+  .logo { font-size: 18px; letter-spacing: 0.2em; }
+  .logo b { color: var(--kin); }
+  nav a {
+    color: var(--kami); text-decoration: none; font-size: 13px;
+    margin-left: 18px; letter-spacing: 0.1em;
+  }
+  nav a:hover { color: var(--kin); }
+
+  /* ヒーロー */
+  .hero {
+    min-height: 92vh;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    text-align: center; color: var(--kami);
+    background:
+      linear-gradient(rgba(27, 20, 14, 0.74), rgba(18, 13, 9, 0.86)),
+      url("images/yakitori.jpg") center 45% / cover no-repeat #14100c;
+    padding: 90px 20px 60px;
+  }
+  .hero .en {
+    font-size: 12px; letter-spacing: 0.5em; color: var(--kin);
+    text-transform: uppercase; margin-bottom: 18px;
+  }
+  .hero h1 {
+    font-size: clamp(34px, 8vw, 64px);
+    font-weight: 600; letter-spacing: 0.18em; line-height: 1.4;
+  }
+  .hero p.catch {
+    margin-top: 22px; font-size: clamp(14px, 3vw, 17px);
+    letter-spacing: 0.25em; color: var(--kami-2);
+  }
+  .hero .cta {
+    margin-top: 40px; display: inline-block;
+    border: 1px solid var(--kin); color: var(--kin);
+    padding: 14px 46px; text-decoration: none; font-size: 15px;
+    letter-spacing: 0.3em; transition: all 0.25s;
+  }
+  .hero .cta:hover { background: var(--kin); color: var(--sumi); }
+
+  /* セクション共通 */
+  section { padding: 76px 20px; }
+  .inner { max-width: 860px; margin: 0 auto; }
+  .sec-title {
+    text-align: center; margin-bottom: 44px;
+  }
+  .sec-title .en {
+    display: block; font-size: 11px; letter-spacing: 0.4em;
+    color: var(--shu); text-transform: uppercase; margin-bottom: 8px;
+  }
+  .sec-title h2 {
+    font-size: 26px; letter-spacing: 0.3em; font-weight: 600;
+  }
+  .sec-title h2::after {
+    content: ""; display: block; width: 36px; height: 2px;
+    background: var(--kin); margin: 14px auto 0;
+  }
+
+  /* こだわり */
+  .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 22px; }
+  .feature {
+    background: #fff; border: 1px solid var(--kami-2);
+    padding: 30px 24px; text-align: center;
+  }
+  .feature .icon { font-size: 34px; }
+  .feature h3 { font-size: 17px; margin: 14px 0 10px; letter-spacing: 0.15em; }
+  .feature p { font-size: 13.5px; text-align: left; }
+
+  /* お品書き */
+  .menu-sec { background: var(--sumi); color: var(--kami); }
+  .menu-sec .sec-title h2 { color: var(--kami); }
+  .menu-list { max-width: 560px; margin: 0 auto; }
+  .menu-item {
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding: 13px 4px; border-bottom: 1px dashed rgba(245,239,227,0.25);
+    font-size: 15px; letter-spacing: 0.08em;
+  }
+  .menu-item .price { color: var(--kin); }
+  .menu-note { text-align: center; font-size: 12px; margin-top: 22px; color: rgba(245,239,227,0.6); }
+
+  /* コース */
+  .courses { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 22px; }
+  .course {
+    border: 1px solid var(--kami-2); background: #fff; padding: 28px 24px;
+  }
+  .course.osusume { border: 2px solid var(--shu); position: relative; }
+  .course.osusume::before {
+    content: "人気No.1"; position: absolute; top: -13px; left: 20px;
+    background: var(--shu); color: #fff; font-size: 12px;
+    padding: 2px 14px; letter-spacing: 0.2em;
+  }
+  .course h3 { font-size: 18px; letter-spacing: 0.12em; }
+  .course .price { font-size: 24px; color: var(--shu); margin: 10px 0; }
+  .course .price small { font-size: 13px; color: var(--moji); }
+  .course ul { list-style: none; font-size: 13.5px; margin-top: 8px; }
+  .course li::before { content: "─ "; color: var(--kin); }
+
+  /* 店のようす */
+  .duo { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+  .duo img {
+    width: 100%; height: 250px; object-fit: cover; display: block;
+    box-shadow: 0 14px 30px rgba(27, 23, 19, 0.2);
+  }
+  .duo-note { text-align: center; font-size: 12px; color: #8a7a5e; margin-top: 16px; }
+
+  /* 店舗情報 */
+  .info-table { width: 100%; max-width: 640px; margin: 0 auto; border-collapse: collapse; font-size: 14.5px; }
+  .info-table th, .info-table td { padding: 14px 10px; border-bottom: 1px solid var(--kami-2); text-align: left; vertical-align: top; }
+  .info-table th { width: 30%; letter-spacing: 0.15em; color: var(--shu); font-weight: 600; }
+  .map-box {
+    max-width: 640px; margin: 26px auto 0; height: 220px;
+    background: repeating-linear-gradient(45deg, #e7dcc4, #e7dcc4 12px, #efe6d2 12px, #efe6d2 24px);
+    display: flex; align-items: center; justify-content: center;
+    color: #8a7a5e; font-size: 13px; letter-spacing: 0.2em;
+    border: 1px solid var(--kami-2);
+  }
+
+  /* 予約CTA */
+  .reserve {
+    background: linear-gradient(160deg, #2a2118, #181209);
+    color: var(--kami); text-align: center;
+  }
+  .reserve .tel {
+    font-size: clamp(28px, 7vw, 42px); color: var(--kin);
+    letter-spacing: 0.08em; margin: 18px 0 6px; font-weight: 600;
+  }
+  .reserve .hours { font-size: 13px; color: rgba(245,239,227,0.7); }
+  .rsv-form {
+    max-width: 560px; margin: 38px auto 0; text-align: left;
+    background: rgba(245,239,227,0.05); border: 1px solid rgba(201,162,39,0.3);
+    padding: 26px 24px; border-radius: 4px;
+  }
+  .rsv-row { display: flex; gap: 16px; margin-bottom: 16px; flex-wrap: wrap; }
+  .rsv-form label {
+    flex: 1; min-width: 180px; display: flex; flex-direction: column;
+    font-size: 12.5px; letter-spacing: 0.12em; color: var(--kami-2); gap: 7px;
+    font-family: "Hiragino Sans", sans-serif;
+  }
+  .rsv-form .req {
+    display: inline-block; background: var(--shu); color: #fff;
+    font-size: 10px; padding: 1px 7px; margin-left: 8px; border-radius: 2px; letter-spacing: 0.1em;
+  }
+  .rsv-form input, .rsv-form select {
+    padding: 11px 12px; border: 1px solid rgba(245,239,227,0.25);
+    background: rgba(20,16,12,0.6); color: var(--kami);
+    font-size: 14px; border-radius: 3px; font-family: inherit;
+  }
+  .rsv-form input:focus, .rsv-form select:focus { outline: 1px solid var(--kin); border-color: var(--kin); }
+  .rsv-btn {
+    width: 100%; margin-top: 6px; padding: 15px; cursor: pointer;
+    background: var(--kin); color: var(--sumi); border: none; border-radius: 3px;
+    font-size: 15px; letter-spacing: 0.2em; font-family: "Hiragino Mincho ProN", serif;
+    transition: background 0.25s;
+  }
+  .rsv-btn:hover { background: #dcb63a; }
+  .rsv-ok {
+    display: none; margin-top: 16px; padding: 13px 14px;
+    background: rgba(122,139,111,0.2); border: 1px solid #7a8b6f;
+    color: #dbe6d2; font-size: 13px; border-radius: 3px; line-height: 1.7;
+    font-family: "Hiragino Sans", sans-serif;
+  }
+  .rsv-ok.show { display: block; }
+  .rsv-tech {
+    max-width: 560px; margin: 18px auto 0; font-size: 12px; line-height: 1.9;
+    color: rgba(245,239,227,0.6); font-family: "Hiragino Sans", sans-serif;
+    text-align: left; background: rgba(20,16,12,0.4); padding: 12px 16px; border-radius: 3px;
+  }
+
+  footer {
+    background: var(--sumi); color: rgba(245,239,227,0.55);
+    text-align: center; padding: 26px 20px; font-size: 12px; letter-spacing: 0.1em;
+  }
+  .sample-note {
+    background: var(--shu); color: #fff; text-align: center;
+    font-size: 12px; padding: 6px; letter-spacing: 0.15em;
+    font-family: "Hiragino Sans", sans-serif;
+  }
+  @media (max-width: 600px) {
+    nav a { margin-left: 12px; font-size: 11.5px; }
+    section { padding: 56px 16px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="sample-note">※これはデザインサンプルです。店舗・住所・電話番号はすべて架空のものです。</div>
+
+<header>
+  <div class="logo">炭火焼鳥 <b>とり福</b></div>
+  <nav>
+    <a href="#kodawari">こだわり</a>
+    <a href="#menu">お品書き</a>
+    <a href="#course">宴会コース</a>
+    <a href="#access">アクセス</a>
+  </nav>
+</header>
+
+<div class="hero">
+  <p class="en">Sumibi Yakitori Torifuku</p>
+  <h1>一串に、<br>心を灯す。</h1>
+  <p class="catch">備長炭と朝引き鶏。駅前路地裏の隠れ家。</p>
+  <a class="cta" href="#reserve">ご予約はこちら</a>
+</div>
+
+<section id="kodawari">
+  <div class="inner">
+    <div class="sec-title">
+      <span class="en">Our Craft</span>
+      <h2>三つのこだわり</h2>
+    </div>
+    <div class="features">
+      <div class="feature">
+        <div class="icon">🔥</div>
+        <h3>備長炭の遠火</h3>
+        <p>高温の熾火で表面を香ばしく、中はふっくら。炭でしか出せない香りを一串ずつ丁寧に。</p>
+      </div>
+      <div class="feature">
+        <div class="icon">🐓</div>
+        <h3>朝引き地鶏</h3>
+        <p>毎朝仕入れる新鮮な地鶏のみを使用。希少部位は数量限定、売り切れ御免です。</p>
+      </div>
+      <div class="feature">
+        <div class="icon">🍶</div>
+        <h3>店主厳選の地酒</h3>
+        <p>焼鳥に合う日本酒を全国から。季節替わりの銘柄はスタッフまでお尋ねください。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="menu-sec" id="menu">
+  <div class="inner">
+    <div class="sec-title">
+      <span class="en">Menu</span>
+      <h2>お品書き</h2>
+    </div>
+    <div class="menu-list">
+      <div class="menu-item"><span>ねぎま（塩・タレ）</span><span class="price">220円</span></div>
+      <div class="menu-item"><span>もも</span><span class="price">200円</span></div>
+      <div class="menu-item"><span>つくね 月見仕立て</span><span class="price">280円</span></div>
+      <div class="menu-item"><span>ぼんじり</span><span class="price">240円</span></div>
+      <div class="menu-item"><span>ささみ 山わさび</span><span class="price">260円</span></div>
+      <div class="menu-item"><span>白レバー（数量限定）</span><span class="price">320円</span></div>
+      <div class="menu-item"><span>鶏スープ茶漬け</span><span class="price">580円</span></div>
+    </div>
+    <p class="menu-note">※価格はすべて税込です。仕入れにより内容が変わることがあります。</p>
+  </div>
+</section>
+
+<section id="course">
+  <div class="inner">
+    <div class="sec-title">
+      <span class="en">Course</span>
+      <h2>宴会コース</h2>
+    </div>
+    <div class="courses">
+      <div class="course">
+        <h3>気軽にとり福コース</h3>
+        <p class="price">3,500円<small>／人（税込）</small></p>
+        <ul>
+          <li>焼鳥5本盛り合わせ</li>
+          <li>季節の小鉢 三種</li>
+          <li>鶏スープ茶漬け</li>
+          <li>2時間飲み放題付き</li>
+        </ul>
+      </div>
+      <div class="course osusume">
+        <h3>店主おまかせコース</h3>
+        <p class="price">5,000円<small>／人（税込）</small></p>
+        <ul>
+          <li>焼鳥8本（希少部位入り）</li>
+          <li>白レバーの低温焼き</li>
+          <li>季節の逸品 二種</li>
+          <li>〆の親子丼</li>
+          <li>2.5時間飲み放題付き</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="gallery">
+  <div class="inner">
+    <div class="sec-title">
+      <span class="en">Gallery</span>
+      <h2>店のようす</h2>
+    </div>
+    <div class="duo">
+      <img src="images/naikan.jpg" alt="あたたかみのある店内">
+      <img src="images/yakitori.jpg" alt="炭火で焼き上げる串の盛り合わせ">
+    </div>
+    <p class="duo-note">※写真はイメージです。実際の制作ではお店の写真に差し替えます（スマホ写真でOK）。</p>
+  </div>
+</section>
+
+<section id="access">
+  <div class="inner">
+    <div class="sec-title">
+      <span class="en">Access</span>
+      <h2>店舗情報</h2>
+    </div>
+    <table class="info-table">
+      <tr><th>店名</th><td>炭火焼鳥 とり福</td></tr>
+      <tr><th>住所</th><td>東京都〇〇区福町1-2-3 とりビル1F（〇〇駅 徒歩3分）</td></tr>
+      <tr><th>営業時間</th><td>17:00〜23:30（L.O. 23:00）</td></tr>
+      <tr><th>定休日</th><td>日曜・祝日の月曜</td></tr>
+      <tr><th>席数</th><td>カウンター8席・テーブル16席（貸切は20名様〜）</td></tr>
+      <tr><th>お支払い</th><td>現金・各種クレジットカード・QRコード決済</td></tr>
+    </table>
+    <div class="map-box">（ここに Googleマップ が入ります）</div>
+  </div>
+</section>
+
+<section class="reserve" id="reserve">
+  <div class="inner">
+    <div class="sec-title">
+      <span class="en">Reservation</span>
+      <h2 style="color:#f5efe3">ご予約・お問い合わせ</h2>
+    </div>
+    <p>お電話、または下記フォームからご予約いただけます。</p>
+    <p class="tel">03-0000-0000</p>
+    <p class="hours">受付時間 15:00〜22:00（定休日を除く）</p>
+
+    <form class="rsv-form" id="rsvForm" novalidate>
+      <div class="rsv-row">
+        <label>ご希望日<span class="req">必須</span>
+          <input type="date" name="date" required>
+        </label>
+        <label>ご希望時間<span class="req">必須</span>
+          <select name="time" required>
+            <option value="">選択してください</option>
+            <option>17:00</option><option>18:00</option><option>19:00</option>
+            <option>20:00</option><option>21:00</option>
+          </select>
+        </label>
+      </div>
+      <div class="rsv-row">
+        <label>人数<span class="req">必須</span>
+          <select name="people" required>
+            <option value="">選択してください</option>
+            <option>1名</option><option>2名</option><option>3〜4名</option>
+            <option>5〜8名</option><option>9名以上（宴会・貸切）</option>
+          </select>
+        </label>
+        <label>お名前<span class="req">必須</span>
+          <input type="text" name="name" placeholder="山田 太郎" required>
+        </label>
+      </div>
+      <div class="rsv-row">
+        <label>電話番号<span class="req">必須</span>
+          <input type="tel" name="tel" placeholder="090-0000-0000" required>
+        </label>
+        <label>ご要望（任意）
+          <input type="text" name="note" placeholder="お席のご希望など">
+        </label>
+      </div>
+      <button type="submit" class="rsv-btn">この内容で予約を申し込む</button>
+      <p class="rsv-ok" id="rsvOk">✓ ご予約リクエストを送信しました。お店から確認のご連絡をお待ちください。（※これはデザインサンプルです）</p>
+    </form>
+    <p class="rsv-tech">🔒 入力された予約情報は、お店に直接メールで届く仕組みです。ホームページ本体とは別に管理されるため、サイトを更新・修正しても予約情報が消えることはありません。</p>
+  </div>
+</section>
+
+<footer>© 炭火焼鳥 とり福（このページはHP制作サービスのデザインサンプルです）</footer>
+
+<script>
+(function () {
+  var form = document.getElementById('rsvForm');
+  var ok = document.getElementById('rsvOk');
+  if (!form) return;
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    // 必須項目のチェック
+    var required = form.querySelectorAll('[required]');
+    var allFilled = true;
+    required.forEach(function (el) {
+      if (!el.value) { allFilled = false; el.style.borderColor = '#b5432a'; }
+      else { el.style.borderColor = ''; }
+    });
+    if (!allFilled) return;
+    // デモ：実際の制作では、ここで外部フォームサービス経由でお店にメール送信します
+    ok.classList.add('show');
+    form.querySelector('.rsv-btn').textContent = '送信済み';
+    ok.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
+})();
+</script>
+
+</body>
+</html>
