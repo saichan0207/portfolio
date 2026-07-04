@@ -27,7 +27,7 @@
 
   /* ヘッダー */
   header {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 10;
+    position: sticky; top: 0; z-index: 10;
     display: flex; justify-content: space-between; align-items: center;
     padding: 14px 20px;
     background: rgba(27, 23, 19, 0.92);
@@ -209,7 +209,10 @@
     font-family: "Hiragino Sans", sans-serif;
   }
   @media (max-width: 600px) {
-    nav a { margin-left: 12px; font-size: 11.5px; }
+    header { flex-direction: column; gap: 4px; padding: 10px 12px; }
+    .logo { font-size: 15px; letter-spacing: 0.15em; white-space: nowrap; }
+    nav { display: flex; justify-content: center; }
+    nav a { margin: 0 7px; font-size: 11px; white-space: nowrap; }
     section { padding: 56px 16px; }
   }
 </style>
