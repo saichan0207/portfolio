@@ -88,9 +88,15 @@
 
   /* ---------- hero ---------- */
   .hero{position:relative;overflow:hidden;padding:clamp(64px,10vw,120px) 0 clamp(56px,7vw,96px);text-align:center;
-    background:
+    background-color:var(--bg); /* 画像が読めない環境でも成立するフォールバック */
+    background-image:
       radial-gradient(1100px 620px at 50% -14%,var(--glow-teal),transparent 62%),
-      radial-gradient(760px 520px at 86% 4%,rgba(242,205,131,.07),transparent 58%)}
+      radial-gradient(760px 520px at 86% 4%,rgba(242,205,131,.07),transparent 58%),
+      linear-gradient(180deg,rgba(8,11,19,.80),rgba(8,11,19,.90) 52%,rgba(8,11,19,.97)),
+      url("img/hero.jpg");
+    background-size:auto,auto,auto,cover;
+    background-position:center,center,center,center 42%;
+    background-repeat:no-repeat}
   .hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;
     background:linear-gradient(90deg,transparent,var(--line-2),transparent)}
   .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:700;letter-spacing:.14em;
@@ -153,6 +159,17 @@
   /* ---------- band / generic panels ---------- */
   .band{background:linear-gradient(180deg,rgba(255,255,255,.018),transparent);
     border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  /* 写真入りバンド（現場の空気感）— 暗いオーバーレイで可読性を死守、フォールバック背景色併記 */
+  #how{background-color:var(--bg-soft);
+    background-image:
+      linear-gradient(180deg,rgba(8,11,19,.86),rgba(8,11,19,.80) 46%,rgba(8,11,19,.92)),
+      url("img/work.jpg");
+    background-size:auto,cover;background-position:center,center 60%;background-repeat:no-repeat}
+  #security{background-color:var(--bg-soft);
+    background-image:
+      linear-gradient(180deg,rgba(8,11,19,.90),rgba(8,11,19,.85) 42%,rgba(8,11,19,.95)),
+      url("img/security.jpg");
+    background-size:auto,cover;background-position:center,center;background-repeat:no-repeat}
   .grid{display:grid;gap:18px}
   .g-3{grid-template-columns:1fr}
   @media(min-width:720px){.g-3{grid-template-columns:repeat(3,1fr)}}
@@ -294,8 +311,20 @@
   details.faq .ans{padding:0 22px 22px 50px;color:var(--sub);font-size:14.5px;line-height:1.85}
 
   /* operator */
-  .op{display:grid;gap:28px;grid-template-columns:1fr;align-items:start}
-  @media(min-width:820px){.op{grid-template-columns:1.15fr .85fr;gap:40px}}
+  .op{display:grid;gap:26px;grid-template-columns:1fr;align-items:stretch}
+  @media(min-width:820px){.op{grid-template-columns:.82fr 1.18fr;gap:36px}}
+  /* 運営者：夕方の温かいデスク写真カード（モバイルは上、デスクトップはテキスト横） */
+  .op-photo{position:relative;border-radius:var(--radius);overflow:hidden;min-height:230px;
+    border:1px solid var(--line-2);box-shadow:var(--shadow);
+    background:linear-gradient(160deg,#182b41,#0a1220)} /* 画像不達時のフォールバック */
+  .op-photo img{display:block;width:100%;height:100%;object-fit:cover;object-position:center 42%;
+    filter:saturate(1.06) contrast(1.02);min-height:230px}
+  .op-photo::after{content:"";position:absolute;inset:0;pointer-events:none;border-radius:inherit;
+    background:linear-gradient(180deg,rgba(8,11,19,.12),transparent 34%,rgba(8,11,19,.42));
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,.05)}
+  .op-photo .cap{position:absolute;left:14px;bottom:12px;z-index:1;font-size:11px;font-weight:600;
+    letter-spacing:.04em;color:rgba(233,238,251,.82);text-shadow:0 1px 6px rgba(0,0,0,.6)}
+  .op-body{display:grid;gap:26px;align-content:start}
   .op-lead p{color:var(--sub);font-size:15.5px;line-height:1.95;margin-bottom:16px}
   .op-lead p b{color:var(--ink)}
   .op-card{background:linear-gradient(180deg,var(--panel),var(--panel-2));border:1px solid var(--line);
@@ -759,6 +788,11 @@
 <section id="operator">
   <div class="wrap narrow">
     <div class="op">
+      <div class="op-photo reveal">
+        <img src="img/owner.jpg" alt="夕暮れの温かいデスク（イメージ）" loading="lazy" width="1024" height="576">
+        <span class="cap">日々AIチームで業務を回す仕事場（イメージ）</span>
+      </div>
+      <div class="op-body">
       <div class="op-lead reveal">
         <span class="kicker">運営者</span>
         <h2 class="title" style="font-size:clamp(24px,3.2vw,34px)">自分たちの仕事も、<br><span class="tl">毎日AIチームで回しています。</span></h2>
@@ -778,6 +812,7 @@
           <li><span class="oi"><svg class="i"><use href="#i-eye"/></svg></span><div>すべて最後は<b>人間が目視で検品</b></div></li>
         </ul>
         <a class="pf" href="https://saichan0207.github.io/portfolio/">制作実績（ポートフォリオ）を見る<svg class="i"><use href="#i-arrow"/></svg></a>
+      </div>
       </div>
     </div>
   </div>
