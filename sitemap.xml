@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://saichan0207.github.io/portfolio/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://saichan0207.github.io/portfolio/kuchikomi/</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://saichan0207.github.io/portfolio/hojokin/</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://saichan0207.github.io/portfolio/yado/</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://saichan0207.github.io/portfolio/blog/</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://saichan0207.github.io/portfolio/blog/google-kuchikomi-henshin/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://saichan0207.github.io/portfolio/blog/hojokin-kojin-jigyonushi/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://saichan0207.github.io/portfolio/blog/minpaku-gaikokujin-taio/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://saichan0207.github.io/portfolio/blog/meo-taisaku-jibun/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+</urlset>
