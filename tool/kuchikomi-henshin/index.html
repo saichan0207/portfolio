@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>口コミ返信ジェネレーター（無料）｜Googleクチコミの返信文が3案すぐ出る</title>
+<meta name="description" content="Googleクチコミを貼るだけで、お店の返信文が3案すぐに出る無料ツール。★1の厳しい口コミにも、感情を挟まない冷静な文面を用意します。登録不要・インストール不要・その場で完結。">
+<link rel="canonical" href="https://saichan0207.github.io/portfolio/tool/kuchikomi-henshin/">
+<meta property="og:title" content="口コミ返信ジェネレーター（無料）｜Googleクチコミの返信文が3案すぐ出る">
+<meta property="og:description" content="口コミを貼るだけで返信文が3案。★1にも冷静に返せます。登録不要・無料。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://saichan0207.github.io/portfolio/tool/kuchikomi-henshin/">
+<style>
+  :root{--ink:#1c2430;--sub:#5d6a7d;--line:#e5e9f0;--blue:#2563eb;--blue-d:#1d4ed8;--bg:#f7f9fc;--gold:#f59e0b;--ok:#16a34a;}
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:"Hiragino Sans","Yu Gothic",sans-serif;background:#fff;color:var(--ink);line-height:1.9;letter-spacing:.02em}
+  .wrap{max-width:680px;margin:0 auto;padding:0 20px}
+  .hero{background:linear-gradient(165deg,#0f1c33 0%,#1e3a8a 70%,#2563eb 100%);color:#fff;padding:44px 0 48px;text-align:center}
+  .hero .badge{display:inline-block;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.3);border-radius:999px;padding:6px 18px;font-size:13px;margin-bottom:20px;letter-spacing:.06em}
+  h1{font-size:27px;line-height:1.5;margin-bottom:12px;font-weight:800}
+  h1 .y{color:#fbbf24}
+  .hero p.lead{font-size:15px;color:#cdd9f0}
+  section{padding:44px 0}
+  section.alt{background:var(--bg)}
+  h2{font-size:21px;text-align:center;margin-bottom:24px;line-height:1.6}
+
+  /* form */
+  .card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px 20px;box-shadow:0 6px 28px rgba(30,58,138,.07)}
+  .fld{margin-bottom:20px}
+  .fld:last-child{margin-bottom:0}
+  label.lb{display:block;font-size:14px;font-weight:700;margin-bottom:8px}
+  label.lb span{display:block;font-weight:500;color:var(--sub);font-size:12.5px;margin-top:1px;line-height:1.6}
+  select,textarea,input[type=text]{width:100%;font-family:inherit;font-size:15px;line-height:1.8;color:var(--ink);border:1px solid #d3dae5;border-radius:10px;padding:11px 13px;background:#fff;-webkit-appearance:none;appearance:none}
+  select{background-image:url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%235d6a7d' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;background-size:18px;padding-right:38px}
+  textarea{min-height:132px;resize:vertical}
+  select:focus,textarea:focus,input:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(37,99,235,.13)}
+  .stars-pick{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+  .stars-pick button{min-width:0;font-family:inherit;font-size:15px;font-weight:800;padding:10px 2px;border:1px solid #d3dae5;background:#fff;color:var(--sub);border-radius:10px;cursor:pointer;transition:.12s;line-height:1.4;white-space:nowrap}
+  .stars-pick button .s{color:var(--gold)}
+  .stars-pick button .n{display:block;font-size:10.5px;font-weight:600;color:#9aa6b6;letter-spacing:0}
+  .stars-pick button[aria-pressed=true]{background:#fffaf0;border-color:var(--gold);color:#b45309;box-shadow:0 0 0 3px rgba(245,158,11,.16)}
+  .stars-pick button[aria-pressed=true] .n{color:#b45309}
+  .row2{display:flex;gap:12px}
+  .row2>div{flex:1;min-width:0}
+  .go{width:100%;margin-top:22px;background:var(--gold);color:#231a05;font-family:inherit;font-weight:800;font-size:17px;padding:16px;border:none;border-radius:999px;cursor:pointer;box-shadow:0 10px 26px rgba(245,158,11,.34);transition:transform .15s}
+  .go:hover{transform:translateY(-2px)}
+  .go:disabled{opacity:.5;cursor:default;transform:none;box-shadow:none}
+  .err{color:#b91c1c;font-size:13.5px;margin-top:10px;display:none}
+  .err.on{display:block}
+
+  /* results */
+  #out{display:none}
+  #out.on{display:block}
+  .res{background:#fff;border:1px solid var(--line);border-left:4px solid var(--ok);border-radius:12px;padding:18px 18px 14px;margin-bottom:14px;box-shadow:0 6px 22px rgba(30,58,138,.06)}
+  .res .rh{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:8px}
+  .res .rt{font-size:13.5px;font-weight:800;color:var(--ok)}
+  .res .rc{font-size:12px;color:#9aa6b6;white-space:nowrap}
+  .res .rb{font-size:14.5px;white-space:pre-wrap;line-height:1.95}
+  .res .cp{margin-top:12px;width:100%;font-family:inherit;font-size:14px;font-weight:700;color:var(--blue-d);background:#eff5ff;border:1px solid #c7dbff;border-radius:9px;padding:10px;cursor:pointer;transition:.12s}
+  .res .cp:hover{background:#e0ecff}
+  .res .cp.done{background:#e9f9ef;border-color:#a7e3bf;color:#15803d}
+  .again{width:100%;font-family:inherit;font-size:14.5px;font-weight:700;color:var(--sub);background:#fff;border:1px solid #d3dae5;border-radius:999px;padding:13px;cursor:pointer;margin-top:4px}
+  .again:hover{background:var(--bg)}
+
+  .warn{background:#fffbeb;border:1px solid #fde68a;border-radius:12px;padding:14px 16px;font-size:13.5px;color:#78500a;margin-top:18px}
+  .warn b{color:#92400e}
+  .pain{display:flex;flex-direction:column;gap:12px}
+  .pain div{background:#fff;border:1px solid var(--line);border-left:4px solid var(--blue);border-radius:10px;padding:14px 18px;font-size:14.5px}
+  .cta-box{background:linear-gradient(165deg,#0f1c33,#1e3a8a);color:#fff;border-radius:18px;padding:30px 24px;text-align:center}
+  .cta-box h3{font-size:19px;margin-bottom:10px;line-height:1.6}
+  .cta-box p{font-size:14px;color:#cdd9f0;margin-bottom:20px}
+  .cta-box a{display:inline-block;background:var(--gold);color:#231a05;font-weight:800;font-size:16px;padding:14px 30px;border-radius:999px;text-decoration:none;box-shadow:0 10px 26px rgba(245,158,11,.34)}
+  .faq dt{font-weight:700;font-size:15px;margin-top:18px}
+  .faq dt::before{content:"Q. ";color:var(--blue)}
+  .faq dd{font-size:14px;color:var(--sub);margin-top:4px}
+  footer{background:#0f1729;color:#8fa3c8;font-size:12.5px;text-align:center;padding:28px 20px;line-height:2}
+  footer a{color:#c3d2ee}
+  @media(min-width:640px){h1{font-size:34px}}
+  @media(max-width:400px){.row2{flex-direction:column;gap:20px}}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="wrap">
+    <span class="badge">無料・登録不要・インストール不要</span>
+    <h1>口コミを貼るだけ。<br><span class="y">返信文が3案</span>出ます。</h1>
+    <p class="lead">★1の厳しい口コミにも、感情を挟まない冷静な文面を。<br>そのままコピーして貼れます。</p>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <div class="card">
+      <div class="fld">
+        <label class="lb" for="ind">お店の種類</label>
+        <select id="ind">
+          <option value="food">飲食店・カフェ・居酒屋</option>
+          <option value="salon">美容室・ネイル・エステ</option>
+          <option value="seitai">整体・接骨院・マッサージ</option>
+          <option value="school">教室・スクール・ジム</option>
+          <option value="yado">宿・ホテル・民泊</option>
+          <option value="clinic">医院・クリニック・歯科</option>
+          <option value="shop">小売店・物販</option>
+          <option value="other">その他のお店・サービス</option>
+        </select>
+      </div>
+
+      <div class="fld">
+        <label class="lb">お客様の評価</label>
+        <div class="stars-pick" id="stars">
+          <button type="button" data-r="1"><span class="s">★</span>1<span class="n">とても不満</span></button>
+          <button type="button" data-r="2"><span class="s">★</span>2<span class="n">不満</span></button>
+          <button type="button" data-r="3"><span class="s">★</span>3<span class="n">ふつう</span></button>
+          <button type="button" data-r="4"><span class="s">★</span>4<span class="n">満足</span></button>
+          <button type="button" data-r="5" aria-pressed="true"><span class="s">★</span>5<span class="n">大満足</span></button>
+        </div>
+      </div>
+
+      <div class="fld">
+        <label class="lb" for="rv">口コミの本文 <span>Googleからそのままコピーして貼ってください</span></label>
+        <textarea id="rv" placeholder="例）ランチで利用しました。日替わりのキッシュが美味しかったです。ただ、混んでいて提供までかなり待ちました。"></textarea>
+      </div>
+
+      <div class="fld row2">
+        <div>
+          <label class="lb" for="shop">お店の名前 <span>任意</span></label>
+          <input type="text" id="shop" placeholder="例）カフェひだまり">
+        </div>
+        <div>
+          <label class="lb" for="tone">返信の雰囲気</label>
+          <select id="tone">
+            <option value="polite">きちんと丁寧に</option>
+            <option value="soft">やわらかく親しみやすく</option>
+          </select>
+        </div>
+      </div>
+
+      <button class="go" id="go">返信文を3案つくる</button>
+      <p class="err" id="err">口コミの本文を貼ってください。</p>
+    </div>
+
+    <div id="out">
+      <h2 style="margin-top:38px">返信文の案</h2>
+      <div id="cards"></div>
+      <button class="again" id="again">条件を変えてもう一度つくる</button>
+      <div class="warn">
+        <b>そのまま貼る前に、1か所だけ直してください。</b><br>
+        お店ならではの一言（お料理の名前、次回のご案内、担当者名など）を1文足すと、定型文っぽさが消えて「ちゃんと読んでくれている」と伝わります。<br>
+        また、<b>投稿者が特定できる情報（来店日・人数・お連れ様のこと）は書かない</b>のがルールです。読んでいるのは投稿者だけでなく、これから来るお客様です。
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <h2>返信は「速さ」より「続くこと」</h2>
+    <div class="pain">
+      <div><b>返信のあるお店は選ばれます</b> — Googleも返信を推奨しています。地図検索（MEO）でも来店の決め手でも有利になります。</div>
+      <div><b>★1こそ、返信が効きます</b> — 放置された低評価は、見た人全員に効き続けます。丁寧な返信1本で「ちゃんとしたお店」の証明に変わります。</div>
+      <div><b>でも、毎日は書けない</b> — 営業終わりに文章を考える余力はなかなか残りません。それが普通です。だからこのツールを作りました。</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="cta-box">
+      <h3>「考える」ことすら、やめませんか</h3>
+      <p>クチコミ返信AIなら、あなたのお店の口コミへの返信案が毎朝メールで届きます。お店の口調を覚えるので、貼るだけで終わります。まずは実際の口コミ3件分を無料でお作りします。</p>
+      <a href="../../kuchikomi/">無料サンプルをもらう →</a>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap faq">
+    <h2>よくある質問</h2>
+    <dt>本当に無料ですか？登録は要りますか？</dt>
+    <dd>完全に無料で、登録もインストールも不要です。何度でもお使いください。</dd>
+    <dt>貼った口コミはどこかに送られますか？</dt>
+    <dd>いいえ。このツールはあなたの端末（ブラウザ）の中だけで動いています。入力した内容が外部に送信されることも、保存されることもありません。</dd>
+    <dt>出てきた文章は、そのまま使っていいですか？</dt>
+    <dd>はい、自由にお使いいただけます。ただし上の注意のとおり、お店ならではの一言を1文足してからの投稿をおすすめします。</dd>
+    <dt>もっとお店らしい文章にできますか？</dt>
+    <dd>このツールは型に当てはめて作るので、どうしても「無難な文章」になります。お店の口調そのものを再現したい方は、<a href="../../kuchikomi/">クチコミ返信AI</a>の無料サンプルをお試しください。</dd>
+    <dt>例文をもっと見たいです</dt>
+    <dd><a href="../../blog/google-kuchikomi-henshin/">Googleクチコミ返信の例文40個</a>にまとめています。星の数・状況別に載せているので、こちらもどうぞ。</dd>
+  </div>
+</section>
+
+<footer>
+  口コミ返信ジェネレーター（無料）｜ 運営：Web制作・AI業務代行 ゆたか（2026年7月より合同会社HISOO）<br>
+  関連：<a href="../../kuchikomi/">クチコミ返信AI</a> ｜ <a href="../../blog/google-kuchikomi-henshin/">返信例文40個</a> ｜ <a href="../../">制作実績</a>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  // ── お店の種類ごとの言い回し ─────────────────────
+  var IND = {
+    food:   {visit:"ご来店",     visitV:"お越しいただき",   main:"お料理",   place:"店内", staff:"スタッフ",   again:"またお食事にお越しください",                     hint:"日替わりの内容は毎週変わります"},
+    salon:  {visit:"ご来店",     visitV:"お越しいただき",   main:"仕上がり", place:"店内", staff:"スタッフ",   again:"またぜひお任せください",                         hint:"次回は少し明るめの色味もお似合いかと思います"},
+    seitai: {visit:"ご来院",     visitV:"お越しいただき",   main:"施術",     place:"院内", staff:"スタッフ",   again:"お身体のことでお困りの際はまたご相談ください",   hint:"ご自宅でできるストレッチもお伝えできます"},
+    school: {visit:"ご受講",     visitV:"お通いいただき",   main:"レッスン", place:"教室", staff:"講師一同",   again:"またお会いできるのを楽しみにしております",       hint:"体験後のクラスもいつでもご案内できます"},
+    yado:   {visit:"ご宿泊",     visitV:"お泊まりいただき", main:"お部屋",   place:"館内", staff:"スタッフ",   again:"またこの地にお越しの際はお立ち寄りください",     hint:"季節ごとに窓からの景色が変わります"},
+    clinic: {visit:"ご来院",     visitV:"お越しいただき",   main:"診療",     place:"院内", staff:"スタッフ",   again:"お困りのことがあればいつでもご相談ください",     hint:"気になる症状があればいつでもご相談ください"},
+    shop:   {visit:"ご来店",     visitV:"お越しいただき",   main:"商品",     place:"店内", staff:"スタッフ",   again:"またお立ち寄りください",                         hint:"新作は毎月入荷しています"},
+    other:  {visit:"ご利用",     visitV:"ご利用いただき",   main:"サービス", place:"店内", staff:"スタッフ",   again:"またのご利用をお待ちしております",               hint:"次回ご利用の際はお気軽にお声がけください"}
+  };
+
+  // ── 口コミから話題を拾う ─────────────────────
+  var RULES = [
+    {id:"wait",   kw:["待た","待ち","待っ","遅い","遅かっ","遅く","混ん","混雑","時間がかか","提供が","なかなか来"]},
+    {id:"staffB", kw:["態度","愛想","無愛想","そっけ","ぶっきら","感じが悪","冷たい","不親切","対応が悪","説明がな","放置"]},
+    {id:"staffG", kw:["親切","丁寧","笑顔","感じが良","感じの良","気配り","優しい","やさしい","接客が良","気持ちよく","対応が良","話しやす"]},
+    {id:"qualB",  kw:["まず","不味","ぬる","冷め","硬","期待外れ","期待はず","残念","微妙","雑","下手","痛かっ","効果がな","失敗"]},
+    {id:"qualG",  kw:["おいし","美味","うま","絶品","最高","上手","じょうず","良かっ","よかっ","気持ちよか","楽になっ","満足","素敵","すてき","可愛","かわい","快適"]},
+    {id:"cleanB", kw:["汚","きたな","不潔","臭","におい","匂いが気","埃","ほこり","掃除"]},
+    {id:"cleanG", kw:["清潔","きれい","綺麗","落ち着","居心地","雰囲気が良","おしゃれ","静か"]},
+    {id:"priceB", kw:["高い","高すぎ","割に合わ","コスパが悪","値段が","料金が高","高額","の割に","値段の","料金の"]},
+    {id:"priceG", kw:["安い","コスパ","お値打ち","リーズナブル","良心的"]},
+    {id:"resv",   kw:["予約","電話","つながら","繋がら","連絡が","メール"]},
+    {id:"noise",  kw:["うるさ","騒がし","声が大き","子どもが","子供が","落ち着かな"]},
+    {id:"park",   kw:["駐車","駐輪","停め","とめ"]},
+    {id:"repeat", kw:["また","いつも","通っ","常連","リピート","再訪","何度も","久しぶり"]},
+    {id:"first",  kw:["初めて","はじめて","初訪","初来"]}
+  ];
+
+  function detect(text){
+    var hit = [];
+    RULES.forEach(function(r){
+      for(var i=0;i<r.kw.length;i++){ if(text.indexOf(r.kw[i])>=0){ hit.push(r.id); return; } }
+    });
+    return hit;
+  }
+
+  // ── 話題ごとの一文（低評価より・高評価より）──────────────
+  function lowLine(id,I){
+    switch(id){
+      case "wait":   return "お待たせする時間が長くなってしまった点につきましては、混み合う時間帯の人員配置と提供の流れを見直してまいります。";
+      case "staffB": return I.staff+"の対応につきましては、ご指摘を全員で共有し、接客の基本から改めて確認いたします。";
+      case "qualB":  return I.main+"にご満足いただけなかった点は真摯に受け止め、品質の確認を徹底いたします。";
+      case "cleanB": return I.place+"の清掃につきましては、確認の項目と頻度を見直し、徹底いたします。";
+      case "priceB": return "いただく料金に見合う体験をお届けできなかったことを重く受け止め、内容そのものを見直してまいります。";
+      case "resv":   return "ご予約・お問い合わせの対応でお手間をおかけした点は、受付の体制を整えてまいります。";
+      case "noise":  return I.place+"が落ち着かない状況となってしまった点は、お席のご案内を工夫いたします。";
+      case "park":   return "駐車についてご不便をおかけした点は、ご案内をより分かりやすくいたします。";
+      case "cleanG": return I.place+"の雰囲気については良い印象をお持ちいただけたようで、そこは救いに感じております。";
+      case "qualG":  return I.main+"についてお褒めの言葉をいただけたことは、せめてもの救いです。ありがとうございます。";
+      case "staffG": return I.staff+"へのお言葉、ありがとうございます。至らなかった点は必ず改めます。";
+      case "repeat": return "これまで足を運んでくださっていたお客様にこのような思いをさせてしまい、なおさら申し訳なく思っております。";
+      default: return "";
+    }
+  }
+  function highLine(id,I){
+    switch(id){
+      case "qualG":  return I.main+"を気に入っていただけて、本当に嬉しいです。";
+      case "staffG": return I.staff+"へのお褒めの言葉、何よりの励みになります。本人にも必ず伝えます。";
+      case "cleanG": return I.place+"の居心地の良さを感じていただけたようで、安心いたしました。";
+      case "priceG": return "ご満足いただける内容をこれからもお届けしてまいります。";
+      case "repeat": return "いつも足を運んでいただき、ありがとうございます。お顔を思い浮かべながら読ませていただきました。";
+      case "first":  return "はじめての"+I.visit+"で良い時間をお過ごしいただけたようで、ほっとしております。";
+      case "wait":   return "一方で、お待たせしてしまった点は申し訳ございませんでした。提供の流れを見直してまいります。";
+      case "qualB":  return "ご期待に沿えなかった点については、真摯に受け止め改善いたします。";
+      case "staffB": return "対応で行き届かない点があり、失礼いたしました。改めて共有いたします。";
+      case "cleanB": return "清掃が行き届いていなかった点、申し訳ございませんでした。確認を徹底いたします。";
+      case "noise":  return I.place+"が落ち着かない時間帯があり、失礼いたしました。ご案内を工夫いたします。";
+      case "resv":   return "ご予約の際にお手間をおかけした点は、改めてまいります。";
+      case "park":   return "駐車の件でご不便をおかけしました。ご案内を分かりやすくいたします。";
+      default: return "";
+    }
+  }
+
+  // ── 書き出し・締め ─────────────────────
+  var OPEN = {
+    low: {
+      polite: ["この度はご不便をおかけし、大変申し訳ございませんでした。",
+               "貴重なご意見をお寄せいただき、ありがとうございます。そして、ご期待に沿えず申し訳ございませんでした。",
+               "まずは、不快な思いをさせてしまいましたことを心よりお詫び申し上げます。"],
+      soft:   ["この度はご不便をおかけしてしまい、本当に申し訳ありませんでした。",
+               "正直にお書きいただき、ありがとうございます。そして、がっかりさせてしまってすみませんでした。",
+               "まずは、嫌な思いをさせてしまったことをお詫びいたします。"]
+    },
+    mid: {
+      polite: ["この度は{V}、ありがとうございました。",
+               "率直なご感想をお寄せいただき、ありがとうございます。",
+               "{V}、ありがとうございます。良い点も気になる点も書いてくださり、感謝しております。"],
+      soft:   ["{V}、ありがとうございました。",
+               "率直に書いてくださって、ありがとうございます。",
+               "{V}、ありがとうございます。良いところも気になったところも教えていただけて助かります。"]
+    },
+    high: {
+      polite: ["この度は{V}、誠にありがとうございました。",
+               "嬉しいお言葉をいただき、ありがとうございます。",
+               "温かいクチコミをお寄せいただき、{S}一同喜んでおります。"],
+      soft:   ["{V}、ありがとうございました！",
+               "嬉しいお言葉、ありがとうございます。",
+               "温かいクチコミをいただいて、{S}一同とても喜んでいます。"]
+    }
+  };
+  var CLOSE = {
+    low: {
+      polite: ["改めてお越しいただけるよう、一つずつ改善してまいります。この度は貴重なお声をありがとうございました。",
+               "いただいたお言葉を無駄にせず、より良い店にしてまいります。ありがとうございました。",
+               "次にお越しいただく機会があれば、変わったと感じていただけるよう努めます。"],
+      soft:   ["いただいたご意見をもとに、一つずつ直していきます。書いてくださってありがとうございました。",
+               "この経験を無駄にせず、もっと良い店にしていきます。ありがとうございました。",
+               "次にお越しいただけたときには「変わったな」と思っていただけるよう頑張ります。"]
+    },
+    mid: {
+      polite: ["いただいたご意見を活かし、より良い時間をお届けできるよう努めてまいります。{A}。",
+               "気になった点は改善しつつ、良いところは伸ばしてまいります。{A}。",
+               "またお気づきの点がございましたら、ぜひお聞かせください。{A}。"],
+      soft:   ["いただいたご意見をもとに、もっと良い時間をお届けできるようにしていきます。{A}。",
+               "気になったところは直して、良いところは伸ばしていきます。{A}。",
+               "また気づいたことがあれば教えてください。{A}。"]
+    },
+    high: {
+      polite: ["{A}。{S}一同、心よりお待ちしております。",
+               "またお近くにお越しの際は、ぜひお立ち寄りください。{S}一同お待ちしております。",
+               "これからも喜んでいただけるよう努めてまいります。{A}。"],
+      soft:   ["{A}。{S}一同、お待ちしています。",
+               "またお近くにお越しの際は、ぜひ寄ってみてください。お待ちしています。",
+               "これからも喜んでいただけるよう頑張ります。{A}。"]
+    }
+  };
+
+  function fill(s,I,shop){
+    return s.replace(/\{V\}/g,I.visitV).replace(/\{S\}/g,I.staff).replace(/\{A\}/g,I.again);
+  }
+
+  // ── 返信文を組み立てる ─────────────────────
+  function build(variant, opt){
+    var I = opt.I, band = opt.band, tone = opt.tone, hits = opt.hits, shop = opt.shop;
+    var lineOf = (band === "high") ? highLine : lowLine;
+
+    // 高評価は「褒められた点 → 気になった点」の順に並べ替える
+    var HIGH_ORDER = ["qualG","staffG","cleanG","priceG","first","repeat"];
+    var ordered = hits.slice();
+    if(band === "high"){
+      ordered.sort(function(a,b){
+        var ia = HIGH_ORDER.indexOf(a), ib = HIGH_ORDER.indexOf(b);
+        return (ia<0?99:ia) - (ib<0?99:ib);
+      });
+    }
+
+    // 話題の一文を集める（重複と空を除く）
+    var body = [];
+    ordered.forEach(function(id){
+      var s = lineOf(id, I);
+      if(s && body.indexOf(s) < 0) body.push(s);
+    });
+    // 中評価は「良い点→気になる点」の順に整える
+    if(band === "mid"){
+      body = [];
+      var good = [], bad = [];
+      hits.forEach(function(id){
+        var g = highLine(id,I), b = lowLine(id,I);
+        if(id.slice(-1)==="G" || id==="repeat" || id==="first"){ if(g && good.indexOf(g)<0) good.push(g); }
+        else { if(b && bad.indexOf(b)<0) bad.push(b); }
+      });
+      body = good.concat(bad);
+    }
+    if(body.length === 0){
+      body = [ band === "high"
+        ? "お寄せいただいたお言葉、"+I.staff+"全員で読ませていただきました。"
+        : (band === "low"
+          ? "いただいたご指摘は"+I.staff+"全員で共有し、改善に努めます。"
+          : "いただいたご感想は"+I.staff+"全員で共有いたします。") ];
+    }
+
+    var op = OPEN[band][tone], cl = CLOSE[band][tone];
+    var text;
+
+    if(variant === 0){
+      // 案1：丁寧に整えた基本形（全部盛り）
+      text = fill(op[0],I) + "\n\n" + body.join("") + "\n\n" + fill(cl[0],I);
+    } else if(variant === 1){
+      // 案2：短く済ませたいとき（3文程度）
+      text = fill(op[1],I) + body.slice(0,1).join("") + fill(cl[2],I);
+    } else {
+      // 案3：お店だけの一言を足す形（定型文っぽさが一番消える）
+      var mid = body.slice(0,3).join("");
+      var extra = (band === "high")
+        ? "こうしてお時間を割いて書いていただけることが、日々の何よりの支えになっております。"
+        : "同じことを繰り返さないよう、"+I.staff+"全員で共有いたしました。";
+      var blank = "（ここにお店だけの一言を1文。例：" + I.hint + "）";
+      text = fill(op[2],I) + "\n\n" + mid + extra + "\n\n" + blank + "\n\n" + fill(cl[1],I);
+    }
+
+    if(shop){
+      text += "\n\n" + shop + "　" + I.staff + "一同";
+    }
+    return text;
+  }
+
+  // ── 画面まわり ─────────────────────
+  var rating = 5;
+  var starsBox = document.getElementById("stars");
+  starsBox.addEventListener("click", function(e){
+    var b = e.target.closest("button"); if(!b) return;
+    Array.prototype.forEach.call(starsBox.querySelectorAll("button"), function(x){ x.setAttribute("aria-pressed","false"); });
+    b.setAttribute("aria-pressed","true");
+    rating = parseInt(b.dataset.r,10);
+  });
+
+  var TITLES = ["案1　丁寧に、きちんと整えた形", "案2　短く済ませたいとき", "案3　お店だけの一言を足す形"];
+
+  document.getElementById("go").addEventListener("click", function(){
+    var raw = document.getElementById("rv").value.trim();
+    var err = document.getElementById("err");
+    if(!raw){ err.classList.add("on"); document.getElementById("rv").focus(); return; }
+    err.classList.remove("on");
+
+    var I = IND[document.getElementById("ind").value];
+    var tone = document.getElementById("tone").value;
+    var shop = document.getElementById("shop").value.trim();
+    var band = rating <= 2 ? "low" : (rating === 3 ? "mid" : "high");
+    var hits = detect(raw);
+
+    var opt = {I:I, band:band, tone:tone, hits:hits, shop:shop};
+    var cards = document.getElementById("cards");
+    cards.innerHTML = "";
+
+    for(var v=0; v<3; v++){
+      var text = build(v, opt);
+      var el = document.createElement("div");
+      el.className = "res";
+      var h = document.createElement("div"); h.className = "rh";
+      var t = document.createElement("span"); t.className = "rt"; t.textContent = TITLES[v];
+      var c = document.createElement("span"); c.className = "rc"; c.textContent = text.replace(/\n/g,"").length + "文字";
+      h.appendChild(t); h.appendChild(c);
+      var b = document.createElement("div"); b.className = "rb"; b.textContent = text;
+      var btn = document.createElement("button"); btn.className = "cp"; btn.type = "button"; btn.textContent = "この文をコピーする";
+      (function(btn, text){
+        btn.addEventListener("click", function(){
+          var done = function(){ btn.textContent = "コピーしました"; btn.classList.add("done");
+            setTimeout(function(){ btn.textContent = "この文をコピーする"; btn.classList.remove("done"); }, 1800); };
+          if(navigator.clipboard && navigator.clipboard.writeText){
+            navigator.clipboard.writeText(text).then(done, function(){ fallback(text, done); });
+          } else { fallback(text, done); }
+        });
+      })(btn, text);
+      el.appendChild(h); el.appendChild(b); el.appendChild(btn);
+      cards.appendChild(el);
+    }
+
+    var out = document.getElementById("out");
+    out.classList.add("on");
+    out.scrollIntoView({behavior:"smooth", block:"start"});
+  });
+
+  function fallback(text, done){
+    var ta = document.createElement("textarea");
+    ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
+    document.body.appendChild(ta); ta.select();
+    try{ document.execCommand("copy"); done(); }catch(e){ alert("コピーできませんでした。文章を長押しして選択してください。"); }
+    document.body.removeChild(ta);
+  }
+
+  document.getElementById("again").addEventListener("click", function(){
+    document.querySelector(".card").scrollIntoView({behavior:"smooth", block:"start"});
+  });
+})();
+</script>
+</body>
+</html>
