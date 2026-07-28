@@ -8,42 +8,49 @@
 <meta name="description" content="福岡県春日市・春日市ふれあい文化センターで開催する沖縄三線教室 美ら三線サークル。楽譜が読めなくても大丈夫。沖縄民謡・舞踊曲を、初心者から経験者の再スタートまで丁寧に。2026年度 新規受講生募集中。">
 <style>
   :root{
-    --paper:#fbf7ee;
-    --paper2:#f3ecdd;
-    --panel:#fffdf7;
-    --sea:#0f9d8f;
-    --sea-d:#0a6f65;
-    --sea-dd:#075049;
-    --sea-soft:#d5ebe6;
-    --coral:#ef6d45;
-    --coral2:#f79263;
-    --sun:#efb23f;
-    --ink:#26403c;
-    --sub:#6f7b74;
-    --line:rgba(38,64,60,.13);
+    /* 沖縄の色：白い砂・空・海・ハイビスカス・太陽 */
+    --paper:#fefbf4;      /* 白い砂 */
+    --paper2:#e9f8f8;     /* 遠浅の海 */
+    --panel:#ffffff;
+    --sky:#7fd6e8;        /* 沖縄の空 */
+    --sea:#00b5c8;        /* 海のターコイズ */
+    --sea-d:#0289a3;      /* 見出し用 */
+    --sea-dd:#046277;     /* 濃い海（反転セクション） */
+    --sea-soft:#d6f3f6;
+    --coral:#f2456b;      /* ハイビスカス */
+    --coral2:#ff7a6b;     /* 夕暮れの赤 */
+    --sun:#ffc233;        /* 太陽 */
+    --ink:#1f4750;
+    --sub:#5f7d85;
+    --line:rgba(2,137,163,.16);
   }
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
   body{font-family:"Hiragino Sans","Yu Gothic",sans-serif;background:var(--paper);color:var(--ink);line-height:1.95;letter-spacing:.045em;overflow-x:hidden}
   .mincho{font-family:"Hiragino Mincho ProN","Yu Mincho",serif}
 
-  .sample-bar{background:linear-gradient(90deg,#075049,#0f9d8f);color:#eafaf6;text-align:center;font-size:11.5px;padding:7px 14px;letter-spacing:.07em;position:relative;z-index:60;line-height:1.7}
+  .sample-bar{background:linear-gradient(90deg,#046277,#00b5c8);color:#effcfd;text-align:center;font-size:11.5px;padding:7px 14px;letter-spacing:.07em;position:relative;z-index:60;line-height:1.7}
   .sample-bar b{color:#ffe0b0;font-weight:600}
 
-  header{position:sticky;top:0;z-index:40;display:flex;justify-content:space-between;align-items:center;padding:15px 26px;background:rgba(251,247,238,0);transition:background .4s,box-shadow .4s,padding .4s}
-  header.scrolled{background:rgba(251,247,238,.94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 1px 0 var(--line);padding:11px 26px}
-  .logo{font-size:19px;letter-spacing:.16em;color:var(--sea-d);font-weight:700}
-  .logo small{display:block;font-size:9px;letter-spacing:.3em;color:var(--coral);margin-top:3px;font-weight:600}
+  header{position:sticky;top:0;z-index:40;display:flex;justify-content:space-between;align-items:center;padding:15px 26px;background:rgba(254,251,244,0);transition:background .4s,box-shadow .4s,padding .4s}
+  header.scrolled{background:rgba(254,251,244,.95);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 1px 0 var(--line);padding:11px 26px}
+  .logo{font-size:19px;letter-spacing:.16em;color:var(--sea-d);font-weight:700;transition:color .4s,text-shadow .4s}
+  .logo small{display:block;font-size:9px;letter-spacing:.3em;color:var(--coral);margin-top:3px;font-weight:600;transition:color .4s}
+  /* ヒーローの海に重なる間は白抜き。背景が明るいので、下ろすと読めなくなる */
+  header:not(.scrolled) .logo{color:#fff;text-shadow:0 2px 14px rgba(0,40,55,.55)}
+  header:not(.scrolled) .logo small{color:#ffe08a}
+  header:not(.scrolled) nav a:not(.cta){color:#fff;text-shadow:0 2px 12px rgba(0,40,55,.5)}
+  header:not(.scrolled) nav a:not(.cta):hover{color:var(--sun);border-color:var(--sun)}
   nav{display:flex;gap:20px;align-items:center}
   nav a{color:var(--ink);text-decoration:none;font-size:12px;letter-spacing:.12em;padding-bottom:3px;border-bottom:1px solid transparent;transition:.25s}
   nav a:hover{color:var(--sea);border-color:var(--sea)}
-  nav a.cta{background:var(--coral);color:#fff;padding:9px 18px;border-radius:999px;border:none;letter-spacing:.08em;box-shadow:0 8px 18px rgba(239,109,69,.32)}
-  nav a.cta:hover{background:#e0592f;color:#fff;transform:translateY(-1px)}
+  nav a.cta{background:var(--coral);color:#fff;padding:9px 18px;border-radius:999px;border:none;letter-spacing:.08em;box-shadow:0 8px 18px rgba(242,69,107,.32)}
+  nav a.cta:hover{background:#dc2f57;color:#fff;transform:translateY(-1px)}
   @media(max-width:880px){nav a:not(.cta){display:none}}
 
   /* hero */
   .hero{position:relative;min-height:94vh;display:flex;align-items:center;padding:0 8vw;margin-top:-62px;overflow:hidden}
-  .hero::before{content:"";position:absolute;inset:0;background:linear-gradient(100deg,rgba(6,58,53,.86) 26%,rgba(6,58,53,.44) 100%),url("images/hero.jpg") center/cover no-repeat;transform:scale(1.07);animation:heroZoom 17s ease-out forwards}
+  .hero::before{content:"";position:absolute;inset:0;background:linear-gradient(100deg,rgba(2,74,95,.62) 0%,rgba(2,110,135,.34) 46%,rgba(0,181,200,.06) 100%),url("images/hero.jpg") center/cover no-repeat;transform:scale(1.07);animation:heroZoom 17s ease-out forwards}
   @keyframes heroZoom{to{transform:scale(1)}}
   .hero-inner{position:relative;z-index:2;max-width:660px;color:#fff;margin-top:60px}
   .eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:11.5px;letter-spacing:.24em;color:#ffd9a6;margin-bottom:22px}
@@ -54,7 +61,7 @@
   .hero p{margin-top:22px;font-size:clamp(14px,1.7vw,16px);color:rgba(255,255,255,.92);max-width:34em;line-height:2.05}
   .hero-cta{margin-top:34px;display:flex;gap:14px;flex-wrap:wrap}
   .btn{display:inline-flex;align-items:center;gap:9px;text-decoration:none;padding:15px 30px;border-radius:999px;font-size:14px;letter-spacing:.08em;transition:.3s}
-  .btn-primary{background:linear-gradient(135deg,var(--coral),var(--coral2));color:#fff;font-weight:600;box-shadow:0 12px 26px rgba(239,109,69,.42)}
+  .btn-primary{background:linear-gradient(135deg,var(--coral),var(--coral2));color:#fff;font-weight:600;box-shadow:0 12px 26px rgba(242,69,107,.38)}
   .btn-primary:hover{transform:translateY(-2px)}
   .btn-ghost{border:1px solid rgba(255,255,255,.55);color:#fff}
   .btn-ghost:hover{border-color:var(--sun);color:var(--sun)}
@@ -65,6 +72,18 @@
   .hero-wave svg{width:100%;height:70px;display:block}
 
   section{padding:clamp(70px,10vw,120px) 8vw;position:relative}
+
+  /* ハイビスカスの飾り（写真ではなく描画。どの端末でも軽く、権利の心配もない） */
+  .concept,.lesson,.target{overflow:hidden}
+  .hibi{position:absolute;pointer-events:none;z-index:0;opacity:.13}
+  .hibi svg{display:block;width:100%;height:auto}
+  .hibi-tr{top:-30px;right:-40px;width:210px;transform:rotate(14deg)}
+  .hibi-bl{bottom:-40px;left:-46px;width:240px;transform:rotate(-22deg)}
+  @media(max-width:700px){.hibi{width:140px!important}}
+  .sec-head,.wrap,.ft-grid,.l-grid,.tg-grid,.v-grid{position:relative;z-index:1}
+  /* 見出しの上に咲かせる小さな一輪 */
+  .bloom{display:block;width:34px;height:34px;margin:0 auto 14px}
+  .bloom svg{width:100%;height:100%;display:block}
   .sec-head{text-align:center;margin-bottom:50px}
   .sec-head .en{font-size:11px;letter-spacing:.34em;color:var(--coral);display:block;margin-bottom:12px}
   .sec-head h2{font-size:clamp(23px,3.4vw,31px);font-weight:600;letter-spacing:.07em;color:var(--sea-d)}
@@ -85,7 +104,7 @@
   .features{background:var(--paper2)}
   .ft-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:24px;max-width:1000px;margin:0 auto}
   .ft{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:34px 28px;text-align:center;transition:transform .35s,box-shadow .35s}
-  .ft:hover{transform:translateY(-6px);box-shadow:0 20px 40px rgba(10,111,101,.13)}
+  .ft:hover{transform:translateY(-6px);box-shadow:0 20px 40px rgba(2,137,163,.16)}
   .ft .ic{width:66px;height:66px;margin:0 auto 18px;border-radius:50%;background:var(--sea-soft);display:flex;align-items:center;justify-content:center}
   .ft .ic svg{width:30px;height:30px;stroke:var(--sea-d);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
   .ft h3{font-size:18.5px;font-weight:600;letter-spacing:.04em;color:var(--sea-d);margin-bottom:11px}
@@ -96,7 +115,8 @@
   .policy{background:var(--sea-d);color:#e7f5f1}
   .pl-wrap{display:grid;grid-template-columns:1fr 1fr;gap:48px;max-width:970px;margin:0 auto;align-items:center}
   @media(max-width:760px){.pl-wrap{grid-template-columns:1fr;gap:28px}}
-  .pl-ph{border-radius:20px;overflow:hidden;aspect-ratio:4/3;box-shadow:0 18px 44px rgba(0,0,0,.3)}
+  .pl-ph{position:relative;border-radius:20px;overflow:hidden;aspect-ratio:4/3;box-shadow:0 18px 44px rgba(0,0,0,.3)}
+  .ph-note{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(transparent,rgba(0,45,58,.8));color:#eafcff;font-size:11px;letter-spacing:.06em;text-align:center;padding:26px 10px 10px}
   .pl-ph img{width:100%;height:100%;object-fit:cover;display:block}
   .pl-info .en{font-size:11px;letter-spacing:.34em;color:var(--sun);display:block;margin-bottom:12px}
   .pl-info h2{font-size:clamp(22px,3.2vw,29px);font-weight:600;letter-spacing:.05em;color:#fff;line-height:1.6}
@@ -107,11 +127,11 @@
   .lesson{background:var(--paper)}
   .l-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:22px;max-width:1000px;margin:0 auto}
   .lcard{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:30px 26px;transition:transform .35s,box-shadow .35s}
-  .lcard:hover{transform:translateY(-6px);box-shadow:0 20px 38px rgba(10,111,101,.13)}
-  .lcard .mic{width:54px;height:54px;border-radius:14px;background:linear-gradient(135deg,var(--sea-soft),#bfe0d9);display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:16px}
+  .lcard:hover{transform:translateY(-6px);box-shadow:0 20px 38px rgba(2,137,163,.16)}
+  .lcard .mic{width:54px;height:54px;border-radius:14px;background:linear-gradient(135deg,var(--sea-soft),#a8e8ef);display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:16px}
   .lcard h3{font-size:18px;font-weight:600;color:var(--sea-d);letter-spacing:.04em;margin-bottom:9px}
   .lcard p{font-size:13.4px;color:var(--sub);line-height:1.92}
-  .lcard .tag{display:inline-block;margin-top:14px;font-size:11px;letter-spacing:.08em;color:var(--coral);border:1px solid rgba(239,109,69,.4);border-radius:999px;padding:4px 12px}
+  .lcard .tag{display:inline-block;margin-top:14px;font-size:11px;letter-spacing:.08em;color:var(--coral);border:1px solid rgba(242,69,107,.4);border-radius:999px;padding:4px 12px}
 
   /* target */
   .target{background:linear-gradient(180deg,var(--paper2),var(--paper))}
@@ -126,8 +146,8 @@
   .teacher{background:var(--sea-dd);color:#dcefeb}
   .tc-wrap{display:grid;grid-template-columns:280px 1fr;gap:46px;max-width:900px;margin:0 auto;align-items:center}
   @media(max-width:720px){.tc-wrap{grid-template-columns:1fr;gap:26px}}
-  .tc-photo{aspect-ratio:3/4;border-radius:20px;overflow:hidden;position:relative;background:linear-gradient(160deg,#0d5a52,#083f39);display:flex;align-items:center;justify-content:center;box-shadow:0 18px 40px rgba(0,0,0,.32)}
-  .tc-photo .note{position:absolute;font-size:44px;color:rgba(239,178,63,.4)}
+  .tc-photo{aspect-ratio:3/4;border-radius:20px;overflow:hidden;position:relative;background:linear-gradient(160deg,#0a7f96,#04505f);display:flex;align-items:center;justify-content:center;box-shadow:0 18px 40px rgba(0,0,0,.32)}
+  .tc-photo .note{position:absolute;font-size:44px;color:rgba(255,194,51,.45)}
   .tc-photo span{position:absolute;bottom:16px;left:0;right:0;text-align:center;color:rgba(220,239,235,.55);font-size:10.5px;letter-spacing:.18em}
   .tc-info .role{font-size:11px;letter-spacing:.24em;color:var(--sun)}
   .tc-info h3{font-size:24px;font-weight:600;letter-spacing:.07em;color:#fff;margin:8px 0 6px}
@@ -145,7 +165,7 @@
 
   /* photo band */
   .photoband{position:relative;min-height:42vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:clamp(70px,10vw,110px) 8vw;color:#fff;overflow:hidden}
-  .photoband::before{content:"";position:absolute;inset:0;background:linear-gradient(rgba(6,58,53,.5),rgba(6,58,53,.6)),url("images/scene.jpg") center/cover no-repeat;transform:scale(1.02)}
+  .photoband::before{content:"";position:absolute;inset:0;background:linear-gradient(rgba(2,98,119,.42),rgba(2,98,119,.55)),url("images/scene.jpg") center/cover no-repeat;transform:scale(1.02)}
   .photoband .pb-inner{position:relative;z-index:2;max-width:620px}
   .photoband .en{font-size:11px;letter-spacing:.34em;color:var(--sun);display:block;margin-bottom:14px}
   .photoband h2{font-size:clamp(21px,3.2vw,30px);font-weight:600;letter-spacing:.08em;line-height:1.7;text-shadow:0 2px 18px rgba(0,0,0,.35)}
@@ -180,7 +200,7 @@
   .rsv-ok{display:none;text-align:center;color:#fff;background:rgba(255,255,255,.12);border-radius:12px;padding:16px;font-size:13.5px;line-height:1.9}
   .rsv-ok.show{display:block}
   .rsv-alt{text-align:center;margin-top:22px;font-size:13px;color:#c4ddd7}
-  .rsv-alt a{color:var(--sun);text-decoration:none;border-bottom:1px solid rgba(239,178,63,.5)}
+  .rsv-alt a{color:var(--sun);text-decoration:none;border-bottom:1px solid rgba(255,194,51,.55)}
   .rsv-tech{text-align:center;font-size:11.5px;color:#7fa8a1;margin-top:18px;line-height:1.9}
 
   /* access */
@@ -191,7 +211,7 @@
   table.info th,table.info td{padding:13px 6px;text-align:left;font-size:13.5px;border-bottom:1px solid var(--line);vertical-align:top}
   table.info th{width:32%;color:var(--sub);font-weight:600;letter-spacing:.05em}
   table.info td a{color:var(--sea-d);text-decoration:none;border-bottom:1px solid var(--line)}
-  .map-ph{border-radius:18px;min-height:230px;display:flex;align-items:center;justify-content:center;color:var(--sea-d);font-size:11px;letter-spacing:.18em;background:linear-gradient(135deg,#dcefe9,#c2e0d9);text-align:center;padding:20px}
+  .map-ph{border-radius:18px;min-height:230px;display:flex;align-items:center;justify-content:center;color:var(--sea-d);font-size:11px;letter-spacing:.18em;background:linear-gradient(135deg,#d6f3f6,#a8e8ef);text-align:center;padding:20px}
   .sample-inline{text-align:center;font-size:11.5px;color:var(--sub);margin-top:20px;line-height:1.8}
 
   footer{background:var(--sea-dd);color:#a9cbc5;text-align:center;padding:52px 20px 32px}
@@ -205,6 +225,28 @@
 <body>
 
 <div class="sample-bar">このページは <b>Web制作 ゆたか</b> による <b>美ら三線サークル 様</b>へのご提案用デザイン案（サンプル）です</div>
+
+<!-- ハイビスカスの図形をひとつだけ定義し、ページ内で使い回す（読み込みを軽くするため） -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="hibiscus" viewBox="0 0 100 100">
+    <g fill="currentColor">
+      <g id="petals">
+        <path d="M50 52 C36 38 31 20 50 7 C69 20 64 38 50 52 Z"/>
+        <path d="M50 52 C36 38 31 20 50 7 C69 20 64 38 50 52 Z" transform="rotate(72 50 52)"/>
+        <path d="M50 52 C36 38 31 20 50 7 C69 20 64 38 50 52 Z" transform="rotate(144 50 52)"/>
+        <path d="M50 52 C36 38 31 20 50 7 C69 20 64 38 50 52 Z" transform="rotate(216 50 52)"/>
+        <path d="M50 52 C36 38 31 20 50 7 C69 20 64 38 50 52 Z" transform="rotate(288 50 52)"/>
+      </g>
+    </g>
+    <g stroke="currentColor" stroke-width="2.4" stroke-linecap="round" fill="none" opacity=".85">
+      <path d="M50 52 C56 66 62 76 66 84"/>
+    </g>
+    <g fill="currentColor" opacity=".9">
+      <circle cx="66" cy="86" r="3"/><circle cx="60" cy="82" r="2.2"/>
+      <circle cx="71" cy="81" r="2.2"/><circle cx="64" cy="77" r="1.9"/>
+    </g>
+  </symbol>
+</svg>
 
 <header id="hd">
   <div class="logo">美ら三線サークル<small>CHURA SANSHIN ・ 春日市</small></div>
@@ -234,14 +276,18 @@
     </div>
   </div>
   <div class="hero-wave" aria-hidden="true">
-    <svg viewBox="0 0 1440 70" preserveAspectRatio="none"><path fill="#fbf7ee" d="M0,40 C240,72 480,72 720,50 C960,28 1200,28 1440,48 L1440,70 L0,70 Z"></path></svg>
+    <svg viewBox="0 0 1440 70" preserveAspectRatio="none"><path fill="#fefbf4" d="M0,40 C240,72 480,72 720,50 C960,28 1200,28 1440,48 L1440,70 L0,70 Z"></path></svg>
   </div>
 </section>
 
 <!-- concept -->
 <section class="concept" id="concept">
+  <div class="hibi hibi-tr" style="color:var(--coral)" aria-hidden="true"><svg><use href="#hibiscus"/></svg></div>
+  <div class="hibi hibi-bl" style="color:var(--sea)" aria-hidden="true"><svg><use href="#hibiscus"/></svg></div>
   <div class="wrap reveal">
-    <div class="sec-head"><span class="en">CONCEPT</span><h2 class="mincho">楽譜が読めなくても、始められます</h2></div>
+    <div class="sec-head">
+      <span class="bloom" style="color:var(--coral)" aria-hidden="true"><svg><use href="#hibiscus"/></svg></span>
+      <span class="en">CONCEPT</span><h2 class="mincho">楽譜が読めなくても、始められます</h2></div>
     <p class="lead mincho">「私にできるかな」を、<br><b>「楽しい」</b>に変える場所。</p>
     <p>三線の楽譜「工工四（くんくんしー）」は、実は漢字と数字で音を追えるやさしい仕組み。五線譜が読めなくても心配いりません。先生の唄と手元を見ながら、耳と指でゆっくり覚えていく——それが沖縄に伝わる三線の学び方です。年齢も経験も問いません。まずは一音、島の風のような音色を、一緒に鳴らしてみましょう。</p>
   </div>
@@ -249,7 +295,7 @@
 
 <!-- features -->
 <section class="features" id="features">
-  <div class="sec-head reveal"><span class="en">POINT</span><h2 class="mincho">美ら三線サークルの3つの安心</h2></div>
+  <div class="sec-head reveal"><span class="bloom" style="color:var(--sea)" aria-hidden="true"><svg><use href="#hibiscus"/></svg></span><span class="en">POINT</span><h2 class="mincho">美ら三線サークルの3つの安心</h2></div>
   <div class="ft-grid">
     <div class="ft reveal">
       <div class="ic"><svg viewBox="0 0 24 24"><path d="M4 5h13a2 2 0 0 1 2 2v12"/><path d="M4 5v14h13"/><path d="M8 9h7M8 13h7"/></svg></div>
@@ -272,7 +318,10 @@
 <!-- policy -->
 <section class="policy">
   <div class="pl-wrap">
-    <div class="pl-ph reveal"><img src="images/sanshin.jpg" alt="沖縄の三線（イメージ）"></div>
+    <div class="pl-ph reveal">
+      <img src="images/sanshin.jpg" alt="沖縄のハイビスカス（イメージ写真）">
+      <span class="ph-note">教室の実際のお写真に差し替えます</span>
+    </div>
     <div class="pl-info reveal">
       <span class="en">OUR HEART</span>
       <h2 class="mincho">沖縄の唄を、<br>春日の街で。</h2>
@@ -284,7 +333,8 @@
 
 <!-- lesson -->
 <section class="lesson" id="lesson">
-  <div class="sec-head reveal"><span class="en">LESSON</span><h2 class="mincho">レッスンのご案内</h2><p>はじめの一歩から、舞踊曲まで。あなたに合わせて。</p></div>
+  <div class="hibi hibi-tr" style="color:var(--sea)" aria-hidden="true"><svg><use href="#hibiscus"/></svg></div>
+  <div class="sec-head reveal"><span class="bloom" style="color:var(--coral)" aria-hidden="true"><svg><use href="#hibiscus"/></svg></span><span class="en">LESSON</span><h2 class="mincho">レッスンのご案内</h2><p>はじめの一歩から、舞踊曲まで。あなたに合わせて。</p></div>
   <div class="l-grid">
     <div class="lcard reveal">
       <div class="mic">🎶</div>
@@ -310,7 +360,8 @@
 
 <!-- target -->
 <section class="target" id="target">
-  <div class="sec-head reveal"><span class="en">FOR YOU</span><h2 class="mincho">こんな方を、お待ちしています</h2></div>
+  <div class="hibi hibi-bl" style="color:var(--coral)" aria-hidden="true"><svg><use href="#hibiscus"/></svg></div>
+  <div class="sec-head reveal"><span class="bloom" style="color:var(--sun)" aria-hidden="true"><svg><use href="#hibiscus"/></svg></span><span class="en">FOR YOU</span><h2 class="mincho">こんな方を、お待ちしています</h2></div>
   <div class="tg-grid">
     <div class="tg reveal"><span class="ic">♪</span><p>沖縄の音楽や文化に、ふれてみたい</p></div>
     <div class="tg reveal d1"><span class="ic">♪</span><p>楽譜が読めないけれど、楽器を始めてみたい</p></div>
@@ -341,7 +392,7 @@
 
 <!-- voice -->
 <section class="voice">
-  <div class="sec-head reveal"><span class="en">VOICE</span><h2 class="mincho">受講生の声</h2></div>
+  <div class="sec-head reveal"><span class="bloom" style="color:var(--coral)" aria-hidden="true"><svg><use href="#hibiscus"/></svg></span><span class="en">VOICE</span><h2 class="mincho">受講生の声</h2></div>
   <div class="v-grid">
     <div class="vcard reveal">
       <div class="stars">★★★★★</div>
