@@ -71,7 +71,13 @@
   .sec-head h2 b{color:var(--pink-d)}
   .sec-head p{margin-top:14px;font-size:15px;color:var(--sub)}
 
-  .reveal{opacity:0;transform:translateY(26px);transition:opacity .9s ease,transform .9s cubic-bezier(.22,1,.36,1)}
+  /* 中身を隠すのは JS が動いているときだけ（JSなしで本文が消える事故の対策 2026-07-28） */
+
+  .reveal{opacity:1;transform:none}
+
+  html.js .reveal{opacity:0;transform:translateY(26px);transition:opacity .9s ease,transform .9s cubic-bezier(.22,1,.36,1)}
+
+  html.js .reveal.in{opacity:1;transform:none}
   .reveal.in{opacity:1;transform:none}
   .d1{transition-delay:.12s}.d2{transition-delay:.24s}.d3{transition-delay:.36s}
 
@@ -243,6 +249,7 @@
   }
   @media(prefers-reduced-motion:reduce){.reveal{transition:none;opacity:1;transform:none}.hero::before{animation:none;transform:none}html{scroll-behavior:auto}}
 </style>
+<script>if ('IntersectionObserver' in window) document.documentElement.className += ' js';</script>
 </head>
 <body>
 
@@ -541,6 +548,7 @@
     es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}});
   },{threshold:.14});
   document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
+  setTimeout(function(){document.querySelectorAll('.reveal:not(.in)').forEach(function(el){el.classList.add('in')});},3000);
 
   document.getElementById('rsvForm').addEventListener('submit',function(ev){
     ev.preventDefault();
