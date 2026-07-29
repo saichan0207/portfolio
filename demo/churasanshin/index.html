@@ -163,11 +163,11 @@
 
   /* 教室の様子（実際のお写真） */
   .gallery{background:var(--paper);overflow:hidden}
-  .gal-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;max-width:1000px;margin:0 auto}
+  .gal-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:18px;max-width:1000px;margin:0 auto}
   @media(max-width:760px){.gal-grid{grid-template-columns:1fr}}
   .gal{position:relative;border-radius:18px;overflow:hidden;background:var(--sea-soft);box-shadow:0 14px 34px rgba(2,137,163,.14)}
   .gal img{width:100%;height:100%;object-fit:cover;display:block}
-  .gal-a{aspect-ratio:4/3}
+  .gal,.gal-a,.gal-b,.gal-c{aspect-ratio:4/3}
   .gal-b,.gal-c{aspect-ratio:4/3}
   .gal cap,.gal .cap{position:absolute;left:0;right:0;bottom:0;padding:30px 16px 13px;color:#fff;font-size:12.5px;letter-spacing:.05em;background:linear-gradient(transparent,rgba(0,45,58,.78))}
 
@@ -772,9 +772,10 @@
 
   // ▼ここにスプレッドシートの「ウェブに公開」CSVアドレスを入れます（空なら何もしません）
   var SHEET_TEXT  = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRfpQUMcLuN09-6AdGdfpJidwmDR_oyn9z4QTqIgv5aK8XKynBMLn_qs2hMzOouR7pmyC9lq8N61CMi/pub?gid=0&single=true&output=csv";   // タブ1「文章」
+  var SHEET_PHOTOS = "";   // タブ3「写真」（教室の様子）※未設定なら今の2枚のまま
   var SHEET_ROOMS = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRfpQUMcLuN09-6AdGdfpJidwmDR_oyn9z4QTqIgv5aK8XKynBMLn_qs2hMzOouR7pmyC9lq8N61CMi/pub?gid=1571078257&single=true&output=csv";   // タブ2「教室一覧」
 
-  if (!SHEET_TEXT && !SHEET_ROOMS) return;   // 未設定なら一切さわらない
+  if (!SHEET_TEXT && !SHEET_ROOMS && !SHEET_PHOTOS) return;   // 未設定なら一切さわらない
 
   // --- CSVを読む（引用符・改行・カンマに対応した最小限の実装） ---
   function parseCSV(t){
@@ -831,6 +832,47 @@
       }
     });
   }).catch(function(e){ /* 失敗しても元の内容のまま。何もしない */ });
+
+  // --- タブ3「写真」：1行＝1枚（教室の様子）---
+  if (SHEET_PHOTOS) get(SHEET_PHOTOS).then(function(rows){
+    if(rows.length<2) return;
+    var head=rows[0].map(function(x){return (x||"").trim();});
+    var idx={}; head.forEach(function(h,i){ idx[h]=i; });
+    if(idx["写真URL"]===undefined) return;              // 形が違えば何もしない
+
+    var list=[];
+    for(var r=1;r<rows.length;r++){
+      var row=rows[r]; if(!row) continue;
+      var u=(row[idx["写真URL"]]||"").trim(); if(!u) continue;
+      var cap=(idx["説明"]!==undefined?(row[idx["説明"]]||"").trim():"");
+      if(/^[（(]?記入例/.test(cap)||/^[（(]?記入例/.test(u)) continue;   // 記入例は出さない
+      list.push({src:driveImg(u), cap:cap});
+    }
+    if(!list.length) return;                            // 1枚も無ければ今の写真のまま
+
+    // 実際に読み込める画像だけを採用する（読めない写真で穴が開かないように）
+    var ok=[], done=0;
+    list.forEach(function(it,i){
+      var im=new Image();
+      im.onload =function(){ ok[i]=it; finish(); };
+      im.onerror=function(){ ok[i]=null; finish(); };
+      im.src=it.src;
+    });
+    function finish(){
+      if(++done<list.length) return;
+      var use=ok.filter(function(x){return x;});
+      if(!use.length) return;                           // 全部読めなければ今のまま
+      var esc=function(t){return String(t).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");};
+      var html="";
+      use.forEach(function(it){
+        html+='<figure class="gal reveal in"><img src="'+it.src+'" alt="'+esc(it.cap||"教室の様子")+'" loading="lazy">'
+           + (it.cap?'<figcaption class="cap">'+esc(it.cap)+'</figcaption>':'')
+           + '</figure>';
+      });
+      var grid=document.querySelector("#gallery .gal-grid");
+      if(grid) grid.innerHTML=html;
+    }
+  }).catch(function(e){ /* 失敗しても今の写真のまま */ });
 
   // --- タブ2「教室一覧」：1行＝1教室 ---
   if (SHEET_ROOMS) get(SHEET_ROOMS).then(function(rows){
