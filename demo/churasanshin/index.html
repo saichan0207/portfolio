@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex,nofollow">
 <title>美ら三線サークル｜福岡県春日市の沖縄三線教室・初心者歓迎（ご提案用デザイン案・サンプル）</title>
-<meta name="description" content="福岡県春日市・春日市ふれあい文化センターで開催する沖縄三線教室 美ら三線サークル。楽譜が読めなくても大丈夫。沖縄民謡・舞踊曲を、初心者から経験者の再スタートまで丁寧に。2026年度 新規受講生募集中。">
+<meta name="description" content="福岡県春日市の沖縄三線教室 美ら三線サークル。楽譜が読めなくても大丈夫。沖縄民謡・舞踊曲を、初心者から経験者の再スタートまで丁寧に。2026年度 新規受講生募集中。">
 <style>
   :root{
     /* 沖縄の色：白い砂・空・海・ハイビスカス・太陽 */
@@ -119,9 +119,9 @@
   .policy{background:var(--sea-d);color:#e7f5f1}
   .pl-wrap{display:grid;grid-template-columns:1fr 1fr;gap:48px;max-width:970px;margin:0 auto;align-items:center}
   @media(max-width:760px){.pl-wrap{grid-template-columns:1fr;gap:28px}}
-  .pl-ph{position:relative;border-radius:20px;overflow:hidden;aspect-ratio:4/3;box-shadow:0 18px 44px rgba(0,0,0,.3)}
+  .pl-ph{position:relative;border-radius:20px;overflow:hidden;aspect-ratio:3/4;background:#0a7f96;box-shadow:0 18px 44px rgba(0,0,0,.3)}
   .ph-note{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(transparent,rgba(0,45,58,.8));color:#eafcff;font-size:11px;letter-spacing:.06em;text-align:center;padding:26px 10px 10px}
-  .pl-ph img{width:100%;height:100%;object-fit:cover;display:block}
+  .pl-ph img{width:100%;height:100%;object-fit:contain;display:block}  /* 楽器を切らない */
   .pl-info .en{font-size:11px;letter-spacing:.34em;color:var(--sun);display:block;margin-bottom:12px}
   .pl-info h2{font-size:clamp(22px,3.2vw,29px);font-weight:600;letter-spacing:.05em;color:#fff;line-height:1.6}
   .pl-info p{margin-top:18px;font-size:14px;color:#c4ddd7;line-height:2.1}
@@ -202,7 +202,11 @@
   .rooms{background:linear-gradient(180deg,var(--paper2),var(--paper));overflow:hidden}
   .rooms-lead{max-width:720px;margin:0 auto 34px;text-align:center;font-size:14px;color:var(--sub);line-height:2}
   .rooms-lead b{color:var(--sea-d)}
-  .area-h{max-width:1040px;margin:34px auto 16px;display:flex;align-items:center;gap:12px}
+  .area-h{max-width:1040px;margin:38px auto 8px;display:flex;align-items:center;gap:12px}
+  .area-note{max-width:1040px;margin:0 auto 18px;font-size:13px;color:var(--sub);line-height:1.9}
+  .area-note b{color:var(--sea-d)}
+  .rm .area-tag{display:inline-block;font-size:11px;color:var(--sea-d);background:var(--sea-soft);
+    border-radius:999px;padding:3px 10px;margin-left:8px;vertical-align:2px;letter-spacing:.04em}
   .area-h span{font-size:13px;letter-spacing:.16em;color:#fff;background:var(--sea-d);border-radius:999px;padding:5px 16px;white-space:nowrap}
   .area-h i{flex:1;height:1px;background:var(--line);display:block}
   .rm-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:16px;max-width:1040px;margin:0 auto}
@@ -261,6 +265,88 @@
   footer .fsub{font-size:10px;letter-spacing:.3em;color:var(--sun);margin-top:6px}
   footer .fnote{font-size:11.5px;color:#7fa8a1;margin-top:22px;line-height:1.9}
 
+
+  /* ============================================================
+     動きの追加（2026-07-29）
+     【鉄則】文章そのものは絶対に隠さない。動くのは装飾と「見えている物の位置」だけ。
+     opacity:0 を使うのは html.js が付いているとき（＝JSが確実に動いているとき）に限る。
+     ============================================================ */
+
+  /* ① 波を実際に揺らす（純装飾） */
+  .hero-wave svg{width:200%;animation:waveMove 18s linear infinite}
+  @keyframes waveMove{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+  /* ② ハイビスカスの飾りがゆっくり揺れる（純装飾） */
+  .hibi{animation:sway 11s ease-in-out infinite}
+  .hibi-bl{animation-duration:14s;animation-delay:-4s}
+  @keyframes sway{0%,100%{transform:rotate(14deg) translateY(0)}50%{transform:rotate(9deg) translateY(-12px)}}
+  .hibi-bl{--r:-22deg}
+  @keyframes swayL{0%,100%{transform:rotate(-22deg) translateY(0)}50%{transform:rotate(-16deg) translateY(-14px)}}
+  .hibi-bl{animation-name:swayL}
+  /* 見出しの一輪はふわっと開く */
+  html.js .bloom{transform:scale(.6) rotate(-25deg);opacity:0;transition:transform .8s cubic-bezier(.2,1.3,.4,1),opacity .6s}
+  html:not(.js) .bloom{opacity:1;transform:none}
+  html.js .reveal.in .bloom,html.js .sec-head.in .bloom{transform:none;opacity:1}
+
+  /* ③ 見出しの下に線が伸びる（装飾のみ） */
+  .sec-head h2{position:relative;display:inline-block;padding-bottom:14px}
+  .sec-head h2::after{content:"";position:absolute;left:50%;bottom:0;width:0;height:2px;
+    background:linear-gradient(90deg,var(--sea),var(--coral));transform:translateX(-50%);
+    transition:width .9s cubic-bezier(.22,1,.36,1) .25s;border-radius:2px}
+  .sec-head.in h2::after,.reveal.in h2::after{width:64px}
+  html:not(.js) .sec-head h2::after{width:64px}   /* JSが無い環境では最初から表示 */
+
+  /* ④ ヒーローを順番に持ち上げる
+     アニメーションではなく「クラスが付いたら表示」の形にする。
+     こうすると、動きが一切効かない環境でも .in が付いた瞬間に必ず表示される。
+     （アニメ前提で opacity:0 を置くと、動きが止まった環境で本文が消える。2026-07-28の事故と同じ） */
+  html.js .hero h1 .nb{display:inline-block}
+  html.js .hi{opacity:0;transform:translateY(18px);
+    transition:opacity .9s cubic-bezier(.22,1,.36,1),transform .9s cubic-bezier(.22,1,.36,1)}
+  html.js .hi.in{opacity:1;transform:none}
+
+  /* ⑤ 写真がゆっくり寄る（Ken Burns・見えている物が動くだけ） */
+  .gal img,.pl-ph img{transition:transform 1.4s cubic-bezier(.22,1,.36,1)}
+  .gal:hover img,.pl-ph:hover img{transform:scale(1.05)}
+  .gal-a img{animation:kb 26s ease-in-out infinite alternate}
+  @keyframes kb{from{transform:scale(1)}to{transform:scale(1.07)}}
+
+  /* ⑥ 教室カードが順番に出る（間隔だけ足す。表示自体は reveal の仕組みに乗る） */
+  html.js .rm-grid .rm:nth-child(2){transition-delay:.08s}
+  html.js .rm-grid .rm:nth-child(3){transition-delay:.16s}
+  html.js .rm-grid .rm:nth-child(4){transition-delay:.24s}
+  html.js .rm-grid .rm:nth-child(5){transition-delay:.32s}
+  html.js .rm-grid .rm:nth-child(6){transition-delay:.40s}
+
+  /* ⑦ ボタンに光が走る（装飾のみ） */
+  .btn-primary,.recruit .rbtn,button.submit{position:relative;overflow:hidden}
+  .btn-primary::after,.recruit .rbtn::after,button.submit::after{
+    content:"";position:absolute;top:0;left:-120%;width:60%;height:100%;
+    background:linear-gradient(100deg,transparent,rgba(255,255,255,.45),transparent);
+    transform:skewX(-18deg);animation:shine 5.5s ease-in-out infinite}
+  @keyframes shine{0%,72%{left:-120%}88%,100%{left:130%}}
+
+  /* ⑧ 読んだ量がわかる細い線（三線の弦のイメージ） */
+  .progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:100;
+    background:linear-gradient(90deg,var(--sea),var(--sun),var(--coral));transition:width .12s linear}
+
+  /* ⑨ カードの浮き上がりを少し上品に */
+  .ft:hover,.lcard:hover,.rm:hover{transform:translateY(-7px)}
+  .ft,.lcard,.rm{transition:transform .45s cubic-bezier(.22,1,.36,1),box-shadow .45s}
+
+  /* ⑩ 電話番号をそっと呼吸させる（装飾のみ） */
+  .rooms-tel a{transition:transform .4s}
+  .rooms-tel a:hover{transform:scale(1.04)}
+
+  /* 動きを減らす設定の方には、全部止める */
+  @media(prefers-reduced-motion:reduce){
+    .hero-wave svg,.hibi,.gal-a img,.btn-primary::after,.recruit .rbtn::after,button.submit::after{animation:none!important}
+    html.js .hi{opacity:1!important;transform:none!important;transition:none!important}
+    html.js .bloom{opacity:1!important;transform:none!important}
+    .sec-head h2::after{width:64px;transition:none}
+    .progress{display:none}
+  }
+
   @media(prefers-reduced-motion:reduce){.reveal{transition:none;opacity:1;transform:none}.hero::before{animation:none;transform:none}html{scroll-behavior:auto}}
 </style>
 <script>
@@ -271,6 +357,7 @@
 </head>
 <body>
 
+<div class="progress" id="prg" aria-hidden="true"></div>
 <div class="sample-bar">このページは <b>Web制作 ゆたか</b> による <b>美ら三線サークル 様</b>へのご提案用デザイン案（サンプル）です</div>
 
 <!-- ハイビスカスの図形をひとつだけ定義し、ページ内で使い回す（読み込みを軽くするため） -->
@@ -310,17 +397,17 @@
 <!-- hero -->
 <section class="hero">
   <div class="hero-inner">
-    <span class="eyebrow" data-e="hero_eyebrow" data-l="トップ：小見出し">福岡県春日市・沖縄三線教室 ｜ 初心者歓迎</span>
-    <h1 class="mincho"><span class="nb">三線（さんしん）の</span><br><span class="nb">音色を、<span class="hl">あなたの指</span>で。</span></h1>
-    <p data-e="hero_text" data-l="トップ：紹介文">楽譜が読めなくても、大丈夫。美ら三線サークルは、沖縄の唄と三線を、春日市でいちばん気軽に始められる教室です。ゆったりとした島の音色に身をゆだねて、はじめの一音から、ていねいに。</p>
-    <div class="hero-cta">
+    <span class="eyebrow hi" data-e="hero_eyebrow" data-l="トップ：小見出し">福岡県春日市・沖縄三線教室 ｜ 初心者歓迎</span>
+    <h1 class="mincho hi"><span class="nb">三線（さんしん）の</span><br><span class="nb">音色を、<span class="hl">あなたの指</span>で。</span></h1>
+    <p class="hi" data-e="hero_text" data-l="トップ：紹介文">楽譜が読めなくても、大丈夫。美ら三線サークルは、沖縄の唄と三線を、春日市でいちばん気軽に始められる教室です。ゆったりとした島の音色に身をゆだねて、はじめの一音から、ていねいに。</p>
+    <div class="hero-cta hi">
       <a href="#reserve" class="btn btn-primary">見学・体験を申し込む →</a>
       <a href="#lesson" class="btn btn-ghost">レッスンを見る</a>
     </div>
-    <div class="hero-badges">
+    <div class="hero-badges hi">
       <span>♪ <b>楽譜が読めなくてもOK</b></span>
       <span>♪ <b>2026年度</b> 新規受講生募集中</span>
-      <span>♪ 春日市ふれあい文化センター</span>
+      <span>♪ 春日市内で活動中</span>
     </div>
   </div>
   <div class="hero-wave" aria-hidden="true">
@@ -499,59 +586,61 @@
   お住まいやご都合に合わせて、通いやすい教室をお選びいただけます。<br>
   <b>初心者・経験者どなたでも大歓迎です。</b>三線をお持ちでない方もご相談ください。</p>
 
-  <div class="area-h reveal"><span>福岡</span><i></i></div>
+  <div class="area-h reveal"><span>サークル</span><i></i></div>
+  <p class="area-note reveal">仲間と一緒に、月2回のペースで楽しむ集まりです。<b>月謝4,000円。</b>このページの「美ら三線サークル」もこのグループです。</p>
   <div class="rm-grid">
     <div class="rm here reveal"><span class="badge">このページの教室</span>
-      <h3>ふれあい美ら三線サークル</h3>
-      <dl><dt>会場</dt><dd>春日ふれあい文化センター<br><span style="font-size:12.4px;color:var(--sub)">福岡県春日市大谷6丁目24番地</span></dd><dt>日時</dt><dd>第1・第3火曜<br>中級 13:00〜14:00／初心者 14:00〜15:00</dd></dl>
+      <h3>ふれあい美ら三線サークル<span class="area-tag">福岡</span></h3>
+      <dl><dt>会場</dt><dd>春日市内<br><span style="font-size:12.4px;color:var(--sub)">お申し込み時に詳しくご案内します</span></dd><dt>日時</dt><dd>第1・第3火曜<br>中級 13:00〜14:00／初心者 14:00〜15:00</dd></dl>
       <span class="fee circle">月謝 4,000円</span>
     </div>
     <div class="rm reveal">
-      <h3>春日教室</h3>
-      <dl><dt>会場</dt><dd>大野城市中央コミュニティ</dd><dt>日時</dt><dd>第1・第3土曜 13:00〜15:00</dd></dl>
-      <span class="fee">月謝 7,000円</span>
-    </div>
-    <div class="rm reveal">
-      <h3>博多教室<span class="tag">中級</span></h3>
-      <dl><dt>会場</dt><dd>出来町集会所<br><span style="font-size:12.4px;color:var(--sub)">福岡県福岡市博多区博多駅前1丁目25-14</span></dd><dt>日時</dt><dd>第1・第3日曜 16:00〜18:00</dd></dl>
-      <span class="fee">月謝 7,000円</span>
-    </div>
-    <div class="rm reveal">
-      <h3>大野城中央サークル</h3>
+      <h3>大野城中央サークル<span class="area-tag">福岡</span></h3>
       <dl><dt>会場</dt><dd>大野城市中央コミュニティセンター</dd><dt>日時</dt><dd>第1・第3水曜 11:30〜13:30</dd></dl>
       <span class="fee circle">月謝 4,000円</span>
     </div>
     <div class="rm reveal">
-      <h3>大野城夜教室</h3>
-      <dl><dt>会場</dt><dd>大野城市中央コミュニティ</dd><dt>日時</dt><dd>第1・第3月曜 19:00〜21:00</dd></dl>
-      <span class="fee">月謝 7,000円</span>
-    </div>
-    <div class="rm reveal">
-      <h3>大橋教室</h3>
-      <dl><dt>会場</dt><dd>福岡大橋レンタルスタジオ<br><span style="font-size:12.4px;color:var(--sub)">福岡市南区塩原3-17-12 松尾ビル205号室</span></dd><dt>日時</dt><dd>第1・第3火曜 19:00〜21:00</dd></dl>
-      <span class="fee">月謝 7,000円</span>
-    </div>
-    <div class="rm reveal">
-      <h3>大野城三線サークル<span class="tag">初心者大歓迎</span></h3>
+      <h3>大野城三線サークル<span class="area-tag">福岡</span><span class="tag">初心者大歓迎</span></h3>
       <dl><dt>会場</dt><dd>大野城南コミュニティー</dd><dt>日時</dt><dd>第1・第3木曜 11:00〜12:00</dd></dl>
       <span class="fee circle">月謝 4,000円</span>
     </div>
     <div class="rm reveal">
-      <h3>大野城日曜サークル<span class="tag">新規開講</span></h3>
+      <h3>大野城日曜サークル<span class="area-tag">福岡</span><span class="tag">新規開講</span></h3>
       <dl><dt>会場</dt><dd>大野城中央コミュニティセンター</dd><dt>日時</dt><dd>第1・第3日曜 12:00〜13:00</dd></dl>
       <span class="fee circle">月謝 4,000円</span>
     </div>
   </div>
 
-  <div class="area-h reveal"><span>熊本</span><i></i></div>
+  <div class="area-h reveal"><span>教室</span><i></i></div>
+  <p class="area-note reveal">より本格的に習いたい方向けの教室です。<b>月謝5,000円〜7,000円。</b>初心者の方も、経験者の再スタートも歓迎しています。</p>
   <div class="rm-grid">
     <div class="rm reveal">
-      <h3>熊本 初心者教室<span class="tag">講師 松村 睦子</span></h3>
+      <h3>春日教室<span class="area-tag">福岡</span></h3>
+      <dl><dt>会場</dt><dd>大野城市中央コミュニティ</dd><dt>日時</dt><dd>第1・第3土曜 13:00〜15:00</dd></dl>
+      <span class="fee">月謝 7,000円</span>
+    </div>
+    <div class="rm reveal">
+      <h3>博多教室<span class="area-tag">福岡</span><span class="tag">中級</span></h3>
+      <dl><dt>会場</dt><dd>出来町集会所<br><span style="font-size:12.4px;color:var(--sub)">福岡県福岡市博多区博多駅前1丁目25-14</span></dd><dt>日時</dt><dd>第1・第3日曜 16:00〜18:00</dd></dl>
+      <span class="fee">月謝 7,000円</span>
+    </div>
+    <div class="rm reveal">
+      <h3>大野城夜教室<span class="area-tag">福岡</span></h3>
+      <dl><dt>会場</dt><dd>大野城市中央コミュニティ</dd><dt>日時</dt><dd>第1・第3月曜 19:00〜21:00</dd></dl>
+      <span class="fee">月謝 7,000円</span>
+    </div>
+    <div class="rm reveal">
+      <h3>大橋教室<span class="area-tag">福岡</span></h3>
+      <dl><dt>会場</dt><dd>福岡大橋レンタルスタジオ<br><span style="font-size:12.4px;color:var(--sub)">福岡市南区塩原3-17-12 松尾ビル205号室</span></dd><dt>日時</dt><dd>第1・第3火曜 19:00〜21:00</dd></dl>
+      <span class="fee">月謝 7,000円</span>
+    </div>
+    <div class="rm reveal">
+      <h3>熊本 初心者教室<span class="area-tag">熊本</span><span class="tag">講師 松村 睦子</span></h3>
       <dl><dt>会場</dt><dd>白川地域コミュニティセンター<br><span style="font-size:12.4px;color:var(--sub)">熊本県熊本市中央区新屋敷1丁目18-27　TEL 096-366-0611</span></dd><dt>日時</dt><dd>第2・第4水曜 19:00〜20:00</dd></dl>
       <span class="fee">月謝 5,000円</span>
     </div>
     <div class="rm reveal">
-      <h3>熊本 中級教室<span class="tag">講師 金城 安紀</span></h3>
+      <h3>熊本 中級教室<span class="area-tag">熊本</span><span class="tag">講師 金城 安紀</span></h3>
       <dl><dt>会場</dt><dd>白川地域コミュニティセンター<br><span style="font-size:12.4px;color:var(--sub)">熊本県熊本市中央区新屋敷1丁目18-27　TEL 096-366-0611</span></dd><dt>日時</dt><dd>第2・第4水曜 19:30〜21:30</dd></dl>
       <span class="fee">月謝 7,000円</span>
     </div>
@@ -570,7 +659,7 @@
     <span class="pill">2026年度 新規受講生募集中</span>
     <h2 class="mincho">今こそ、三線を<br>はじめてみませんか。</h2>
     <p>美ら三線サークルでは、2026年度の新しい仲間を募集しています。初めての方も、久しぶりの方も、まずは気軽な見学・体験から。楽器の貸し出しなど、ご不安な点もお気軽にご相談ください。</p>
-    <div class="venue">📍 会場：春日市ふれあい文化センター内</div>
+    <div class="venue">📍 会場：春日市内（お申し込み時にご案内します）</div>
     <br>
     <a href="#reserve" class="rbtn">見学・体験を申し込む →</a>
   </div>
@@ -619,12 +708,12 @@
     <table class="info reveal">
       <tr><th>教室名</th><td>美ら三線サークル</td></tr>
       <tr><th>エリア</th><td>福岡県春日市</td></tr>
-      <tr><th>会場</th><td>春日市ふれあい文化センター内</td></tr>
+      <tr><th>会場</th><td>春日市内（お申し込み時に詳しくご案内します）</td></tr>
       <tr><th>内容</th><td>沖縄民謡・舞踊曲・三線（唄三線）</td></tr>
       <tr><th>対象</th><td>初心者〜経験者（2026年度 新規受講生募集中）</td></tr>
       <tr><th>お問い合わせ</th><td><a href="mailto:kin1101yasu@gmail.com?subject=見学・体験のお問い合わせ（美ら三線サークル）">メールで受付</a></td></tr>
     </table>
-    <div class="map-ph reveal">MAP ─ 春日市ふれあい文化センターの<br>Googleマップがここに入ります</div>
+    <div class="map-ph reveal">会場は春日市内です<br>詳しい場所はお申し込み時にご案内します</div>
   </div>
   <p class="sample-inline reveal">※会場・開催日時・費用などの詳細は、お打ち合わせの内容に差し替えてお納めします。</p>
 </section>
@@ -643,9 +732,29 @@
     es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}});
   },{threshold:.14});
   document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
+
+  /* ヒーローを順に表示する。アニメーションではなくクラスの付け外しで表示するので、
+     動きが効かない環境でも .in が付いた瞬間に必ず見える */
+  (function(){
+    var hi=[].slice.call(document.querySelectorAll('.hi'));
+    hi.forEach(function(el,i){ setTimeout(function(){ el.classList.add('in'); }, 120+i*190); });
+    setTimeout(function(){ hi.forEach(function(el){ el.classList.add('in'); }); }, 2000);
+  })();
+
+  /* 読んだ量を示す細い線（装飾のみ。無くても中身に影響しない） */
+  (function(){
+    var bar=document.getElementById('prg'); if(!bar) return;
+    var tick=function(){
+      var h=document.documentElement.scrollHeight-window.innerHeight;
+      bar.style.width=(h>0?(window.scrollY/h*100):0)+'%';
+    };
+    window.addEventListener('scroll',tick,{passive:true});
+    window.addEventListener('resize',tick); tick();
+  })();
+
   /* 最後の保険：何かの理由で発火しなかった要素は3秒後に必ず表示する */
   setTimeout(function(){
-    document.querySelectorAll('.reveal:not(.in)').forEach(function(el){el.classList.add('in')});
+    document.querySelectorAll('.reveal:not(.in), .hi:not(.in)').forEach(function(el){el.classList.add('in')});
   },3000);
 
   document.getElementById('rsvForm').addEventListener('submit',function(ev){
@@ -779,7 +888,8 @@
       items.filter(function(it){return it.area===a;}).forEach(function(it){
         html+='<div class="rm reveal in'+(it.here?" here":"")+'">'
            + (it.here?'<span class="badge">このページの教室</span>':'')
-           + '<h3>'+esc(it.name)+(it.tag?'<span class="tag">'+esc(it.tag)+'</span>':'')+'</h3>'
+           + '<h3>'+esc(it.name)+'<span class="area-tag">'+esc(it.area)+'</span>'
+           + (it.tag?'<span class="tag">'+esc(it.tag)+'</span>':'')+'</h3>'
            + '<dl><dt>会場</dt><dd>'+esc(it.place)
            + (it.addr?'<br><span style="font-size:12.4px;color:var(--sub)">'+esc(it.addr)+'</span>':'')
            + '</dd><dt>日時</dt><dd>'+esc(it.day).replace(/\n/g,"<br>")+'</dd></dl>'
