@@ -869,6 +869,9 @@
       if(/^[（(]?記入例/.test(nm) || /^[（(]?例[）)]/.test(nm)) continue;
       items.push({
         area:(row[idx["地域"]]||"").trim()||"福岡",
+        kind:(idx["区分"]!==undefined&&(row[idx["区分"]]||"").trim())
+             ? (row[idx["区分"]]||"").trim()
+             : (/サークル/.test((row[idx["教室名"]]||"")) ? "サークル" : "教室"),
         name:nm,
         place:(row[idx["会場"]]||"").trim(),
         addr:(idx["住所"]!==undefined?(row[idx["住所"]]||"").trim():""),
@@ -881,11 +884,18 @@
     if(!items.length) return;   // 1件も無ければ、もとの一覧をそのまま残す
 
     var esc=function(t){return String(t).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");};
-    var areas=[]; items.forEach(function(it){ if(areas.indexOf(it.area)<0) areas.push(it.area); });
+    var NOTE={
+      "サークル":'仲間と一緒に、月2回のペースで楽しむ集まりです。<b>月謝4,000円。</b>このページの「美ら三線サークル」もこのグループです。',
+      "教室":'より本格的に習いたい方向けの教室です。<b>月謝5,000円〜7,000円。</b>初心者の方も、経験者の再スタートも歓迎しています。'
+    };
+    var kinds=[]; items.forEach(function(it){ if(kinds.indexOf(it.kind)<0) kinds.push(it.kind); });
+    kinds.sort(function(a,b){ return (a==="サークル"?0:1)-(b==="サークル"?0:1); });
     var html="";
-    areas.forEach(function(a){
-      html+='<div class="area-h reveal in"><span>'+esc(a)+'</span><i></i></div><div class="rm-grid">';
-      items.filter(function(it){return it.area===a;}).forEach(function(it){
+    kinds.forEach(function(a){
+      html+='<div class="area-h reveal in"><span>'+esc(a)+'</span><i></i></div>'
+          + (NOTE[a]?'<p class="area-note reveal in">'+NOTE[a]+'</p>':'')
+          + '<div class="rm-grid">';
+      items.filter(function(it){return it.kind===a;}).forEach(function(it){
         html+='<div class="rm reveal in'+(it.here?" here":"")+'">'
            + (it.here?'<span class="badge">このページの教室</span>':'')
            + '<h3>'+esc(it.name)+'<span class="area-tag">'+esc(it.area)+'</span>'
