@@ -911,7 +911,7 @@
     var host=document.querySelector("#rooms .rooms-lead");
     if(!host) return;
     // 既存の一覧を消す前に、新しい中身が作れていることを確認してから入れ替える
-    var olds=document.querySelectorAll("#rooms .area-h, #rooms .rm-grid");
+    var olds=document.querySelectorAll("#rooms .area-h, #rooms .area-note, #rooms .rm-grid");
     if(!html) return;
     olds.forEach(function(el){ el.remove(); });
     host.insertAdjacentHTML("afterend", html);
