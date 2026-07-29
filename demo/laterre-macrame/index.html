@@ -34,6 +34,10 @@
   header{position:sticky;top:0;z-index:40;display:flex;justify-content:space-between;align-items:center;padding:15px 24px;background:rgba(245,239,227,0);transition:background .4s,box-shadow .4s,padding .4s}
   header.scrolled{background:rgba(245,239,227,.94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 1px 0 var(--line);padding:11px 24px}
   .logo{font-size:19px;letter-spacing:.16em;color:var(--terra-d);font-weight:700;line-height:1.25}
+  /* ヒーロー写真に重なる間は白抜き（濃い文字色だと暗い写真に沈む・2026-07-29） */
+  header:not(.scrolled) .logo{color:#fff;text-shadow:0 2px 14px rgba(0,0,0,.6)}
+  header:not(.scrolled) .logo small{color:#e8c87a}
+  header:not(.scrolled) nav a:not(.cta){color:#fff;text-shadow:0 2px 12px rgba(0,0,0,.55)}
   .logo small{display:block;font-size:9px;letter-spacing:.28em;color:var(--clay);margin-top:3px;font-weight:600}
   nav{display:flex;gap:20px;align-items:center}
   nav a{color:var(--ink);text-decoration:none;font-size:12px;letter-spacing:.1em;padding-bottom:3px;border-bottom:1px solid transparent;transition:.25s}

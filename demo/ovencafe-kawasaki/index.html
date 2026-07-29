@@ -35,6 +35,10 @@
   header{position:sticky;top:0;z-index:40;display:flex;justify-content:space-between;align-items:center;padding:15px 30px;background:rgba(255,253,243,0);transition:background .4s,box-shadow .4s,padding .4s}
   header.scrolled{background:rgba(255,253,243,.96);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 1px 0 var(--line);padding:11px 30px}
   .logo{font-size:20px;letter-spacing:.06em;color:#fff;font-weight:700;line-height:1.2;display:flex;align-items:center;gap:10px;text-shadow:0 1px 12px rgba(120,80,10,.5);transition:color .4s,text-shadow .4s}
+  /* ヒーロー写真に重なる間は白抜き（濃い文字色だと暗い写真に沈む・2026-07-29） */
+  header:not(.scrolled) .logo{color:#fff;text-shadow:0 2px 14px rgba(0,0,0,.6)}
+  header:not(.scrolled) .logo small{color:#e8c87a}
+  header:not(.scrolled) nav a:not(.cta){color:#fff;text-shadow:0 2px 12px rgba(0,0,0,.55)}
   .logo .badge{width:34px;height:34px;border-radius:50%;background:var(--yellow);color:#4a3d24;display:flex;align-items:center;justify-content:center;font-size:18px;flex:0 0 auto;box-shadow:0 2px 8px rgba(120,80,10,.3)}
   .logo .lgt{display:flex;flex-direction:column;line-height:1.2}
   .logo small{font-size:9.5px;letter-spacing:.18em;color:#fff5cf;margin-top:3px;font-weight:600;transition:color .4s}
