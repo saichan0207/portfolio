@@ -756,6 +756,8 @@
     for(var r=1;r<rows.length;r++){
       var row=rows[r]; if(!row) continue;
       var nm=(row[idx["教室名"]]||"").trim(); if(!nm) continue;
+      // 記入例の行は公開ページに出さない（金城様が消し忘れても事故にならないように）
+      if(/^[（(]?記入例/.test(nm) || /^[（(]?例[）)]/.test(nm)) continue;
       items.push({
         area:(row[idx["地域"]]||"").trim()||"福岡",
         name:nm,
