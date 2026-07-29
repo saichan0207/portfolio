@@ -539,26 +539,10 @@
 </section>
 
 <!-- voice -->
-<section class="voice">
-  <div class="sec-head reveal"><span class="bloom" style="color:var(--coral)" aria-hidden="true"><svg><use href="#hibiscus"/></svg></span><span class="en">VOICE</span><h2 class="mincho">受講生の声</h2></div>
-  <div class="v-grid">
-    <div class="vcard reveal">
-      <div class="stars">★★★★★</div>
-      <p>楽器はまったくの初めてで不安でしたが、工工四を数字で追えると知って安心。今では大好きな民謡を一曲弾けるようになりました。</p>
-      <div class="who">60代・女性／春日市</div>
-    </div>
-    <div class="vcard reveal d1">
-      <div class="stars">★★★★★</div>
-      <p>学生の頃に少しだけ習っていて、何十年ぶりの再開です。自分のペースで見てもらえるので、無理なく思い出しながら楽しめています。</p>
-      <div class="who">50代・男性</div>
-    </div>
-    <div class="vcard reveal d2">
-      <div class="stars">★★★★★</div>
-      <p>唄いながら弾くのが本当に楽しくて、月に一度の教室が待ち遠しいです。同じ趣味の仲間ができたのも嬉しい。</p>
-      <div class="who">40代・女性／会社員</div>
-    </div>
-  </div>
-  <p class="sample-inline reveal">※掲載内容はデザイン案の一例です。実際の受講生の声に差し替えてお納めします。</p>
+<!-- 受講生の声：実際のお声をいただくまで表示しない（架空の感想は載せない） -->
+<section class="voice" id="voice" hidden>
+  <div class="sec-head reveal"><span class="bloom" style="color:var(--coral)" aria-hidden="true"><svg><use href="#hibiscus"/></svg></span><span class="en">VOICE</span><h2 class="mincho" data-e="voice_title" data-l="受講生の声：見出し">受講生の声</h2></div>
+  <div class="v-grid"></div>
 </section>
 
 <!-- photo band -->
@@ -772,10 +756,11 @@
 
   // ▼ここにスプレッドシートの「ウェブに公開」CSVアドレスを入れます（空なら何もしません）
   var SHEET_TEXT  = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRfpQUMcLuN09-6AdGdfpJidwmDR_oyn9z4QTqIgv5aK8XKynBMLn_qs2hMzOouR7pmyC9lq8N61CMi/pub?gid=0&single=true&output=csv";   // タブ1「文章」
-  var SHEET_PHOTOS = "";   // タブ3「写真」（教室の様子）※未設定なら今の2枚のまま
+  var SHEET_PHOTOS = "";   // タブ3「写真」（教室の様子）
+  var SHEET_VOICE  = "";   // タブ4「受講生の声」※お声をいただいたら設定する   // タブ3「写真」（教室の様子）※未設定なら今の2枚のまま
   var SHEET_ROOMS = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRfpQUMcLuN09-6AdGdfpJidwmDR_oyn9z4QTqIgv5aK8XKynBMLn_qs2hMzOouR7pmyC9lq8N61CMi/pub?gid=1571078257&single=true&output=csv";   // タブ2「教室一覧」
 
-  if (!SHEET_TEXT && !SHEET_ROOMS && !SHEET_PHOTOS) return;   // 未設定なら一切さわらない
+  if (!SHEET_TEXT && !SHEET_ROOMS && !SHEET_PHOTOS && !SHEET_VOICE) return;   // 未設定なら一切さわらない
 
   // --- CSVを読む（引用符・改行・カンマに対応した最小限の実装） ---
   function parseCSV(t){
@@ -832,6 +817,35 @@
       }
     });
   }).catch(function(e){ /* 失敗しても元の内容のまま。何もしない */ });
+
+  // --- タブ4「受講生の声」：1行＝1件。1件も無ければ欄ごと出さない ---
+  if (SHEET_VOICE) get(SHEET_VOICE).then(function(rows){
+    if(rows.length<2) return;
+    var head=rows[0].map(function(x){return (x||"").trim();});
+    var idx={}; head.forEach(function(h,i){ idx[h]=i; });
+    if(idx["お声"]===undefined) return;
+
+    var esc=function(t){return String(t).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");};
+    var html="", n=0;
+    for(var r=1;r<rows.length;r++){
+      var row=rows[r]; if(!row) continue;
+      var v=(row[idx["お声"]]||"").trim(); if(!v) continue;
+      if(/^[（(]?記入例/.test(v)) continue;
+      var who=(idx["お名前・年代など"]!==undefined?(row[idx["お名前・年代など"]]||"").trim():"");
+      var star=(idx["星の数"]!==undefined?parseInt(row[idx["星の数"]],10):5);
+      if(!(star>=1&&star<=5)) star=5;
+      html+='<div class="vcard reveal in"><div class="stars">'+Array(star+1).join("★")+'</div>'
+         +  '<p>'+esc(v).replace(/\n/g,"<br>")+'</p>'
+         +  (who?'<div class="who">'+esc(who)+'</div>':'')+'</div>';
+      n++;
+    }
+    if(!n) return;                       // 1件も無ければ非表示のまま
+    var sec=document.getElementById("voice");
+    var grid=sec && sec.querySelector(".v-grid");
+    if(!grid) return;
+    grid.innerHTML=html;
+    sec.removeAttribute("hidden");       // 中身が入ったときだけ表示する
+  }).catch(function(e){ /* 失敗しても非表示のまま */ });
 
   // --- タブ3「写真」：1行＝1枚（教室の様子）---
   if (SHEET_PHOTOS) get(SHEET_PHOTOS).then(function(rows){
