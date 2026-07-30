@@ -346,7 +346,7 @@
     .progress{display:none}
   }
 
-  @media(prefers-reduced-motion:reduce){.reveal{transition:none;opacity:1;transform:none}.hero::before{animation:none;transform:none}html{scroll-behavior:auto}}
+  @media(prefers-reduced-motion:reduce){.reveal,html.js .reveal{transition:none;opacity:1;transform:none}.hero::before{animation:none;transform:none}html{scroll-behavior:auto}}
 </style>
 <script>
   /* IntersectionObserver が使える環境でだけアニメを有効にする。
