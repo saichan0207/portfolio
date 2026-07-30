@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>インバウンド案内セット｜外国人ゲストへの案内、ぜんぶ日英で作ります。9,800円・買い切り</title>
+<meta name="description" content="民泊・ゲストハウス・旅館・飲食店向け。館内掲示物5枚・ハウスルール・チェックイン案内・問い合わせ返信文20本・レビュー返信例10本を日英でお作りします。9,800円の買い切り・3営業日・修正2回無料。見本PDFをそのままご覧いただけます。">
+<link rel="canonical" href="https://saichan0207.github.io/portfolio/inbound/">
+<style>
+  :root{
+    --navy:#16233d; --navy2:#0e1830; --gold:#a9873f; --gold2:#c9a75c;
+    --paper:#fbfaf6; --ink:#1e2433; --sub:#6b7285; --line:rgba(22,35,61,.13);
+    --card:#ffffff;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:"Hiragino Sans","Yu Gothic",sans-serif;background:var(--paper);color:var(--ink);
+    line-height:1.85;letter-spacing:.02em;-webkit-text-size-adjust:100%}
+  .mincho{font-family:"Hiragino Mincho ProN","Yu Mincho",serif}
+  img{max-width:100%;display:block}
+  .wrap{max-width:960px;margin:0 auto;padding:0 22px}
+
+  /* ヒーロー */
+  .hero{background:linear-gradient(160deg,var(--navy2),#1c2c4d 55%,#2a3b60);color:#fff;padding:54px 0 60px;position:relative;overflow:hidden}
+  .hero::after{content:"";position:absolute;right:-90px;top:-90px;width:320px;height:320px;
+    background:radial-gradient(circle,rgba(201,167,92,.22),transparent 68%);border-radius:50%}
+  .eyebrow{display:inline-block;border:1px solid rgba(255,255,255,.34);border-radius:999px;
+    padding:7px 17px;font-size:12.5px;letter-spacing:.12em;color:#e9e1cd}
+  .hero h1{font-size:33px;line-height:1.42;margin:20px 0 16px;font-weight:700}
+  .hero h1 em{font-style:normal;color:var(--gold2)}
+  .hero p.lead{font-size:15.5px;color:#ccd4e6;max-width:660px}
+  .price-row{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:26px}
+  .price{background:#fff;color:var(--navy);border-radius:14px;padding:15px 24px;text-align:center}
+  .price .amount{font-size:29px;font-weight:800;letter-spacing:.01em}
+  .price .amount small{font-size:14px;font-weight:700}
+  .price .cap{font-size:11.5px;color:var(--sub);letter-spacing:.08em}
+  .price-note{font-size:13.5px;color:#c8d1e3;line-height:1.7}
+  .btn{display:inline-block;background:var(--gold);color:#231a05;font-weight:800;
+    padding:16px 30px;border-radius:999px;text-decoration:none;font-size:16px;box-shadow:0 8px 26px rgba(0,0,0,.22)}
+  .btn.ghost{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.5);box-shadow:none;font-weight:700}
+  .btns{display:flex;flex-wrap:wrap;gap:13px;margin-top:26px}
+
+  section{padding:52px 0}
+  .sec-head{text-align:center;margin-bottom:34px}
+  .sec-head .en{font-size:11.5px;letter-spacing:.3em;color:var(--gold);font-weight:700}
+  .sec-head h2{font-size:25px;margin-top:9px;line-height:1.5;color:var(--navy)}
+  .sec-head p{font-size:14.5px;color:var(--sub);margin-top:10px}
+
+  /* 課題 */
+  .pains{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .pain{border-left:3px solid var(--gold);background:var(--paper);border-radius:0 10px 10px 0;
+    padding:16px 20px;margin-bottom:13px}
+  .pain b{color:var(--navy)}
+  .pain span{color:var(--sub);font-size:14px}
+
+  /* 納品物 */
+  .items{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:16px}
+  .item{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:22px 20px}
+  .item .no{font-size:11px;letter-spacing:.2em;color:var(--gold);font-weight:800}
+  .item h3{font-size:16.5px;margin:7px 0 8px;color:var(--navy)}
+  .item p{font-size:13.8px;color:var(--sub)}
+
+  /* 見本 */
+  .samples{background:linear-gradient(180deg,#f3f1ea,#fbfaf6)}
+  .shots{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:18px}
+  .shot{background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden;
+    box-shadow:0 10px 26px rgba(22,35,61,.09)}
+  .shot img{width:100%}
+  .shot .cap{font-size:12.5px;color:var(--sub);padding:10px 12px;border-top:1px solid var(--line)}
+  .dl{text-align:center;margin-top:28px}
+  .dl a{color:var(--navy);font-weight:800;border-bottom:2px solid var(--gold);text-decoration:none;font-size:15.5px}
+  .dl p{font-size:13px;color:var(--sub);margin-top:9px}
+
+  /* 文例 */
+  .ex{background:#fff;border:1px solid var(--line);border-radius:13px;padding:20px;margin-bottom:15px}
+  .ex .scene{display:inline-block;background:var(--navy);color:#fff;font-size:11.5px;
+    letter-spacing:.1em;border-radius:999px;padding:4px 13px;margin-bottom:11px}
+  .ex .e{font-size:14.5px;line-height:1.72}
+  .ex .j{font-size:13.2px;color:var(--sub);margin-top:8px;padding-top:8px;border-top:1px dashed var(--line)}
+
+  /* 流れ */
+  .flow{counter-reset:s}
+  .step{display:flex;gap:16px;align-items:flex-start;padding:17px 0;border-bottom:1px dashed var(--line)}
+  .step:last-child{border-bottom:none}
+  .step .n{flex:0 0 34px;height:34px;border-radius:50%;background:var(--navy);color:#fff;
+    display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px}
+  .step h3{font-size:16px;color:var(--navy)}
+  .step p{font-size:13.8px;color:var(--sub);margin-top:4px}
+
+  /* FAQ */
+  .faq details{background:#fff;border:1px solid var(--line);border-radius:11px;padding:15px 18px;margin-bottom:11px}
+  .faq summary{font-weight:700;color:var(--navy);cursor:pointer;font-size:15px}
+  .faq p{font-size:14px;color:var(--sub);margin-top:10px}
+
+  /* CTA */
+  .cta{background:linear-gradient(160deg,var(--navy2),#243657);color:#fff;text-align:center;padding:56px 0}
+  .cta h2{font-size:25px;line-height:1.5}
+  .cta p{font-size:15px;color:#ccd4e6;margin:14px auto 26px;max-width:600px}
+  .cta .small{font-size:12.8px;color:#9fabc4;margin-top:18px}
+
+  footer{background:#0c1526;color:#8e99ae;font-size:12.5px;padding:30px 0;text-align:center}
+  footer a{color:#c9a75c;text-decoration:none}
+
+  @media(max-width:600px){
+    .hero h1{font-size:26px}
+    .sec-head h2{font-size:21px}
+    .price .amount{font-size:25px}
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="wrap">
+    <span class="eyebrow">民泊・ゲストハウス・旅館・飲食店向け ｜ 全国対応・メール完結</span>
+    <h1>外国人ゲストへの案内、<br><em>ぜんぶ日英で</em>お作りします。</h1>
+    <p class="lead">
+      ゴミの分け方、Wi-Fi、お風呂の使い方、夜の静けさ、チェックアウト。
+      毎回同じことを英語で説明していませんか。貼れる紙と、送れる文章を一式でお渡しします。
+    </p>
+    <div class="price-row">
+      <div class="price">
+        <div class="amount">9,800<small>円</small></div>
+        <div class="cap">税込・買い切り</div>
+      </div>
+      <div class="price-note">
+        月額はありません。1回のお支払いで、データはずっとお使いいただけます。<br>
+        3営業日でお届け・修正2回まで無料。
+      </div>
+    </div>
+    <div class="btns">
+      <a class="btn" href="mailto:saichan.98.0922@gmail.com?subject=%E3%82%A4%E3%83%B3%E3%83%90%E3%82%A6%E3%83%B3%E3%83%89%E6%A1%88%E5%86%85%E3%82%BB%E3%83%83%E3%83%88%EF%BC%9A%E3%81%8A%E5%95%8F%E3%81%84%E5%90%88%E3%82%8F%E3%81%9B&body=%E6%96%BD%E8%A8%AD%E5%90%8D%EF%BC%9A%0A%E7%A8%AE%E5%88%A5%EF%BC%88%E6%B0%91%E6%B3%8A%2F%E3%82%B2%E3%82%B9%E3%83%88%E3%83%8F%E3%82%A6%E3%82%B9%2F%E6%97%85%E9%A4%A8%2F%E9%A3%B2%E9%A3%9F%E5%BA%97%EF%BC%89%EF%BC%9A%0A%E6%89%80%E5%9C%A8%E5%9C%B0%EF%BC%9A%0A%0A%E2%96%A0%E3%81%8A%E4%BC%9D%E3%81%88%E3%81%84%E3%81%9F%E3%81%A0%E3%81%91%E3%82%8B%E3%81%A8%E6%97%A9%E3%81%84%E3%81%93%E3%81%A8%EF%BC%88%E5%88%86%E3%81%8B%E3%82%8B%E7%AF%84%E5%9B%B2%E3%81%A7%E7%B5%90%E6%A7%8B%E3%81%A7%E3%81%99%EF%BC%89%0A%E3%83%81%E3%82%A7%E3%83%83%E3%82%AF%E3%82%A4%E3%83%B3%2F%E3%82%A2%E3%82%A6%E3%83%88%E6%99%82%E9%96%93%EF%BC%9A%0AWi-Fi%E3%81%AE%E6%9C%89%E7%84%A1%EF%BC%9A%0A%E5%96%AB%E7%85%99%EF%BC%9A%0A%E3%82%BF%E3%83%88%E3%82%A5%E3%83%BC%EF%BC%9A%0A%E3%82%B4%E3%83%9F%E3%81%AE%E5%88%86%E5%88%A5%E3%83%AB%E3%83%BC%E3%83%AB%EF%BC%9A%0A">まず相談する（無料・返信は当日中）</a>
+      <a class="btn ghost" href="#samples">見本を見る（PDF）</a>
+    </div>
+  </div>
+</div>
+
+<section class="pains">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="en">PROBLEM</span>
+      <h2>外国人ゲストの対応、<br>こんなことになっていませんか</h2>
+    </div>
+    <div class="pain"><b>同じ質問に毎回答えている</b> — <span>ゴミの分け方、Wi-Fi、風呂の入り方。聞かれるのはいつも同じ5つです</span></div>
+    <div class="pain"><b>翻訳アプリの文章が冷たい</b> — <span>意味は通じても、おもてなしの気持ちまでは翻訳してくれません</span></div>
+    <div class="pain"><b>貼る紙がないから、口で説明する</b> — <span>言葉が通じない相手に、身振りで伝えるのは毎回大変です</span></div>
+    <div class="pain"><b>近隣トラブルが起きてから慌てる</b> — <span>騒音とゴミは、先に紙で伝えておけば大半が防げます</span></div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="en">WHAT YOU GET</span>
+      <h2>お届けするもの（一式）</h2>
+      <p>印刷してすぐ貼れるPDFと、コピーして送れる文章です</p>
+    </div>
+    <div class="items">
+      <div class="item">
+        <div class="no">ITEM 01</div>
+        <h3>館内・室内の掲示物 5枚</h3>
+        <p>ゴミの分け方／Wi-Fi／お風呂・シャワー／夜間の静けさ／チェックアウト。日英併記のA4・印刷用PDF。</p>
+      </div>
+      <div class="item">
+        <div class="no">ITEM 02</div>
+        <h3>ハウスルール 1枚</h3>
+        <p>禁止事項・人数・喫煙・キャンセルなど、貴施設の方針をそのまま日英に。掲示にも予約前の案内にも使えます。</p>
+      </div>
+      <div class="item">
+        <div class="no">ITEM 03</div>
+        <h3>チェックイン案内文</h3>
+        <p>予約後に送る道案内・鍵の受け取り・到着時刻の確認。住所と最寄駅を入れて、そのまま送れる形でお渡しします。</p>
+      </div>
+      <div class="item">
+        <div class="no">ITEM 04</div>
+        <h3>問い合わせへの返信文 20本</h3>
+        <p>早めのチェックイン、荷物預かり、深夜到着、キャンセル、追加人数など。よく来る質問に日英でお答えする文例集。</p>
+      </div>
+      <div class="item">
+        <div class="no">ITEM 05</div>
+        <h3>レビューへの返信例 10本</h3>
+        <p>高評価にも、厳しい評価にも。角が立たず、次のゲストが読んで安心する英文の返信例をご用意します。</p>
+      </div>
+      <div class="item" style="border-color:var(--gold);background:#fffdf7">
+        <div class="no">INCLUDED</div>
+        <h3>修正2回まで無料</h3>
+        <p>「この言い方を変えたい」「時間を直したい」に無料で対応します。データ（PDF・テキスト）はそのままお持ちいただけます。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="samples" id="samples">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="en">SAMPLE</span>
+      <h2>実物の見本、そのままご覧ください</h2>
+      <p>下の5枚は、実際にお渡ししている掲示物の見本です。<br>黄色い部分が、貴施設の内容に差し替わります。</p>
+    </div>
+    <div class="shots">
+      <div class="shot"><img src="images/sample1.png" alt="掲示物の見本：ゴミの分け方（日英併記）" loading="lazy"><div class="cap">01 ゴミの分け方</div></div>
+      <div class="shot"><img src="images/sample2.png" alt="掲示物の見本：Wi-Fiの案内（日英併記）" loading="lazy"><div class="cap">02 Wi-Fi</div></div>
+      <div class="shot"><img src="images/sample3.png" alt="掲示物の見本：お風呂・シャワーの使い方（日英併記）" loading="lazy"><div class="cap">03 お風呂・シャワー</div></div>
+      <div class="shot"><img src="images/sample4.png" alt="掲示物の見本：夜間はお静かに（日英併記）" loading="lazy"><div class="cap">04 夜間の静けさ</div></div>
+      <div class="shot"><img src="images/sample5.png" alt="掲示物の見本：チェックアウトの案内（日英併記）" loading="lazy"><div class="cap">05 チェックアウト</div></div>
+    </div>
+    <div class="dl">
+      <a href="../inbound-sample/guest-guide-sample.pdf">見本5枚をPDFでひらく（印刷して試せます）</a>
+      <p>ダウンロードは無料・お名前の入力もいりません</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="en">TEXT SAMPLE</span>
+      <h2>送る文章の見本</h2>
+      <p>ITEM 03〜05でお渡しする文章から、3つだけ載せています</p>
+    </div>
+    <div class="ex">
+      <span class="scene">深夜1時台に届いた問い合わせ</span>
+      <p class="e">Thank you for reaching out, and no problem at all about the late arrival. Our check-in is available until 23:00, but if you arrive after that, we will leave the key in the lockbox by the entrance and send you the code on the day. You are also welcome to leave your luggage with us from 11:00, before check-in. Please take bus #206 from the station — about 20 minutes. We look forward to welcoming you.</p>
+      <p class="j">ご連絡ありがとうございます。遅いご到着でも問題ありません。チェックインは23:00まで受け付けており、それ以降のご到着の場合は玄関のキーボックスに鍵をご用意し、当日中に暗証番号をお送りします。チェックイン前の11:00からお荷物のお預かりも可能です。駅からは206番のバスで約20分です。お越しをお待ちしております。</p>
+    </div>
+    <div class="ex">
+      <span class="scene">高評価のレビューへの返信</span>
+      <p class="e">Thank you so much for taking the time to write this. We are especially glad the quiet neighborhood worked well for you — it is something we care about, and we ask all our guests to help protect it. You would be very welcome back any time you are in the area.</p>
+      <p class="j">お時間をとってお書きいただき、ありがとうございます。静かな環境を気に入っていただけたのが何より嬉しいです。私たちが大切にしている点で、すべてのお客様にご協力をお願いしているところでもあります。またこちらにいらしたときは、ぜひお立ち寄りください。</p>
+    </div>
+    <div class="ex">
+      <span class="scene">厳しい評価への返信（角を立てずに）</span>
+      <p class="e">Thank you for your honest feedback, and I am sorry that the room felt colder than you expected. You are right that the heating takes time in an older building — we have now added an extra heater and a note explaining how to use it. I am grateful you told us; it helps the next guest stay comfortable.</p>
+      <p class="j">率直なご意見をありがとうございます。お部屋が思っていたより寒く感じられたこと、申し訳ありませんでした。古い建物のため暖まるのに時間がかかるのはご指摘のとおりです。追加のヒーターと、その使い方の案内を用意しました。お知らせいただけたことに感謝します。次のお客様が快適に過ごせるようになります。</p>
+    </div>
+  </div>
+</section>
+
+<section class="pains">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="en">FLOW</span>
+      <h2>ご依頼から、お届けまで</h2>
+      <p>すべてメールで完結します。お電話も打ち合わせもありません</p>
+    </div>
+    <div class="flow">
+      <div class="step"><div class="n">1</div><div>
+        <h3>メールで施設のことを教えてください</h3>
+        <p>チェックイン・アウトの時間、Wi-Fi、喫煙、タトゥー、ゴミの分別ルールなど。分かる範囲で結構です。足りない部分はこちらから質問します。</p></div></div>
+      <div class="step"><div class="n">2</div><div>
+        <h3>3営業日でお届け</h3>
+        <p>印刷用のPDFと、コピーして使えるテキストをメールに添付してお送りします。</p></div></div>
+      <div class="step"><div class="n">3</div><div>
+        <h3>修正は2回まで無料</h3>
+        <p>「この言い方を変えたい」「時間を直したい」に対応します。こちらの間違い直しは回数に数えません。</p></div></div>
+      <div class="step"><div class="n">4</div><div>
+        <h3>お支払いは納品後</h3>
+        <p>ご確認いただいたあとに、銀行振込のご案内をお送りします。先払いはいただきません。</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="en">FAQ</span>
+      <h2>よくあるご質問</h2>
+    </div>
+    <div class="faq">
+      <details><summary>英語以外の言語にも対応できますか？</summary>
+        <p>中国語（繁体・簡体）と韓国語もご相談ください。まずは英語版をお作りし、必要な言語だけ追加でご案内します。</p></details>
+      <details><summary>印刷は自分でするのですか？</summary>
+        <p>はい。A4の印刷用PDFでお渡しするので、コンビニでもご自宅のプリンターでも印刷できます。ラミネートすると長く使えます。</p></details>
+      <details><summary>デザインは変えられますか？</summary>
+        <p>文字の大きさ、色、施設名やロゴの入れ方は調整できます。和風・洋風どちらの雰囲気にも寄せられます。</p></details>
+      <details><summary>飲食店でも使えますか？</summary>
+        <p>使えます。店内の案内（喫煙・お通し・お会計・アレルギー確認）や、英語メニューの体裁づくりに置き換えてお作りします。</p></details>
+      <details><summary>あとから内容を直したくなったら？</summary>
+        <p>納品後2回までは無料です。それ以降の変更は1回2,000円で承ります。データはお客様のものですので、ご自分で編集していただいても構いません。</p></details>
+      <details><summary>本当に月額はかからないのですか？</summary>
+        <p>かかりません。9,800円の1回のお支払いのみです。毎日届く問い合わせへの返信そのものを任せたい場合は、別途<a href="../yado/" style="color:var(--navy)">宿インバウンドAI（月額）</a>もありますが、まずはこのセットだけで十分に効果があります。</p></details>
+    </div>
+  </div>
+</section>
+
+<div class="cta">
+  <div class="wrap">
+    <h2>まずは、見本を見てから決めてください</h2>
+    <p>
+      PDFは無料で開けます。気に入ったら、施設のことを書いてメールをください。
+      その日のうちにご返信し、3営業日でお届けします。
+    </p>
+    <a class="btn" href="mailto:saichan.98.0922@gmail.com?subject=%E3%82%A4%E3%83%B3%E3%83%90%E3%82%A6%E3%83%B3%E3%83%89%E6%A1%88%E5%86%85%E3%82%BB%E3%83%83%E3%83%88%EF%BC%9A%E3%81%8A%E5%95%8F%E3%81%84%E5%90%88%E3%82%8F%E3%81%9B&body=%E6%96%BD%E8%A8%AD%E5%90%8D%EF%BC%9A%0A%E7%A8%AE%E5%88%A5%EF%BC%88%E6%B0%91%E6%B3%8A%2F%E3%82%B2%E3%82%B9%E3%83%88%E3%83%8F%E3%82%A6%E3%82%B9%2F%E6%97%85%E9%A4%A8%2F%E9%A3%B2%E9%A3%9F%E5%BA%97%EF%BC%89%EF%BC%9A%0A%E6%89%80%E5%9C%A8%E5%9C%B0%EF%BC%9A%0A%0A%E2%96%A0%E3%81%8A%E4%BC%9D%E3%81%88%E3%81%84%E3%81%9F%E3%81%A0%E3%81%91%E3%82%8B%E3%81%A8%E6%97%A9%E3%81%84%E3%81%93%E3%81%A8%EF%BC%88%E5%88%86%E3%81%8B%E3%82%8B%E7%AF%84%E5%9B%B2%E3%81%A7%E7%B5%90%E6%A7%8B%E3%81%A7%E3%81%99%EF%BC%89%0A%E3%83%81%E3%82%A7%E3%83%83%E3%82%AF%E3%82%A4%E3%83%B3%2F%E3%82%A2%E3%82%A6%E3%83%88%E6%99%82%E9%96%93%EF%BC%9A%0AWi-Fi%E3%81%AE%E6%9C%89%E7%84%A1%EF%BC%9A%0A%E5%96%AB%E7%85%99%EF%BC%9A%0A%E3%82%BF%E3%83%88%E3%82%A5%E3%83%BC%EF%BC%9A%0A%E3%82%B4%E3%83%9F%E3%81%AE%E5%88%86%E5%88%A5%E3%83%AB%E3%83%BC%E3%83%AB%EF%BC%9A%0A">メールで相談する（無料・当日中に返信）</a>
+    <div class="small">saichan.98.0922@gmail.com ／ お支払いは納品後の銀行振込・先払いなし</div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    Web制作・AI業務代行 ゆたか ｜ <a href="../">制作実績を見る</a> ｜ <a href="../blog/">ブログ</a><br>
+    <span style="font-size:11.5px">掲載の見本は当方が作成したものです。ご依頼時は貴施設の内容に差し替えてお納めします。</span>
+  </div>
+</footer>
+
+</body>
+</html>
