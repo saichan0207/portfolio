@@ -564,7 +564,8 @@
   </div>
   <p class="rooms-lead reveal">美ら三線サークルのほかにも、<b>福岡と熊本で三線教室・サークルを開いています。</b><br>
   お住まいやご都合に合わせて、通いやすい教室をお選びいただけます。<br>
-  <b>初心者・経験者どなたでも大歓迎です。</b>三線をお持ちでない方もご相談ください。</p>
+  <b>オンラインの個人レッスンもございます。</b>初心者・経験者どなたでも大歓迎です。<br>
+  三線をお持ちでない方もご相談ください。</p>
 
   <div class="area-h reveal"><span>サークル</span><i></i></div>
   <p class="area-note reveal">仲間と一緒に、月2回のペースで楽しむ集まりです。<b>月謝4,000円。</b>このページの「美ら三線サークル」もこのグループです。</p>
@@ -584,11 +585,6 @@
       <dl><dt>会場</dt><dd>大野城南コミュニティー</dd><dt>日時</dt><dd>第1・第3木曜 11:00〜12:00</dd></dl>
       <span class="fee circle">月謝 4,000円</span>
     </div>
-    <div class="rm reveal">
-      <h3>大野城日曜サークル<span class="area-tag">福岡</span><span class="tag">新規開講</span></h3>
-      <dl><dt>会場</dt><dd>大野城中央コミュニティセンター</dd><dt>日時</dt><dd>第1・第3日曜 12:00〜13:00</dd></dl>
-      <span class="fee circle">月謝 4,000円</span>
-    </div>
   </div>
 
   <div class="area-h reveal"><span>教室</span><i></i></div>
@@ -603,6 +599,11 @@
       <h3>博多教室<span class="area-tag">福岡</span><span class="tag">中級</span></h3>
       <dl><dt>会場</dt><dd>出来町集会所<br><span style="font-size:12.4px;color:var(--sub)">福岡県福岡市博多区博多駅前1丁目25-14</span></dd><dt>日時</dt><dd>第1・第3日曜 16:00〜18:00</dd></dl>
       <span class="fee">月謝 7,000円</span>
+    </div>
+    <div class="rm reveal">
+      <h3>大野城日曜教室<span class="area-tag">福岡</span><span class="tag">新規開講</span></h3>
+      <dl><dt>会場</dt><dd>大野城中央コミュニティセンター</dd><dt>日時</dt><dd>第1・第3日曜 12:00〜13:00</dd></dl>
+      <span class="fee">月謝 5,000円</span>
     </div>
     <div class="rm reveal">
       <h3>大野城夜教室<span class="area-tag">福岡</span></h3>
@@ -623,6 +624,16 @@
       <h3>熊本 中級教室<span class="area-tag">熊本</span><span class="tag">講師 金城 安紀</span></h3>
       <dl><dt>会場</dt><dd>白川地域コミュニティセンター<br><span style="font-size:12.4px;color:var(--sub)">熊本県熊本市中央区新屋敷1丁目18-27　TEL 096-366-0611</span></dd><dt>日時</dt><dd>第2・第4水曜 19:30〜21:30</dd></dl>
       <span class="fee">月謝 7,000円</span>
+    </div>
+  </div>
+
+  <div class="area-h reveal"><span>オンライン</span><i></i></div>
+  <p class="area-note reveal">遠方の方・お近くに教室がない方へ。<b>ご自宅から、お一人ずつの個人レッスン。</b>お時間はご相談のうえ決めさせていただきます。</p>
+  <div class="rm-grid">
+    <div class="rm reveal">
+      <h3>オンライン個人レッスン<span class="area-tag">全国</span><span class="tag">日程ご相談</span></h3>
+      <dl><dt>会場</dt><dd>オンライン（ビデオ通話）</dd><dt>日時</dt><dd>ご相談のうえ決めさせていただきます</dd></dl>
+      <span class="fee">1時間 5,000円</span>
     </div>
   </div>
 
@@ -906,7 +917,8 @@
         area:(row[idx["地域"]]||"").trim()||"福岡",
         kind:(idx["区分"]!==undefined&&(row[idx["区分"]]||"").trim())
              ? (row[idx["区分"]]||"").trim()
-             : (/サークル/.test((row[idx["教室名"]]||"")) ? "サークル" : "教室"),
+             : (/オンライン/.test((row[idx["教室名"]]||"")) ? "オンライン"
+               : /サークル/.test((row[idx["教室名"]]||"")) ? "サークル" : "教室"),
         name:nm,
         place:(row[idx["会場"]]||"").trim(),
         addr:(idx["住所"]!==undefined?(row[idx["住所"]]||"").trim():""),
@@ -921,10 +933,12 @@
     var esc=function(t){return String(t).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");};
     var NOTE={
       "サークル":'仲間と一緒に、月2回のペースで楽しむ集まりです。<b>月謝4,000円。</b>このページの「美ら三線サークル」もこのグループです。',
-      "教室":'より本格的に習いたい方向けの教室です。<b>月謝5,000円〜7,000円。</b>初心者の方も、経験者の再スタートも歓迎しています。'
+      "教室":'より本格的に習いたい方向けの教室です。<b>月謝5,000円〜7,000円。</b>初心者の方も、経験者の再スタートも歓迎しています。',
+      "オンライン":'遠方の方・お近くに教室がない方へ。<b>ご自宅から、お一人ずつの個人レッスン。</b>お時間はご相談のうえ決めさせていただきます。'
     };
+    var ORDER={"サークル":0,"教室":1,"オンライン":2};
     var kinds=[]; items.forEach(function(it){ if(kinds.indexOf(it.kind)<0) kinds.push(it.kind); });
-    kinds.sort(function(a,b){ return (a==="サークル"?0:1)-(b==="サークル"?0:1); });
+    kinds.sort(function(a,b){ return (ORDER[a]===undefined?9:ORDER[a])-(ORDER[b]===undefined?9:ORDER[b]); });
     var html="";
     kinds.forEach(function(a){
       html+='<div class="area-h reveal in"><span>'+esc(a)+'</span><i></i></div>'
@@ -935,10 +949,16 @@
            + (it.here?'<span class="badge">このページの教室</span>':'')
            + '<h3>'+esc(it.name)+'<span class="area-tag">'+esc(it.area)+'</span>'
            + (it.tag?'<span class="tag">'+esc(it.tag)+'</span>':'')+'</h3>'
-           + '<dl><dt>会場</dt><dd>'+esc(it.place)
-           + (it.addr?'<br><span style="font-size:12.4px;color:var(--sub)">'+esc(it.addr)+'</span>':'')
-           + '</dd><dt>日時</dt><dd>'+esc(it.day).replace(/\n/g,"<br>")+'</dd></dl>'
-           + (it.fee?'<span class="fee'+(/サークル|4,000/.test(it.fee+it.name)?' circle':'')+'">月謝 '+esc(it.fee)+'</span>':'')
+           // 会場・日時が空の行（オンライン等）でも、見出しだけが残って崩れないようにする
+           + ((it.place||it.day)?'<dl>'
+               + (it.place?'<dt>会場</dt><dd>'+esc(it.place)
+                   + (it.addr?'<br><span style="font-size:12.4px;color:var(--sub)">'+esc(it.addr)+'</span>':'')
+                   + '</dd>':'')
+               + (it.day?'<dt>日時</dt><dd>'+esc(it.day).replace(/\n/g,"<br>")+'</dd>':'')
+               + '</dl>':'')
+           // 「1時間 5,000円」のように月謝でない書き方をされたら「月謝」を付けない
+           + (it.fee?'<span class="fee'+(/サークル|4,000/.test(it.fee+it.name)?' circle':'')+'">'
+               + (/月謝|時間|回|コマ|人|税|\//.test(it.fee)?'':'月謝 ')+esc(it.fee)+'</span>':'')
            + '</div>';
       });
       html+='</div>';
