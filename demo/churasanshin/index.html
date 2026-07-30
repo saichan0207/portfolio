@@ -907,6 +907,9 @@
     var need=["地域","教室名","会場","日時","月謝"];
     for(var n=0;n<need.length;n++) if(idx[need[n]]===undefined) return;  // 形が違えば何もしない
 
+    // 「ここは空のまま」という指示を、文字どおり「空」「なし」と打たれても表示に出さない
+    var cell=function(v){ var s=(v||"").trim(); return /^(空|空欄|なし|無し|ー|−|-|―|・)$/.test(s)?"":s; };
+
     var items=[];
     for(var r=1;r<rows.length;r++){
       var row=rows[r]; if(!row) continue;
@@ -914,17 +917,17 @@
       // 記入例の行は公開ページに出さない（金城様が消し忘れても事故にならないように）
       if(/^[（(]?記入例/.test(nm) || /^[（(]?例[）)]/.test(nm)) continue;
       items.push({
-        area:(row[idx["地域"]]||"").trim()||"福岡",
-        kind:(idx["区分"]!==undefined&&(row[idx["区分"]]||"").trim())
-             ? (row[idx["区分"]]||"").trim()
+        area:cell(row[idx["地域"]])||"福岡",
+        kind:(idx["区分"]!==undefined&&cell(row[idx["区分"]]))
+             ? cell(row[idx["区分"]])
              : (/オンライン/.test((row[idx["教室名"]]||"")) ? "オンライン"
                : /サークル/.test((row[idx["教室名"]]||"")) ? "サークル" : "教室"),
         name:nm,
-        place:(row[idx["会場"]]||"").trim(),
-        addr:(idx["住所"]!==undefined?(row[idx["住所"]]||"").trim():""),
-        day:(row[idx["日時"]]||"").trim(),
-        fee:(row[idx["月謝"]]||"").trim(),
-        tag:(idx["ひとこと"]!==undefined?(row[idx["ひとこと"]]||"").trim():""),
+        place:cell(row[idx["会場"]]),
+        addr:(idx["住所"]!==undefined?cell(row[idx["住所"]]):""),
+        day:cell(row[idx["日時"]]),
+        fee:cell(row[idx["月謝"]]),
+        tag:(idx["ひとこと"]!==undefined?cell(row[idx["ひとこと"]]):""),
         here:(idx["このページの教室"]!==undefined?/○|◯|o|O|1|はい/.test(row[idx["このページの教室"]]||""):false)
       });
     }
