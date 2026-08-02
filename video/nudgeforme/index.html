@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>A launch video for NudgeForMe — made before you asked</title>
+<style>
+  :root{
+    --ground:#0E1024;
+    --ground-2:#1A1D31;
+    --ink:#EEF0FF;
+    --ink-dim:rgba(238,240,255,.62);
+    --ink-faint:rgba(238,240,255,.38);
+    --coral:#FFB648;
+    --hair:rgba(238,240,255,.14);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{
+    background:var(--ground);
+    color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased;
+    line-height:1.6;
+  }
+  .dots{
+    position:fixed;inset:0;pointer-events:none;
+    background-image:radial-gradient(rgba(238,240,255,1) 1.2px, transparent 1.3px);
+    background-size:22px 22px;opacity:.045;
+    -webkit-mask-image:radial-gradient(60% 45% at 50% 22%, #000 0%, transparent 78%);
+    mask-image:radial-gradient(60% 45% at 50% 22%, #000 0%, transparent 78%);
+  }
+  .wrap{position:relative;max-width:920px;margin:0 auto;padding:72px 24px 120px}
+  .kicker{
+    font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+    font-size:12px;letter-spacing:.28em;text-transform:uppercase;
+    color:var(--coral);margin-bottom:22px;
+  }
+  h1{
+    font-size:clamp(30px,5.2vw,54px);font-weight:300;line-height:1.14;
+    letter-spacing:-.022em;margin-bottom:20px;
+  }
+  .lede{font-size:clamp(16px,2.2vw,19px);color:var(--ink-dim);max-width:640px}
+  .lede strong{color:var(--ink);font-weight:500}
+
+  .player{margin:44px 0 14px;border-radius:14px;overflow:hidden;border:1px solid var(--hair);background:#000}
+  video{display:block;width:100%;height:auto}
+  .meta{
+    font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+    font-size:12px;letter-spacing:.12em;color:var(--ink-faint);
+    display:flex;gap:20px;flex-wrap:wrap;margin-bottom:56px;
+  }
+
+  .rule{height:1px;background:var(--hair);margin:52px 0}
+
+  h2{font-size:22px;font-weight:500;letter-spacing:-.01em;margin-bottom:18px}
+  p{color:var(--ink-dim);margin-bottom:14px;max-width:660px}
+  p strong{color:var(--ink);font-weight:500}
+
+  ul{list-style:none;max-width:660px}
+  li{
+    color:var(--ink-dim);padding:11px 0 11px 26px;position:relative;
+    border-bottom:1px solid rgba(238,240,255,.07);
+  }
+  li:last-child{border-bottom:0}
+  li::before{content:"";position:absolute;left:4px;top:21px;width:6px;height:6px;border-radius:50%;background:var(--coral)}
+  li strong{color:var(--ink);font-weight:500}
+
+  .price{
+    margin:40px 0;padding:30px 32px;border:1px solid var(--hair);
+    border-radius:14px;background:linear-gradient(180deg,var(--ground-2),transparent);
+    max-width:660px;
+  }
+  .price-row{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:8px}
+  .price-num{font-size:46px;font-weight:300;letter-spacing:-.03em}
+  .price-unit{font-family:ui-monospace,Menlo,monospace;font-size:13px;letter-spacing:.14em;color:var(--ink-faint)}
+  .price-note{color:var(--ink-dim);font-size:15px}
+  .price-note b{color:var(--ink);font-weight:500}
+
+  .cta{margin-top:44px;padding-top:34px;border-top:1px solid var(--hair);max-width:660px}
+  .cta a{
+    display:inline-block;margin-top:14px;padding:15px 30px;
+    background:var(--ink);color:#1E1503;text-decoration:none;
+    border-radius:10px;font-weight:600;font-size:16px;
+  }
+  .cta small{display:block;margin-top:18px;color:var(--ink-faint);font-size:13px;line-height:1.7}
+
+  footer{
+    margin-top:76px;padding-top:26px;border-top:1px solid var(--hair);
+    font-size:12.5px;color:var(--ink-faint);line-height:1.9;
+  }
+  footer a{color:var(--ink-dim)}
+</style>
+</head>
+<body>
+<div class="dots"></div>
+<div class="wrap">
+
+  <div class="kicker">Unsolicited · No strings</div>
+  <h1>I made a launch video for NudgeForMe.<br>Here it is.</h1>
+  <p class="lede">
+    You launched today and the page has a 4-minute demo, but nothing short enough to post.
+    So I built one — <strong>27 seconds, using only your own screenshots, your own colours, and your own fonts.</strong>
+    Watch it. If it's useful, it's yours.
+  </p>
+
+  <div class="player">
+    <video controls preload="metadata" poster="poster.jpg" playsinline>
+      <source src="nudgeforme-launch-video.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="meta">
+    <span>1920 × 1080</span><span>26.6s</span><span>Captions burned in</span><span>MP4 · 5.2 MB</span>
+  </div>
+
+  <div class="rule"></div>
+
+  <h2>Nothing in it was invented</h2>
+  <ul>
+    <li><strong>Your screenshots.</strong> The sent thread, the "3 days with no reply" marker, the opportunity card, the Nudge draft — every one is a crop of your own hero UI. No mockups, no stock inbox.</li>
+    <li><strong>Your brand.</strong> #FFB648 on #101228. Your actual font files: Bricolage Grotesque, Instrument Sans, Spline Sans Mono.</li>
+    <li><strong>Your words, where they were better than mine.</strong> "Draft mode by default" and "Scan my inbox free" are yours.</li>
+    <li><strong>Built frame by frame in HTML</strong>, not assembled from a template. That's why it looks like your site instead of like a video tool.</li>
+  </ul>
+
+  <div class="rule"></div>
+
+  <h2>If you want it</h2>
+  <p>
+    Take this one as it is — no charge, no reply needed. I built it to show you what I do.
+  </p>
+  <p>
+    If you'd rather have a version with your changes, a 9:16 cut for X and LinkedIn, or a set of short
+    cuts for each use case on the page, that's what I sell.
+  </p>
+
+  <div class="price">
+    <div class="price-row">
+      <span class="price-num">$499</span>
+      <span class="price-unit">PER VIDEO · 24-HOUR TURNAROUND</span>
+    </div>
+    <p class="price-note">
+      Agencies charge <b>$3,000–$10,000</b> for the same deliverable and take two to six weeks.
+      Revisions until you're happy. If the first cut isn't right, you don't pay.
+    </p>
+  </div>
+
+  <div class="cta">
+    <h2>Reply and tell me what to change</h2>
+    <p>One line is enough. I'll turn it around the same day.</p>
+    <a href="mailto:saichan.98.0922@gmail.com?subject=NudgeForMe%20video">saichan.98.0922@gmail.com</a>
+    <small>
+      Not interested? Reply "no thanks" and I'll delete the video and this page, and you'll never hear from me again.
+    </small>
+  </div>
+
+  <footer>
+    Web制作 ゆたか (Web Production Yutaka) · Yutaka Saida<br>
+    1771-23 Makabe, Kitatachibana-machi, Shibukawa-shi, Gunma, Japan<br>
+    <a href="mailto:saichan.98.0922@gmail.com">saichan.98.0922@gmail.com</a><br>
+    This page was made for NudgeForMe only and is not indexed. To be removed from all future contact, reply with "unsubscribe".
+  </footer>
+
+</div>
+</body>
+</html>
