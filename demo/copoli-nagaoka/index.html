@@ -31,24 +31,34 @@
   .sample-bar{background:linear-gradient(90deg,#131e37,#2a3a60);color:#eae3d1;text-align:center;font-size:11.5px;padding:7px 14px;letter-spacing:.08em;position:relative;z-index:60}
   .sample-bar b{color:var(--gold2)}
 
-  header{position:sticky;top:0;z-index:40;display:flex;justify-content:space-between;align-items:center;padding:15px 24px;background:rgba(247,245,239,0);transition:background .4s,box-shadow .4s,padding .4s}
+  header{position:sticky;top:0;z-index:40;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:15px 24px;background:rgba(247,245,239,0);transition:background .4s,box-shadow .4s,padding .4s}
   header.scrolled{background:rgba(247,245,239,.94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 1px 0 var(--line);padding:11px 24px}
-  .logo{font-size:18px;letter-spacing:.2em;color:var(--navy);font-weight:600;transition:color .4s,text-shadow .4s}
+  /* 教室名が長いと、縮まずにボタンへはみ出して重なる（2026-08-03 スマホ幅で発生）。
+     flexの既定 min-width:auto が「内容より小さくならない」ため。0にして縮めさせる */
+  .logo{flex:1 1 auto;min-width:0;font-size:18px;letter-spacing:.2em;color:var(--navy);font-weight:600;line-height:1.35;transition:color .4s,text-shadow .4s}
   /* ヒーロー写真に重なっている間は白抜きにする。
      濃い文字色のままだと暗い写真に沈んで読めなくなる（2026-07-29 実際に発生） */
   header:not(.scrolled) .logo{color:#fff;text-shadow:0 2px 14px rgba(0,0,0,.6)}
   header:not(.scrolled) .logo small{color:#e8c87a}
   header:not(.scrolled) nav a:not(.cta){color:#fff;text-shadow:0 2px 12px rgba(0,0,0,.55)}
   .logo small{display:block;font-size:9px;letter-spacing:.32em;color:var(--gold);margin-top:2px}
-  nav{display:flex;gap:20px;align-items:center}
+  nav{display:flex;gap:20px;align-items:center;flex:0 0 auto}
   nav a{color:var(--ink);text-decoration:none;font-size:12px;letter-spacing:.12em;padding-bottom:3px;border-bottom:1px solid transparent;transition:.25s}
   nav a:hover{color:var(--gold);border-color:var(--gold)}
-  nav a.cta{background:var(--navy);color:#fff;padding:9px 18px;border-radius:999px;border:none;letter-spacing:.08em;box-shadow:0 8px 18px rgba(27,40,70,.28)}
+  nav a.cta{background:var(--navy);color:#fff;padding:9px 18px;border-radius:999px;border:none;letter-spacing:.08em;white-space:nowrap;box-shadow:0 8px 18px rgba(27,40,70,.28)}
   nav a.cta:hover{background:var(--blue);color:#fff;transform:translateY(-1px)}
   @media(max-width:860px){nav a:not(.cta){display:none}}
+  /* スマホ幅では長い教室名を1〜2行で収める（ボタンは折り返さない） */
+  @media(max-width:560px){
+    header{padding:13px 16px;gap:10px}
+    header.scrolled{padding:10px 16px}
+    .logo{font-size:15px;letter-spacing:.06em}
+    .logo small{font-size:8.5px;letter-spacing:.24em}
+    nav a.cta{padding:8px 14px;font-size:11.5px}
+  }
 
   /* hero */
-  .hero{position:relative;min-height:94vh;display:flex;align-items:center;padding:0 8vw;margin-top:-62px;overflow:hidden}
+  .hero{position:relative;min-height:94vh;display:flex;align-items:center;padding:0 8vw;margin-top:calc(var(--hd-h, 62px) * -1);overflow:hidden}
   .hero::before{content:"";position:absolute;inset:0;background:linear-gradient(100deg,rgba(15,23,44,.9) 30%,rgba(15,23,44,.5) 100%),url("images/hero-rythmique.jpg") center/cover no-repeat;transform:scale(1.06);animation:heroZoom 16s ease-out forwards}
   @keyframes heroZoom{to{transform:scale(1)}}
   .hero-inner{position:relative;z-index:2;max-width:640px;color:#fff;margin-top:60px}
@@ -393,6 +403,14 @@
   var hd=document.getElementById('hd');
   var onScroll=function(){hd.classList.toggle('scrolled',window.scrollY>40)};
   window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+  // ヒーローの引き上げ幅をヘッダーの実寸に合わせる。
+  // 固定の -62px だと、教室名が長くて名前が2行になったときに高さが合わず、
+  // ヒーローの上に生成色の帯が出る（2026-08-03 音花様のデモで発生）
+  var fitHero=function(){
+    document.documentElement.style.setProperty('--hd-h',hd.offsetHeight+'px');
+  };
+  fitHero();window.addEventListener('resize',fitHero);
+  window.addEventListener('load',fitHero);
   var io=new IntersectionObserver(function(es){
     es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}});
   },{threshold:.14});
