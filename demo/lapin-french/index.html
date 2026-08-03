@@ -236,6 +236,17 @@
     .sc{padding:26px 24px}
   }
   @media(prefers-reduced-motion:reduce){.reveal,html.js .reveal{transition:none;opacity:1;transform:none}.hero::before{animation:none;transform:none}html{scroll-behavior:auto}}
+/* 2026-08-03 長い店名がヘッダーのボタンに重なる不具合の修正 */
+  header{gap:12px}
+  header .logo{flex:1 1 auto;min-width:0}
+  header nav{flex:0 0 auto}
+  header nav a.cta{white-space:nowrap}
+  @media(max-width:560px){
+    header{padding-left:16px;padding-right:16px;gap:10px}
+    header .logo{font-size:15px;letter-spacing:.06em;line-height:1.35}
+    header .logo small{font-size:8.5px;letter-spacing:.24em}
+    header nav a.cta{padding:8px 14px;font-size:11.5px}
+  }
 </style>
 <script>if ('IntersectionObserver' in window) document.documentElement.className += ' js';</script>
 </head>
