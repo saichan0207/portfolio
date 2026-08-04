@@ -90,9 +90,27 @@
     font-size:12.5px;color:var(--ink-faint);line-height:1.9;
   }
   footer a{color:var(--ink-dim)}
+
+  /* 2026-08-04 — this page carries the client's name, so it says plainly what
+     it is and what it is not, and never scrolls out of view. */
+  .notice{
+    position:sticky;top:0;z-index:60;
+    background:linear-gradient(90deg,#141413,#232320);
+    color:#EDEDE6;text-align:center;
+    font-size:12.5px;line-height:1.65;letter-spacing:.01em;
+    padding:10px 16px;
+  }
+  .notice b{color:#E8674F}
+  @media(max-width:560px){.notice{font-size:11.5px;padding:9px 12px}}
 </style>
 </head>
 <body>
+<div class="notice">
+  ⚠️ <b>This is an unsolicited sample page.</b> It is not Port22's official site and it is not affiliated with Port22.
+  It was made by an outside studio (Web制作 ゆたか) to show a piece of work, and it is not indexed by search engines.
+  Say the word and it comes down.
+</div>
+
 <div class="dots"></div>
 <div class="wrap">
 
