@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>An app preview video for Sofa Time — made before you asked</title>
+<style>
+  :root{
+    --ground:#070707;
+    --surface:#101010;
+    --ink:#F7F4EB;
+    --gold:#E7B700;
+    --gold-strong:#FFD21C;
+    --muted:#B9B4A8;
+    --faint:#77736A;
+    --hair:#26251F;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{
+    background:var(--ground);
+    color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased;
+    line-height:1.6;
+  }
+
+  /* Standing notice — this page carries Sofa Time's name, so it says plainly
+     what it is and what it is not, and never scrolls out of view. */
+  .notice{
+    position:sticky;top:0;z-index:60;
+    background:linear-gradient(90deg,#101010,#1B1B18);
+    color:#EDEAE0;text-align:center;
+    font-size:12.5px;line-height:1.65;letter-spacing:.01em;
+    padding:10px 16px;border-bottom:1px solid var(--hair);
+  }
+  .notice b{color:var(--gold)}
+  @media(max-width:560px){.notice{font-size:11.5px;padding:9px 12px}}
+
+  .wrap{position:relative;max-width:920px;margin:0 auto;padding:60px 24px 120px}
+
+  .kicker{
+    font-size:12px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--gold);margin-bottom:22px;
+  }
+  h1{
+    font-size:clamp(30px,5.2vw,52px);font-weight:700;line-height:1.12;
+    letter-spacing:-.028em;margin-bottom:20px;color:var(--ink);
+  }
+  .lede{font-size:clamp(16px,2.2vw,19px);color:var(--muted);max-width:660px}
+  .lede strong{color:var(--ink);font-weight:600}
+
+  .player{margin:44px 0 14px;border-radius:14px;overflow:hidden;border:1.5px solid var(--hair);background:#000}
+  video{display:block;width:100%;height:auto}
+  .meta{
+    font-size:12px;font-weight:500;letter-spacing:.1em;color:var(--faint);
+    display:flex;gap:20px;flex-wrap:wrap;margin-bottom:56px;
+  }
+
+  .rule{height:1.5px;background:var(--hair);margin:52px 0}
+
+  h2{font-size:22px;font-weight:600;letter-spacing:-.012em;margin-bottom:18px;color:var(--ink)}
+  p{color:var(--muted);margin-bottom:14px;max-width:680px}
+  p strong{color:var(--ink);font-weight:600}
+
+  ul{list-style:none;max-width:680px}
+  li{
+    color:var(--muted);padding:12px 0 12px 28px;position:relative;
+    border-bottom:1px solid var(--hair);
+  }
+  li:last-child{border-bottom:0}
+  li::before{content:"";position:absolute;left:4px;top:22px;width:7px;height:7px;border-radius:50%;background:var(--gold)}
+  li strong{color:var(--ink);font-weight:600}
+
+  .swatches{display:flex;gap:10px;flex-wrap:wrap;margin:6px 0 0}
+  .sw{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--muted)}
+  .sw i{width:16px;height:16px;border-radius:4px;border:1px solid var(--hair);display:block}
+
+  .price{
+    margin:40px 0;padding:30px 32px;border:1.5px solid var(--hair);
+    border-radius:14px;background:var(--surface);
+    max-width:680px;
+  }
+  .price-row{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:8px}
+  .price-num{font-size:46px;font-weight:700;letter-spacing:-.035em;color:var(--gold)}
+  .price-unit{font-size:12.5px;font-weight:600;letter-spacing:.12em;color:var(--faint)}
+  .price-note{color:var(--muted);font-size:15px}
+  .price-note b{color:var(--ink);font-weight:600}
+
+  .cta{margin-top:44px;padding-top:34px;border-top:1.5px solid var(--hair);max-width:680px}
+  .cta a{
+    display:inline-block;margin-top:14px;padding:15px 30px;
+    background:var(--gold);color:#0B0B08;text-decoration:none;
+    border-radius:100px;font-weight:700;font-size:16px;
+  }
+  .cta small{display:block;margin-top:18px;color:var(--faint);font-size:13px;line-height:1.7}
+
+  footer{
+    margin-top:76px;padding-top:26px;border-top:1.5px solid var(--hair);
+    font-size:12.5px;color:var(--faint);line-height:1.9;
+  }
+  footer a{color:var(--muted)}
+</style>
+</head>
+<body>
+
+<div class="notice">
+  ⚠️ <b>This is an unsolicited sample page.</b> It is not Sofa Time's official site and it is not affiliated with Sofa Time or The Clash Soft.
+  It was made by an outside studio (Web制作 ゆたか) to show a piece of work, and it is not indexed by search engines.
+  Say the word and it comes down.
+</div>
+
+<div class="wrap">
+
+  <div class="kicker">Unsolicited · No strings</div>
+  <h1>I made an app preview video for Sofa Time.<br>Here it is.</h1>
+  <p class="lede">
+    Your App Store listing has no app preview video — which is the one asset that does the most
+    work on that page. So I built one:
+    <strong>30 seconds, made only from your own screens, your own colours, and your own typeface.</strong>
+    Watch it. If it's useful, it's yours.
+  </p>
+
+  <div class="player">
+    <video controls preload="metadata" poster="poster.jpg" playsinline>
+      <source src="sofatime-app-preview.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="meta">
+    <span>1920 × 1080</span><span>30.5s</span><span>Voiceover + music</span><span>MP4 · 7.1 MB</span>
+  </div>
+
+  <div class="rule"></div>
+
+  <h2>Nothing in it was invented</h2>
+  <ul>
+    <li><strong>Your screens.</strong> Every shot is one of your own screenshots, untouched — the home-screen
+      widgets reading <em>NEXT TO WATCH</em> and <em>UPCOMING</em>, the Discover screen, the week of
+      <em>13–19 Sep 2025</em> in the calendar, and the Lists screen. No mockups, no redrawn UI, no stock
+      phone frames.</li>
+    <li><strong>Your numbers.</strong> The two counts in the video — <strong>87 shows</strong> and
+      <strong>507 movies</strong> — are the ones already printed on your own Lists screenshot, and
+      <strong>500+ services</strong> is your own line. I would rather leave a slot empty than invent a
+      statistic about your product.</li>
+    <li><strong>Your brand.</strong> #070707 ground, #F7F4EB type, #E7B700 as the single accent —
+      read out of your own CSS variables (<code>--bg</code>, <code>--text</code>, <code>--gold</code>),
+      not eyedropped off a screenshot.
+      <div class="swatches">
+        <span class="sw"><i style="background:#070707"></i>#070707</span>
+        <span class="sw"><i style="background:#F7F4EB"></i>#F7F4EB</span>
+        <span class="sw"><i style="background:#E7B700"></i>#E7B700</span>
+        <span class="sw"><i style="background:#B9B4A8"></i>#B9B4A8</span>
+      </div>
+    </li>
+    <li><strong>Your typeface.</strong> Everything is set in <strong>Inter</strong> — the face your own
+      site loads — from the actual font file, not a lookalike.</li>
+    <li><strong>Your words, where they were better than mine.</strong> "For people who watch more than
+      one thing at once", "500+ services", "the ones you actually use", "before it slips past you", and
+      the closing line — <em>Your whole watch life, finally under control</em> — are all yours. The video
+      closes on your own headline, not on a tagline I wrote.</li>
+    <li><strong>One idea carries it.</strong> A single hairline is drawn in the first shot, breaks when
+      the narration says "losing the thread", and is repaired the moment your product appears. It stays
+      on screen to the last frame. That is the whole argument for your app, made visually.</li>
+    <li><strong>Built frame by frame in HTML</strong>, not assembled from a template. That is why it
+      looks like your product instead of like a video tool.</li>
+  </ul>
+
+  <div class="rule"></div>
+
+  <h2>If you want it</h2>
+  <p>
+    Take this one as it is — no charge, no reply needed. I built it to show you what I do.
+  </p>
+  <p>
+    If you'd rather have a version with your changes, a <strong>9:16 cut</strong> for the App Store
+    preview slot and for Reels and TikTok, or one short cut per feature (Discover, Calendar, Lists,
+    Trakt sync) — that is what I sell.
+  </p>
+
+  <div class="price">
+    <div class="price-row">
+      <span class="price-num">$499</span>
+      <span class="price-unit">PER VIDEO · 24-HOUR TURNAROUND</span>
+    </div>
+    <p class="price-note">
+      Agencies charge <b>$3,000–$10,000</b> for the same deliverable and take two to six weeks.
+      Revisions until you're happy. If the first cut isn't right, you don't pay.
+    </p>
+  </div>
+
+  <div class="cta">
+    <h2>Reply and tell me what to change</h2>
+    <p>One line is enough. I'll turn it around the same day.</p>
+    <a href="mailto:saichan.98.0922@gmail.com?subject=Sofa%20Time%20video">saichan.98.0922@gmail.com</a>
+    <small>
+      Not interested? Reply "no thanks" and I'll delete the video and this page, and you'll never hear from me again.
+    </small>
+  </div>
+
+  <footer>
+    Web制作 ゆたか (Web Production Yutaka) · Yutaka Saida<br>
+    1771-23 Makabe, Kitatachibana-machi, Shibukawa-shi, Gunma, Japan<br>
+    <a href="mailto:saichan.98.0922@gmail.com">saichan.98.0922@gmail.com</a><br>
+    This page was made for Sofa Time only and is not indexed. It is not Sofa Time's official site.
+    To be removed from all future contact, reply with "unsubscribe".
+  </footer>
+
+</div>
+</body>
+</html>
