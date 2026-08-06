@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Five product videos, made before anyone asked — Web制作 ゆたか</title>
+<style>
+  :root{
+    --ground:#08090A;
+    --surface:#101113;
+    --raise:#16181B;
+    --ink:#F2F1EE;
+    --muted:#A8A79F;
+    --faint:#6E6D66;
+    --hair:#23262A;
+    --accent:#E7B700;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--ground);
+    color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased;
+    line-height:1.6;
+  }
+
+  /* These pages carry other people's product names. The notice says plainly what
+     this is and what it is not, and never scrolls out of view. */
+  .notice{
+    position:sticky;top:0;z-index:60;
+    background:linear-gradient(90deg,#101113,#1B1D21);
+    color:#EDEAE0;text-align:center;
+    font-size:12.5px;line-height:1.65;letter-spacing:.01em;
+    padding:10px 16px;border-bottom:1px solid var(--hair);
+  }
+  .notice b{color:var(--accent)}
+  @media(max-width:560px){.notice{font-size:11.5px;padding:9px 12px}}
+
+  .wrap{max-width:1020px;margin:0 auto;padding:64px 24px 120px}
+
+  .kicker{
+    font-size:12px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--accent);margin-bottom:22px;
+  }
+  h1{
+    font-size:clamp(30px,5.2vw,52px);font-weight:700;line-height:1.12;
+    letter-spacing:-.028em;margin-bottom:20px;
+  }
+  .lede{font-size:clamp(16px,2.2vw,19px);color:var(--muted);max-width:680px}
+  .lede strong{color:var(--ink);font-weight:600}
+
+  .player{margin:44px 0 14px;border-radius:14px;overflow:hidden;border:1.5px solid var(--hair);background:#000}
+  video{display:block;width:100%;height:auto}
+  .meta{
+    font-size:12px;font-weight:500;letter-spacing:.1em;color:var(--faint);
+    display:flex;gap:20px;flex-wrap:wrap;
+  }
+
+  .rule{height:1.5px;background:var(--hair);margin:56px 0}
+
+  h2{font-size:22px;font-weight:600;letter-spacing:-.012em;margin-bottom:8px}
+  .h2sub{color:var(--faint);font-size:14px;margin-bottom:26px}
+  p{color:var(--muted);margin-bottom:14px;max-width:700px}
+  p strong{color:var(--ink);font-weight:600}
+
+  /* ---- the five ---- */
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+  @media(max-width:760px){.grid{grid-template-columns:1fr}}
+
+  .card{
+    display:block;text-decoration:none;color:inherit;
+    background:var(--surface);border:1.5px solid var(--hair);border-radius:14px;
+    overflow:hidden;position:relative;
+    transition:border-color .18s ease, transform .18s ease, background .18s ease;
+  }
+  .card:hover{border-color:#33383E;background:var(--raise);transform:translateY(-2px)}
+  .card .band{height:3px;display:block}
+  .shot{
+    display:block;width:100%;aspect-ratio:16/9;object-fit:cover;
+    border-bottom:1px solid var(--hair);background:#000;
+  }
+  .body{padding:20px 22px 22px}
+  .name{display:flex;align-items:center;gap:9px;margin-bottom:8px}
+  .dot{width:9px;height:9px;border-radius:50%;flex:none}
+  .name b{font-size:17px;font-weight:650;letter-spacing:-.01em}
+  .why{color:var(--muted);font-size:14.5px;line-height:1.62;margin-bottom:14px;min-height:3.2em}
+  .tags{
+    display:flex;gap:14px;flex-wrap:wrap;
+    font-size:11.5px;font-weight:500;letter-spacing:.09em;color:var(--faint);
+    padding-top:12px;border-top:1px solid var(--hair);
+  }
+
+  /* ---- how ---- */
+  ul{list-style:none;max-width:700px}
+  li{
+    color:var(--muted);padding:13px 0 13px 28px;position:relative;
+    border-bottom:1px solid var(--hair);
+  }
+  li:last-child{border-bottom:0}
+  li::before{content:"";position:absolute;left:4px;top:23px;width:7px;height:7px;border-radius:50%;background:var(--accent)}
+  li strong{color:var(--ink);font-weight:600}
+
+  .price{
+    margin:40px 0 0;padding:30px 32px;border:1.5px solid var(--hair);
+    border-radius:14px;background:var(--surface);max-width:700px;
+  }
+  .price-row{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:8px}
+  .price-num{font-size:46px;font-weight:700;letter-spacing:-.035em;color:var(--accent)}
+  .price-unit{font-size:12.5px;font-weight:600;letter-spacing:.12em;color:var(--faint)}
+  .price-note{color:var(--muted);font-size:15px;margin:0}
+  .price-note b{color:var(--ink);font-weight:600}
+
+  .cta{margin-top:52px;padding-top:34px;border-top:1.5px solid var(--hair);max-width:700px}
+  .cta a.btn{
+    display:inline-block;margin-top:14px;padding:15px 30px;
+    background:var(--accent);color:#0B0B08;text-decoration:none;
+    border-radius:100px;font-weight:700;font-size:16px;
+  }
+  .cta small{display:block;margin-top:18px;color:var(--faint);font-size:13px;line-height:1.7}
+
+  footer{
+    margin-top:76px;padding-top:26px;border-top:1.5px solid var(--hair);
+    font-size:12.5px;color:var(--faint);line-height:1.9;
+  }
+  footer a{color:var(--muted)}
+</style>
+</head>
+<body>
+
+<div class="notice">
+  ⚠️ <b>These are unsolicited samples.</b> Every product below belongs to someone else. None of these pages
+  is that company's official site, none is affiliated with or endorsed by them, and none is indexed by search
+  engines. Each was built to show a piece of work. If you own one of these products and want it gone, say the word and it comes down.
+</div>
+
+<div class="wrap">
+
+  <div class="kicker">Unsolicited · No strings</div>
+  <h1>Five product videos,<br>made before anyone asked.</h1>
+  <p class="lede">
+    I build 30-second product videos out of <strong>the maker's own screens, own colours, and own font files</strong> —
+    no stock footage, no mocked-up phones, no invented numbers. Each of these was built for a product I found
+    that day, sent over, and given away. <strong>Here is all five in 65 seconds.</strong>
+  </p>
+
+  <div class="player">
+    <video controls preload="metadata" poster="_fiverr/showreel_poster.jpg" playsinline>
+      <source src="_fiverr/fiverr_showreel.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="meta">
+    <span>1920 × 1080</span><span>65s</span><span>Five products</span><span>Built in HTML, frame by frame</span>
+  </div>
+
+  <div class="rule"></div>
+
+  <h2>The five, in full</h2>
+  <p class="h2sub">Each one has its own page, with the video and a full account of where every pixel came from.</p>
+
+  <div class="grid">
+
+    <a class="card" href="port22/">
+      <span class="band" style="background:#E8674F"></span>
+      <img class="shot" src="port22/poster.jpg" alt="Frame from the port22 launch video" loading="lazy">
+      <div class="body">
+        <div class="name"><span class="dot" style="background:#E8674F"></span><b>port22</b></div>
+        <p class="why">Collecting waitlist signups with no video on the page yet. Developer tooling — dark ground, terracotta accent.</p>
+        <div class="tags"><span>LAUNCH VIDEO</span><span>27.6s</span><span>#E8674F</span></div>
+      </div>
+    </a>
+
+    <a class="card" href="nudgeforme/">
+      <span class="band" style="background:#FFB648"></span>
+      <img class="shot" src="nudgeforme/poster.jpg" alt="Frame from the NudgeForMe launch video" loading="lazy">
+      <div class="body">
+        <div class="name"><span class="dot" style="background:#FFB648"></span><b>NudgeForMe</b></div>
+        <p class="why">Launch day, with a four-minute demo on the page but nothing short enough to post anywhere.</p>
+        <div class="tags"><span>LAUNCH VIDEO</span><span>26.6s</span><span>#FFB648</span></div>
+      </div>
+    </a>
+
+    <a class="card" href="coachai/">
+      <span class="band" style="background:#E8EF10"></span>
+      <img class="shot" src="coachai/poster.jpg" alt="Frame from the CoachAI launch video" loading="lazy">
+      <div class="body">
+        <div class="name"><span class="dot" style="background:#E8EF10"></span><b>CoachAI</b></div>
+        <p class="why">An App Store listing with no app preview video — the one asset that does the most work on that page.</p>
+        <div class="tags"><span>APP PREVIEW</span><span>33.6s</span><span>#E8EF10</span></div>
+      </div>
+    </a>
+
+    <a class="card" href="finamie/">
+      <span class="band" style="background:#B3BC6D"></span>
+      <img class="shot" src="finamie/poster.jpg" alt="Frame from the Finamie launch video" loading="lazy">
+      <div class="body">
+        <div class="name"><span class="dot" style="background:#B3BC6D"></span><b>Finamie</b></div>
+        <p class="why">Real app footage already on the site, but no short narrated cut that stands on its own. Light ground, navy and olive.</p>
+        <div class="tags"><span>PRODUCT VIDEO</span><span>36.8s</span><span>#0C1C54 · #B3BC6D</span></div>
+      </div>
+    </a>
+
+    <a class="card" href="sofatime/">
+      <span class="band" style="background:#E7B700"></span>
+      <img class="shot" src="sofatime/poster.jpg" alt="Frame from the Sofa Time app preview video" loading="lazy">
+      <div class="body">
+        <div class="name"><span class="dot" style="background:#E7B700"></span><b>Sofa Time</b></div>
+        <p class="why">A continuity product with no preview video. One hairline is drawn, breaks, and is repaired the moment the app appears.</p>
+        <div class="tags"><span>APP PREVIEW</span><span>30.5s</span><span>#E7B700</span></div>
+      </div>
+    </a>
+
+  </div>
+
+  <div class="rule"></div>
+
+  <h2>How they are made</h2>
+  <p class="h2sub">The rules are the product. They are also the reason each one looks like its own company instead of like a video tool.</p>
+  <ul>
+    <li><strong>Only your own material.</strong> Your screenshots, untouched. No mockups, no redrawn interface,
+      no stock phone frames, no stock hands.</li>
+    <li><strong>Your real brand values.</strong> Colours are read out of your own CSS, not eyedropped off a
+      screenshot. Type is set from the actual font file your site loads, not a lookalike.</li>
+    <li><strong>No invented numbers.</strong> The only figures on screen are ones already printed in your own
+      material. I would rather leave a slot empty than make up a statistic about your product.</li>
+    <li><strong>Your words where they beat mine.</strong> Four of the five close on the company's own headline
+      rather than a tagline I wrote.</li>
+    <li><strong>Built frame by frame in HTML</strong> and rendered deterministically — so a change is a change
+      to one line, not a re-edit. That is what makes a 24-hour turnaround honest rather than a promise I have to
+      hustle to keep.</li>
+  </ul>
+
+  <div class="price">
+    <div class="price-row">
+      <span class="price-num">$499</span>
+      <span class="price-unit">PER VIDEO · 24-HOUR TURNAROUND</span>
+    </div>
+    <p class="price-note">
+      Agencies quote <b>$3,000–$10,000</b> for the same deliverable and take two to six weeks.
+      Revisions until you're happy. <b>If the first cut isn't right, you don't pay.</b>
+    </p>
+  </div>
+
+  <div class="cta">
+    <h2>Want one for your product?</h2>
+    <p>Reply with your product's URL. I'll build the first one at no charge and send you the MP4 — use it or bin it.</p>
+    <a class="btn" href="mailto:saichan.98.0922@gmail.com?subject=Product%20video">saichan.98.0922@gmail.com</a>
+    <small>
+      I work from Japan — eight hours ahead of Europe, thirteen ahead of New York. Notes you send at the end of
+      your day are the first thing on my desk in the morning.
+    </small>
+  </div>
+
+  <footer>
+    Web制作 ゆたか (Web Production Yutaka) · Yutaka Saida<br>
+    1771-23 Makabe, Kitatachibana-machi, Shibukawa-shi, Gunma, Japan<br>
+    <a href="mailto:saichan.98.0922@gmail.com">saichan.98.0922@gmail.com</a><br>
+    This page is not indexed by search engines. Every product shown belongs to its own company and this page is
+    not affiliated with any of them. To be removed from all future contact, reply with "unsubscribe".
+  </footer>
+
+</div>
+</body>
+</html>
