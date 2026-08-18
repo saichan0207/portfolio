@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>この墨は、どう動いているのか — [002] SUMI の中身｜Web制作 ゆたか</title>
+<meta name="description" content="[002] 墨 SUMI の背景は動画ではありません。毎コマ流れの方程式を解いています。6つの手順と、途中で3回作り直した理由を全部公開します。">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{--paper:#F3F0E9;--ink:#14161A;--soft:#3E434C;--line:rgba(20,22,26,.15);--mark:#1B3A5C}
+  html{-webkit-text-size-adjust:100%; scroll-behavior:smooth}
+  body{background:var(--paper); color:var(--ink); line-height:1.95;
+       font-family:"Hiragino Mincho ProN","Yu Mincho",YuMincho,"Noto Serif JP",serif;
+       font-feature-settings:"palt" 1; -webkit-font-smoothing:antialiased}
+  .sans{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Noto Sans JP",sans-serif}
+  .wrap{max-width:760px; margin:0 auto; padding:0 clamp(20px,5vw,34px)}
+
+  header{padding:clamp(52px,11vh,104px) 0 clamp(32px,6vh,60px)}
+  .eyebrow{display:block; font-size:10px; letter-spacing:.32em; color:var(--soft); margin-bottom:2.2em}
+  h1{font-size:clamp(27px,5.2vw,46px); line-height:1.5; font-weight:400}
+  .lead{margin-top:clamp(20px,3.6vh,34px); font-size:clamp(14.5px,1.6vw,17px);
+        line-height:2.25; color:var(--soft)}
+
+  section{padding:clamp(38px,7vh,72px) 0; border-top:1px solid var(--line)}
+  h2{font-size:clamp(19px,2.9vw,29px); line-height:1.6; font-weight:400}
+  h3{font-size:clamp(15px,1.9vw,19px); line-height:1.7; font-weight:400; margin-top:2.4em}
+  p{margin-top:1.5em; font-size:clamp(14px,1.5vw,16px); line-height:2.25; color:var(--soft)}
+  p b, li b{font-weight:400; color:var(--ink); border-bottom:1px solid var(--line)}
+  p.tight{margin-top:.9em}
+
+  .step{display:flex; gap:clamp(14px,2.6vw,26px); padding:22px 0; border-bottom:1px solid var(--line)}
+  .step .n{min-width:30px; font-size:11px; letter-spacing:.16em; color:var(--soft); padding-top:.45em}
+  .step .t b{display:block; color:var(--ink); font-weight:400; font-size:1.06em;
+             border:0; margin-bottom:.4em}
+  .step .t{font-size:clamp(13.5px,1.45vw,15.5px); line-height:2.1; color:var(--soft)}
+
+  figure{margin:clamp(26px,4.6vh,44px) 0}
+  /* 図をそのまま縮めると、スマホで文字が5px程度になって読めない。
+     幅を確保したまま、図だけ横に動かせるようにする */
+  .scroller{overflow-x:auto; -webkit-overflow-scrolling:touch; padding-bottom:6px}
+  figure svg{display:block; height:auto; width:100%; min-width:660px}
+  figcaption{margin-top:1.1em; font-size:12px; line-height:1.95; color:var(--soft)}
+
+  .fail{border-left:2px solid var(--line); padding:2px 0 2px clamp(16px,3vw,26px); margin-top:2.2em}
+  .fail h3{margin-top:0}
+
+  .box{border:1px solid var(--line); padding:clamp(20px,3.6vw,34px); margin-top:2.4em;
+       background:rgba(255,255,255,.45)}
+  .box p{margin-top:1em}
+  .box p:first-child{margin-top:0}
+
+  .btn{display:inline-block; margin-top:1.8em; padding:16px 34px; border:1px solid var(--ink);
+       color:var(--ink); text-decoration:none; font-size:13.5px; letter-spacing:.12em;
+       transition:background .25s,color .25s}
+  .btn:hover{background:var(--ink); color:var(--paper)}
+
+  footer{border-top:1px solid var(--line); padding:30px 0 58px; font-size:11.5px;
+         line-height:2.2; color:var(--soft)}
+  footer a{color:var(--ink); text-decoration:none; border-bottom:1px solid var(--line)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <span class="eyebrow">[002] SUMI &#183; HOW IT WORKS</span>
+  <h1>この墨は、<br>どう動いているのか。</h1>
+  <p class="lead">
+    背景は動画ではありません。あなたの端末の中で、毎コマ計算されています。
+    何をどう計算しているのか、そして途中で3回作り直した理由まで、全部そのまま書きます。
+  </p>
+  <a class="btn" href="https://saichan0207.github.io/proposal/lab/sumi/">まず現物を開く &#8594;</a>
+</header>
+
+<section>
+  <h2>そもそも、なぜ動かす必要があったのか。</h2>
+  <p>
+    ここを先に決めないと、ただの飾りになります。技術を先に選んで、あとから理由をつけたものは、見ればわかります。
+  </p>
+  <p>
+    墨は、紙に触れた瞬間から動き続けます。繊維の隙間を伝って外へ広がり、濃いところは沈み、
+    薄いところは青に寄っていく。<b>書き終えた瞬間と、いちばん美しい瞬間は、同じ時刻ではありません。</b>
+  </p>
+  <p>
+    つまり墨は、写真で見せた時点で本当のところが落ちる商品です。
+    だからこの背景は、絵ではなく<b>現象そのもの</b>を置くことにしました。
+  </p>
+</section>
+
+<section>
+  <h2>毎コマ、6つの手順を解いています。</h2>
+  <p class="tight">
+    1秒に60回、この順番でくり返しています。むずかしそうに見えますが、やっていることは
+    「水の中で墨がどう動くか」を素直に計算しているだけです。
+  </p>
+
+  <figure>
+    <div class="scroller">
+    <svg viewBox="0 0 700 130" role="img" aria-label="6つの手順の流れ図">
+      <defs>
+        <marker id="ar" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+          <path d="M0,0 L7,3.5 L0,7 z" fill="#3E434C"/>
+        </marker>
+        <style>
+          .bx{fill:none;stroke:#14161A;stroke-width:1;opacity:.55}
+          .tx{font-family:"Hiragino Sans","Noto Sans JP",sans-serif;font-size:11px;fill:#14161A}
+          .nm{font-family:"Hiragino Sans",sans-serif;font-size:9px;fill:#3E434C;letter-spacing:.1em}
+          .ln{stroke:#3E434C;stroke-width:1;opacity:.6}
+        </style>
+      </defs>
+      <g>
+        <rect class="bx" x="4"   y="34" width="102" height="46"/>
+        <text class="nm" x="12" y="50">01</text><text class="tx" x="12" y="68">速度を運ぶ</text>
+        <line class="ln" x1="108" y1="57" x2="126" y2="57" marker-end="url(#ar)"/>
+
+        <rect class="bx" x="130" y="34" width="102" height="46"/>
+        <text class="nm" x="138" y="50">02</text><text class="tx" x="138" y="68">墨を落とす</text>
+        <line class="ln" x1="234" y1="57" x2="252" y2="57" marker-end="url(#ar)"/>
+
+        <rect class="bx" x="256" y="34" width="102" height="46"/>
+        <text class="nm" x="264" y="50">03</text><text class="tx" x="264" y="68">湧き出しを測る</text>
+        <line class="ln" x1="360" y1="57" x2="378" y2="57" marker-end="url(#ar)"/>
+
+        <rect class="bx" x="382" y="34" width="102" height="46"/>
+        <text class="nm" x="390" y="50">04</text><text class="tx" x="390" y="68">圧力を24回ならす</text>
+        <line class="ln" x1="486" y1="57" x2="504" y2="57" marker-end="url(#ar)"/>
+
+        <rect class="bx" x="508" y="34" width="88" height="46"/>
+        <text class="nm" x="516" y="50">05</text><text class="tx" x="516" y="68">差し引く</text>
+        <line class="ln" x1="598" y1="57" x2="616" y2="57" marker-end="url(#ar)"/>
+
+        <rect class="bx" x="620" y="34" width="76" height="46"/>
+        <text class="nm" x="628" y="50">06</text><text class="tx" x="628" y="68">墨を運ぶ</text>
+
+        <path class="ln" d="M658,84 L658,104 L50,104 L50,84" fill="none" marker-end="url(#ar)"/>
+        <text class="nm" x="300" y="119">これを1秒に60回</text>
+      </g>
+    </svg>
+    </div>
+    <figcaption>この6つが1コマ。ページを開いている間ずっと回り続けています。<span class="sans">（スマートフォンでは、図を横に動かせます）</span></figcaption>
+  </figure>
+
+  <div class="step"><span class="n">01</span><span class="t"><b>速度を運ぶ</b>
+    水の流れそのものを、いまの流れに乗せて運びます。「さっきまで右に流れていた場所は、少し右にずれる」という当たり前のことを全部の点でやります。</span></div>
+  <div class="step"><span class="n">02</span><span class="t"><b>墨を落とす</b>
+    決めた時刻に、決めた場所へ一滴落とします。落とすと同時に、その向きの勢いも水に加えます。ここだけは乱数を使いません（理由は最後に書きます）。</span></div>
+  <div class="step"><span class="n">03</span><span class="t"><b>湧き出しを測る</b>
+    このままだと、水が勝手に増えたり消えたりしている場所ができます。どこでどれだけ増減しているかを測ります。</span></div>
+  <div class="step"><span class="n">04</span><span class="t"><b>圧力を24回ならす</b>
+    増減を打ち消すための圧力を求めます。一度では求まらないので、となり同士で平均を取る作業を<b>24回</b>くり返して近づけます。ここがいちばん計算量を食う場所です。</span></div>
+  <div class="step"><span class="n">05</span><span class="t"><b>差し引く</b>
+    求めた圧力を流れから引きます。これで<b>水の量が増えも減りもしない</b>状態になります。水らしく見えるかどうかは、ここで決まります。</span></div>
+  <div class="step"><span class="n">06</span><span class="t"><b>墨を運ぶ</b>
+    やっと墨そのものを、できあがった流れに乗せて運びます。墨は薄まらないので、ほとんど減らさずに運びます。</span></div>
+
+  <h3>そのあと、紙に置いた墨として描く。</h3>
+  <p>
+    計算した濃さをそのまま黒くしても、墨には見えません。3つ足しています。<b>和紙の繊維でにじみのふちを不規則に崩す</b>こと（真円だと絶対に墨に見えません）。
+    <b>ふちを濃くする</b>こと（実際の墨は、広がった先の輪郭がいちばん濃くなります）。
+    そして<b>薄いところを青に寄せる</b>こと。青みの強い黒を「青墨」と呼びますが、その違いは薄めたときにいちばん出ます。
+  </p>
+</section>
+
+<section>
+  <h2>3回、自分で突き返しました。</h2>
+  <p class="tight">うまくいった話だけ書いても役に立たないので、外したところも書きます。</p>
+
+  <div class="fail">
+    <h3>1回目｜煙にしか見えなかった</h3>
+    <p>一滴が小さすぎ、濃さが足りず、渦を強くしすぎていました。3つとも「それらしく」するために足したもので、結果は逆でした。<b>墨は、塊が崩れながら広がります。</b>渦を弱くして、一滴を大きく、濃くしたら墨になりました。</p>
+  </div>
+
+  <div class="fail">
+    <h3>2回目｜正方形のまま横長の画面に伸ばしていた</h3>
+    <p>計算そのものは正しくても、正方形の計算結果を横長の画面に引き伸ばすと、<b>横方向にだけ余計に流れます。</b>水に見えない原因がここでした。計算する面の縦横比を、画面に合わせて直しました。</p>
+  </div>
+
+  <div class="fail">
+    <h3>3回目｜本文が墨に重なって読めなかった</h3>
+    <p>いちばん恥ずかしい失敗です。背景がきれいになるほど、文字が読めなくなっていました。<b>全面に紙を敷けば墨が死に、敷かなければ文が読めません。</b>墨を右へ逃がし、文字は紙の余白の上で読ませる構図に変えました。読めないサイトは、どれだけきれいでも失敗です。</p>
+  </div>
+</section>
+
+<section>
+  <h2>乱数を使っていない理由。</h2>
+  <p>
+    墨を落とす場所と時刻は、すべてあらかじめ決めてあります。乱数なら楽ですが、<b>同じ結果を二度と作れなくなります。</b>
+    SNS用の動画を撮り直すたびに違う絵が出ると、直したい箇所だけを直せません。
+  </p>
+  <p>
+    そのかわり、<b>流れそのものは毎回違います。</b>同じ場所に同じ強さで落としても、
+    その時の画面の大きさや積み重なりで、広がり方が変わるからです。
+    決めているのは「いつどこに落とすか」だけで、そのあと何が起きるかは計算に任せています。
+  </p>
+  <div class="box">
+    <p><b>2回開いて、確かめてください。</b></p>
+    <p>同じ絵が出たら、それは動画です。違う絵が出たら、あなたの端末の中で計算されています。</p>
+    <a class="btn" href="https://saichan0207.github.io/proposal/lab/sumi/">[002] 墨 SUMI を開く &#8594;</a>
+  </div>
+</section>
+
+<section>
+  <h2>テンプレートではありません。</h2>
+  <p>
+    いま「AIで作った動くサイト」の多くは、<b>用意された指示文（プロンプト）を走らせたもの</b>です。
+    手軽で速いかわりに、誰が走らせても似た絵が出ます。並べると同じ顔になります。
+  </p>
+  <p>
+    このページで説明した6つの手順は、<b>墨のために書いたものです。</b>
+    [001] の日本酒はガラスと液体の屈折を計算していて、中身は全く別のプログラムです。
+    そのブランドが「なぜ動いていなければならないのか」から決めるので、使い回しができません。
+  </p>
+  <p>
+    ご依頼をいただく場合の料金と進め方は、<a href="https://saichan0207.github.io/portfolio/lab/" style="color:var(--ink)">こちら</a>にまとめてあります。
+    最初のご相談は無料で、<b>動かす必要がないと判断した場合は正直にそうお伝えします。</b>
+  </p>
+</section>
+
+<footer>
+  Web制作 ゆたか　／　<a href="https://saichan0207.github.io/portfolio/lab/">Lab のご依頼・料金</a>
+  <a href="https://saichan0207.github.io/proposal/lab/rin/">[001] 凛 RIN</a>
+  <a href="https://saichan0207.github.io/proposal/lab/sumi/">[002] 墨 SUMI</a><br>
+  <span class="sans">※ 凛 RIN・墨 SUMI はいずれも実在しないブランドです。表現の実験のために自ら企画・制作したもので、実在の企業・商品とは関係がありません。</span>
+</footer>
+
+</div>
+</body>
+</html>
