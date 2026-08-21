@@ -3,146 +3,591 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Yutaka Web Works｜制作実績</title>
-<meta name="description" content="店舗向けホームページ制作の実績サンプル集">
+<title>Web制作 ゆたか｜動くウェブサイトをつくる</title>
+<meta name="description" content="止まった絵では伝わらないブランドのための、動くウェブサイト。背景は動画ではなく、その場で計算して描いています。">
+<meta property="og:title" content="Web制作 ゆたか｜動くウェブサイトをつくる">
+<meta property="og:description" content="止まった絵では伝わらないブランドのための、動くウェブサイト。">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;600&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --bg:#0b0e14;
-    --bg2:#11151f;
-    --card:rgba(255,255,255,.045);
-    --card-border:rgba(255,255,255,.10);
-    --text:#e8eaf0;
-    --muted:#9aa3b2;
-    --accent:#d8b465;
-    --accent-soft:rgba(216,180,101,.14);
-  }
-  *{margin:0;padding:0;box-sizing:border-box}
-  html{-webkit-text-size-adjust:100%}
-  body{
-    font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic",-apple-system,BlinkMacSystemFont,sans-serif;
-    background:
-      radial-gradient(900px 500px at 85% -10%, rgba(216,180,101,.08), transparent 60%),
-      radial-gradient(700px 500px at -10% 30%, rgba(90,130,255,.06), transparent 60%),
-      linear-gradient(180deg,var(--bg) 0%,var(--bg2) 100%);
-    color:var(--text);
-    min-height:100vh;
-    line-height:1.7;
-  }
-  .wrap{max-width:640px;margin:0 auto;padding:56px 20px 48px}
-  header{margin-bottom:40px}
-  .brand{
-    display:inline-flex;align-items:center;gap:10px;
-    font-size:12px;letter-spacing:.22em;color:var(--accent);
-    text-transform:uppercase;margin-bottom:14px;
-  }
-  .brand::before{content:"";display:block;width:26px;height:1px;background:var(--accent)}
-  h1{font-size:clamp(26px,7vw,34px);font-weight:700;letter-spacing:.04em;line-height:1.35}
-  h1 span{color:var(--accent)}
-  .lead{margin-top:12px;color:var(--muted);font-size:14px}
-  .cards{display:grid;gap:18px;margin:34px 0 30px}
-  .card{
-    display:block;color:inherit;
-    background:var(--card);
-    border:1px solid var(--card-border);
-    border-radius:18px;
-    padding:24px 22px;
-    backdrop-filter:blur(14px);
-    -webkit-backdrop-filter:blur(14px);
-    box-shadow:0 8px 30px rgba(0,0,0,.35);
-    transition:transform .25s ease,border-color .25s ease,background .25s ease;
-    position:relative;overflow:hidden;
-  }
-  .card::before{
-    content:"";position:absolute;inset:0 0 auto 0;height:1px;
-    background:linear-gradient(90deg,transparent,rgba(255,255,255,.25),transparent);
-  }
-  .card:hover,.card:active{transform:translateY(-2px);border-color:rgba(216,180,101,.45);background:rgba(255,255,255,.07)}
-  .tag{
-    display:inline-block;font-size:11px;letter-spacing:.12em;
-    color:var(--accent);background:var(--accent-soft);
-    border:1px solid rgba(216,180,101,.3);
-    border-radius:999px;padding:3px 12px;margin-bottom:12px;
-  }
-  .card h2{font-size:20px;font-weight:700;letter-spacing:.03em;margin-bottom:6px}
-  .card p{font-size:13.5px;color:var(--muted)}
-  .card .go{
-    display:inline-flex;align-items:center;gap:6px;
-    margin-top:14px;font-size:13px;color:var(--accent);letter-spacing:.06em;
-  }
-  .go{text-decoration:none}
-  .go::after{content:"→";transition:transform .25s ease}
-  .card:hover .go::after{transform:translateX(4px)}
-  .go::before{content:"";position:absolute;inset:0;z-index:1}
-  .sub{position:relative;z-index:2;
-    margin-top:12px;padding-top:12px;
-    border-top:1px dashed rgba(255,255,255,.12);
-    font-size:12.5px;color:var(--muted);
-  }
-  .sub a{color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(216,180,101,.4)}
-  .note{
-    background:rgba(255,255,255,.03);
-    border:1px solid var(--card-border);
-    border-radius:14px;padding:18px 20px;
-    font-size:13px;color:var(--muted);
-  }
-  .note strong{color:var(--text);font-weight:600}
-  .note p+p{margin-top:8px}
-  .ig{color:var(--accent);font-weight:600;letter-spacing:.03em}
-  footer{margin-top:36px;text-align:center;font-size:11.5px;color:#5b6372;letter-spacing:.08em}
+:root{
+  --ink:#f2f0ec;
+  --ink-dim:#8e8a83;
+  --bg:#0a0a0b;
+  --bg-2:#101012;
+  --line:rgba(242,240,236,.13);
+  --accent:#c9a227;
+  --ease:cubic-bezier(.22,1,.36,1);
+  --gut:clamp(20px,5vw,72px);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+html.lenis{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+body{
+  background:var(--bg);color:var(--ink);
+  font-family:"Zen Kaku Gothic New",-apple-system,BlinkMacSystemFont,"Hiragino Sans",sans-serif;
+  font-weight:400;line-height:1.8;letter-spacing:.02em;
+  overflow-x:hidden;
+}
+body.is-loading{overflow:hidden;height:100vh}
+img,canvas{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+.mincho{font-family:"Shippori Mincho",serif;font-weight:400}
+
+/* ───── カスタムカーソル（sstr・trionn と同じ考え方） ───── */
+.cursor{position:fixed;top:0;left:0;width:9px;height:9px;border-radius:50%;
+  background:var(--ink);pointer-events:none;z-index:9999;
+  transform:translate(-50%,-50%);mix-blend-mode:difference}
+.cursor-ring{position:fixed;top:0;left:0;width:38px;height:38px;border-radius:50%;
+  border:1px solid rgba(242,240,236,.45);pointer-events:none;z-index:9998;
+  transform:translate(-50%,-50%);transition:width .4s var(--ease),height .4s var(--ease),border-color .4s var(--ease),opacity .4s}
+.cursor-ring.is-wide{width:76px;height:76px;border-color:rgba(201,162,39,.85)}
+@media (hover:none),(max-width:820px){.cursor,.cursor-ring{display:none}}
+
+/* ───── ローディング（sstr の計器風演出を、うちの文脈で） ───── */
+#loader{position:fixed;inset:0;z-index:9990;background:var(--bg);
+  display:flex;flex-direction:column;justify-content:flex-end;padding:var(--gut)}
+#loader .l-row{display:flex;justify-content:space-between;align-items:flex-end;
+  font-size:11px;letter-spacing:.24em;color:var(--ink-dim);text-transform:uppercase}
+#loader .l-label{overflow:hidden;height:1.4em}
+#loader .l-label span{display:block}
+#loader .l-num{font-family:"Shippori Mincho",serif;font-size:clamp(48px,13vw,140px);
+  line-height:.9;letter-spacing:-.02em;color:var(--ink)}
+#loader .l-bar{position:absolute;left:0;bottom:0;height:1px;background:var(--ink);width:0}
+
+/* ───── ヘッダ ───── */
+header{position:fixed;top:0;left:0;width:100%;z-index:100;
+  padding:22px var(--gut);display:flex;justify-content:space-between;align-items:center;
+  mix-blend-mode:difference}
+.logo{font-size:12px;letter-spacing:.28em;text-transform:uppercase}
+header nav{display:flex;gap:clamp(14px,2.4vw,32px);font-size:11px;letter-spacing:.2em;text-transform:uppercase}
+@media(max-width:600px){header nav a:nth-child(n+3){display:none}}
+
+/* ───── ヒーロー ───── */
+.hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;
+  padding:0 var(--gut) clamp(48px,9vh,110px)}
+#gl{position:absolute;inset:0;width:100%;height:100%;z-index:0}
+.hero-inner{position:relative;z-index:2;width:100%}
+.hero h1{font-family:"Shippori Mincho",serif;font-weight:400;
+  font-size:clamp(38px,8.6vw,124px);line-height:1.16;letter-spacing:.005em}
+.split .l{display:block;overflow:hidden}
+.split .l>span{display:block;will-change:transform}
+.hero-meta{margin-top:clamp(26px,4vh,46px);display:flex;flex-wrap:wrap;gap:12px 40px;
+  align-items:baseline;border-top:1px solid var(--line);padding-top:20px}
+.hero-meta p{font-size:13.5px;color:var(--ink-dim);max-width:44em;line-height:1.9}
+.hero-meta .tag{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent)}
+.scroll-hint{position:absolute;right:var(--gut);bottom:clamp(48px,9vh,110px);z-index:2;
+  font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-dim);
+  writing-mode:vertical-rl;display:flex;align-items:center;gap:12px}
+.scroll-hint::after{content:"";width:1px;height:54px;background:linear-gradient(var(--ink-dim),transparent)}
+@media(max-width:600px){.scroll-hint{display:none}}
+
+/* ───── 共通セクション ───── */
+section{padding:clamp(90px,15vh,190px) var(--gut);position:relative}
+.sec-head{display:flex;align-items:baseline;gap:18px;margin-bottom:clamp(34px,6vh,70px);
+  border-bottom:1px solid var(--line);padding-bottom:18px}
+.sec-num{font-size:11px;letter-spacing:.2em;color:var(--accent)}
+.sec-title{font-size:clamp(19px,2.6vw,30px);letter-spacing:.06em;font-weight:500}
+.reveal{overflow:hidden}
+.reveal>*{will-change:transform,opacity}
+
+/* ───── 作品 ───── */
+.work{display:grid;gap:clamp(18px,2.6vw,30px);grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr))}
+.work-card{position:relative;display:block;border:1px solid var(--line);
+  background:var(--bg-2);overflow:hidden;aspect-ratio:16/11;
+  transition:border-color .6s var(--ease)}
+.work-card:hover{border-color:rgba(201,162,39,.5)}
+.work-card .shot{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;
+  transform:scale(1.02);transition:transform 1.4s var(--ease),filter 1.4s var(--ease);
+  filter:saturate(.92)}
+.work-card:hover .shot{transform:scale(1.075);filter:saturate(1)}
+.work-body{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;
+  justify-content:space-between;padding:clamp(20px,3vw,34px);
+  background:linear-gradient(180deg,rgba(10,10,11,0) 0%,rgba(10,10,11,.42) 40%,rgba(10,10,11,.88) 68%,rgba(10,10,11,.97) 100%)}
+.work-card[data-tone="light"] .work-body{
+  background:linear-gradient(180deg,rgba(244,242,238,0) 0%,rgba(244,242,238,.46) 40%,rgba(244,242,238,.90) 68%,rgba(244,242,238,.98) 100%);
+  color:#14140f}
+.work-card[data-tone="light"] .work-note{color:#4a4842}
+.work-card[data-tone="light"] .work-no{color:#8a6f14}
+.work-no{font-size:11px;letter-spacing:.24em;color:var(--accent)}
+.work-name{font-family:"Shippori Mincho",serif;font-size:clamp(28px,4.4vw,52px);line-height:1.2}
+.work-name small{display:block;font-family:"Zen Kaku Gothic New";font-size:11px;
+  letter-spacing:.28em;color:var(--ink-dim);margin-top:10px}
+.work-note{font-size:12.5px;color:var(--ink-dim);line-height:1.85;margin-top:14px;max-width:26em}
+.work-go{margin-top:18px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+  display:inline-flex;align-items:center;gap:9px}
+.work-go::after{content:"";width:26px;height:1px;background:currentColor;
+  transition:width .5s var(--ease)}
+.work-card:hover .work-go::after{width:52px}
+
+/* ───── 提供するもの ───── */
+.svc{display:grid;gap:1px;background:var(--line);border:1px solid var(--line)}
+.svc-item{background:var(--bg);padding:clamp(26px,4vw,46px);
+  display:grid;gap:14px 40px;grid-template-columns:minmax(0,1fr);
+  transition:background .6s var(--ease)}
+.svc-item:hover{background:var(--bg-2)}
+@media(min-width:860px){.svc-item{grid-template-columns:minmax(0,7em) minmax(0,1fr) minmax(0,13em);align-items:start}}
+.svc-k{font-size:11px;letter-spacing:.2em;color:var(--accent);text-transform:uppercase}
+.svc-t{font-size:clamp(18px,2.3vw,25px);letter-spacing:.04em;font-weight:500}
+.svc-d{font-size:13.5px;color:var(--ink-dim);line-height:1.95;margin-top:10px}
+.svc-p{font-family:"Shippori Mincho",serif;font-size:clamp(20px,2.6vw,27px);white-space:nowrap}
+.svc-p small{display:block;margin-top:6px;font-size:11.5px;color:var(--ink-dim);letter-spacing:.14em;font-family:"Zen Kaku Gothic New"}
+
+/* ───── 仕組みの説明 ───── */
+.how{display:grid;gap:clamp(26px,4vw,44px);grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr))}
+.how-item h3{font-family:"Shippori Mincho",serif;font-size:clamp(17px,2vw,21px);
+  margin-bottom:12px;line-height:1.6}
+.how-item p{font-size:13px;color:var(--ink-dim);line-height:1.95}
+.how-item .how-n{font-size:11px;letter-spacing:.2em;color:var(--accent);display:block;margin-bottom:14px}
+
+/* ───── サンプル ───── */
+.samples{display:grid;gap:1px;background:var(--line);border:1px solid var(--line)}
+@media(min-width:760px){.samples{grid-template-columns:repeat(2,1fr)}}
+.s-item{background:var(--bg);padding:clamp(22px,3vw,32px);display:flex;
+  justify-content:space-between;align-items:center;gap:20px;
+  transition:background .5s var(--ease),padding-left .5s var(--ease)}
+.s-item:hover{background:var(--bg-2);padding-left:calc(clamp(22px,3vw,32px) + 10px)}
+.s-item h4{font-size:15.5px;letter-spacing:.04em;font-weight:500}
+.s-item p{font-size:12px;color:var(--ink-dim);margin-top:5px}
+.s-item span{font-size:10.5px;letter-spacing:.2em;color:var(--accent);
+  text-transform:uppercase;white-space:nowrap}
+.note{margin-top:26px;font-size:12px;color:var(--ink-dim);line-height:1.9}
+
+/* ───── 連絡先 ───── */
+.contact{border-top:1px solid var(--line)}
+.contact h2{font-family:"Shippori Mincho",serif;font-size:clamp(30px,6.4vw,86px);
+  line-height:1.25;margin-bottom:clamp(26px,4vh,48px)}
+.contact-links{display:flex;flex-wrap:wrap;gap:14px 44px;border-top:1px solid var(--line);padding-top:26px}
+.contact-links a,.contact-links span{font-size:13px;letter-spacing:.04em;color:var(--ink-dim)}
+.contact-links a{position:relative}
+.contact-links a::after{content:"";position:absolute;left:0;bottom:-4px;width:0;height:1px;
+  background:var(--accent);transition:width .5s var(--ease)}
+.contact-links a:hover{color:var(--ink)}
+.contact-links a:hover::after{width:100%}
+footer{padding:26px var(--gut) 34px;display:flex;justify-content:space-between;
+  font-size:10.5px;letter-spacing:.16em;color:var(--ink-dim);text-transform:uppercase;
+  border-top:1px solid var(--line);flex-wrap:wrap;gap:10px}
+
+@media(max-width:760px){
+  .work-card{aspect-ratio:4/5}
+  .work-body{background:linear-gradient(180deg,rgba(10,10,11,0) 0%,rgba(10,10,11,.30) 24%,rgba(10,10,11,.90) 44%,rgba(10,10,11,.98) 60%)}
+  .work-card[data-tone="light"] .work-body{
+    background:linear-gradient(180deg,rgba(244,242,238,0) 0%,rgba(244,242,238,.34) 24%,rgba(244,242,238,.92) 44%,rgba(244,242,238,.99) 60%)}
+  .work-body>div{margin-top:auto}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+}
 </style>
 </head>
-<body>
-<div class="wrap">
-  <header>
-    <div class="brand">Portfolio</div>
-    <h1>Yutaka Web Works<br><span>制作実績</span></h1>
-    <p class="lead">店舗さま向けのホームページ制作サンプルです（美容室・サロン・ジム・飲食店など）。<br>スマホでの見やすさ・お店の魅力が伝わるデザインを大切にしています。</p>
-  </header>
+<body class="is-loading">
 
-  <div class="cards">
-    <div class="card">
-      <span class="tag">CAFE</span>
-      <h2>カフェひなた</h2>
-      <p>やわらかな光と木のぬくもりを感じる、ナチュラル系カフェのサイト。メニュー写真が映えるあたたかいデザイン。</p>
-      <a class="go" href="./cafe-hinata/">サイトを見る</a>
-    </div>
+<div class="cursor"></div>
+<div class="cursor-ring"></div>
 
-    <div class="card">
-      <span class="tag">YAKITORI</span>
-      <h2>焼き鳥 とり福</h2>
-      <p>炭火の香ばしさと大人の落ち着きを表現した、和モダンな焼き鳥店のサイト。シズル感重視の構成。</p>
-      <a class="go" href="./yakitori-torifuku/">サイトを見る</a>
-      <div class="sub">上位デザイン案：<a href="./yakitori-torifuku/premium.html">プレミアム版はこちら</a></div>
-    </div>
-
-    <div class="card">
-      <span class="tag">OKINAWA IZAKAYA</span>
-      <h2>琉球酒場 なんくる</h2>
-      <p>シーサーと泡盛に迎えられる、南国ムードの沖縄居酒屋サイト。予約フォーム付きで、料理のシズル感と“ゆんたく”の温かさを両立。</p>
-      <a class="go" href="./okinawa-izakaya/">サイトを見る</a>
-    </div>
-
-    <div class="card">
-      <span class="tag">YOGA STUDIO</span>
-      <h2>ヨガスタジオ 凪 -nagi-</h2>
-      <p>静けさと余白で「ととのう時間」を表現した、少人数制ヨガスタジオのサイト。体験予約フォーム付き・明朝の見出しで上質に。</p>
-      <a class="go" href="./yoga-studio/">サイトを見る</a>
-    </div>
-
-    <div class="card">
-      <span class="tag">SEITAI</span>
-      <h2>整体院 結 -yui-</h2>
-      <p>「根本改善」を軸に信頼感で組んだ整体院サイト。症状別メニュー・お客様の声・WEB予約フォーム付き。</p>
-      <a class="go" href="./seitai-yui/">サイトを見る</a>
-    </div>
+<div id="loader">
+  <div class="l-bar"></div>
+  <div class="l-row">
+    <div class="l-label"><span data-l>その場で計算して描いています</span></div>
+    <div class="l-num"><span id="pct">0</span></div>
   </div>
-
-  <div class="note">
-    <p><strong>※ 掲載サイトはすべて架空店舗のサンプルです。</strong>実在の店舗・団体とは関係ありません。</p>
-    <p>制作のご相談は Instagram <span class="ig">@yutaka.ai.lab</span> へDMにてお気軽にどうぞ。</p>
-  </div>
-
-  <footer>&copy; 2026 Yutaka Web Works</footer>
 </div>
+
+<header>
+  <a href="#top" class="logo">Web制作 ゆたか</a>
+  <nav>
+    <a href="#work" data-cursor>Work</a>
+    <a href="#service" data-cursor>Service</a>
+    <a href="#how" data-cursor>How</a>
+    <a href="#contact" data-cursor>Contact</a>
+  </nav>
+</header>
+
+<main id="top">
+
+  <div class="hero">
+    <canvas id="gl"></canvas>
+    <div class="hero-inner">
+      <h1 class="split">止まった絵では、<br>伝わらない。</h1>
+      <div class="hero-meta">
+        <span class="tag">Web制作 ゆたか</span>
+        <p>写真とテキストを並べただけのページでは、こぼれ落ちるものがあります。<br>
+        この背景に設計図はありません。二種類の物質が反応して広がるだけの決まりから、模様が<strong>ひとりでに生まれて育っています。</strong>触れると、そこから新しい模様が始まります。</p>
+      </div>
+    </div>
+    <div class="scroll-hint">Scroll</div>
+  </div>
+
+  <section id="work">
+    <div class="sec-head">
+      <span class="sec-num">01</span>
+      <h2 class="sec-title">つくったもの</h2>
+    </div>
+    <div class="work">
+      <a class="work-card" href="https://saichan0207.github.io/proposal/lab/rin/" target="_blank" rel="noopener" data-cursor>
+        <img class="shot" src="./assets/work-rin.jpg" alt="[001] 凛 — 画面の中で描いている雫" loading="lazy" decoding="async" width="1200" height="750">
+        <div class="work-body">
+          <span class="work-no">[001]</span>
+          <div>
+            <div class="work-name">凛<small>RIN — 日本酒</small></div>
+            <p class="work-note">酒は、注ぐたびに違う形になる。止まった写真では消えてしまうその一瞬を、画面の中で描き続けています。</p>
+            <span class="work-go">開いて動かす</span>
+          </div>
+        </div>
+      </a>
+      <a class="work-card" data-tone="light" href="https://saichan0207.github.io/proposal/lab/sumi/" target="_blank" rel="noopener" data-cursor>
+        <img class="shot" src="./assets/work-sumi.jpg" alt="[002] 墨 — にじみながら形を決めていく墨" loading="lazy" decoding="async" width="1200" height="750">
+        <div class="work-body">
+          <span class="work-no">[002]</span>
+          <div>
+            <div class="work-name">墨<small>SUMI — 書</small></div>
+            <p class="work-note">紙に落ちた墨は、にじみながら形を決めていく。その途中を、そのまま画面に置きました。</p>
+            <span class="work-go">開いて動かす</span>
+          </div>
+        </div>
+      </a>
+    </div>
+    <p class="note">※ [001] 凛・[002] 墨 は、実在しないブランドのために制作した自社作品です。実際のお客様の案件ではありません。</p>
+  </section>
+
+  <section id="service">
+    <div class="sec-head">
+      <span class="sec-num">02</span>
+      <h2 class="sec-title">おわたしするもの</h2>
+    </div>
+    <div class="svc">
+      <div class="svc-item" data-cursor>
+        <span class="svc-k">Lab</span>
+        <div>
+          <h3 class="svc-t">動くコンセプトサイト</h3>
+          <p class="svc-d">ブランドの核をひとつ決めて、そこからしか出てこない動きをつくります。背景は動画ではなく、その場での計算です。SNS用の縦動画を1本おつけします。</p>
+        </div>
+        <div class="svc-p">148,000円<small>買い切り</small></div>
+      </div>
+      <div class="svc-item" data-cursor>
+        <span class="svc-k">Site</span>
+        <div>
+          <h3 class="svc-t">お店・教室のホームページ</h3>
+          <p class="svc-d">スマホでの読みやすさと、お問い合わせまでの短さを最優先に組みます。文章・教室一覧・写真は、公開後もご自身で差し替えられる作りにしています。</p>
+        </div>
+        <div class="svc-p">9,800円〜<small>制作費</small></div>
+      </div>
+      <div class="svc-item" data-cursor>
+        <span class="svc-k">Motion</span>
+        <div>
+          <h3 class="svc-t">SNS用の縦動画</h3>
+          <p class="svc-d">1本ずつ手で編集するのではなく、設計図から書き出しています。同じ品質のものを、続けて出せる作りです。</p>
+        </div>
+        <div class="svc-p">ご相談<small>本数により</small></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="how">
+    <div class="sec-head">
+      <span class="sec-num">03</span>
+      <h2 class="sec-title">この画面で起きていること</h2>
+    </div>
+    <div class="how">
+      <div class="how-item">
+        <span class="how-n">01</span>
+        <h3>背景は、動画ではありません</h3>
+        <p>読み込んでいる映像ファイルはありません。1秒に何十回も、その瞬間の色を計算して描いています。だから同じ画面は二度と出ません。</p>
+      </div>
+      <div class="how-item">
+        <span class="how-n">02</span>
+        <h3>スクロールが滑るのは、慣性です</h3>
+        <p>指を離したあとも少し流れて止まります。紙をめくる速度に近づけると、読む速度がゆっくりになり、文章が届きやすくなります。</p>
+      </div>
+      <div class="how-item">
+        <span class="how-n">03</span>
+        <h3>文字は、行ごとに立ち上がります</h3>
+        <p>画面に入った瞬間ではなく、読み手の視線が届く位置で出します。動かすこと自体が目的ではありません。</p>
+      </div>
+      <div class="how-item">
+        <span class="how-n">04</span>
+        <h3>重さは、増やしていません</h3>
+        <p>背景を動画にすると数MBかかります。計算で描けば数十KBで済みます。動くのに軽い、が条件です。</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="samples">
+    <div class="sec-head">
+      <span class="sec-num">04</span>
+      <h2 class="sec-title">お店向けのサンプル</h2>
+    </div>
+    <div class="samples">
+      <a class="s-item" href="./cafe-hinata/" data-cursor><div><h4>ひなた珈琲店</h4><p>挽きたての粉が、光の中を舞う（粒子）</p></div><span>Cafe</span></a>
+      <a class="s-item" href="./yakitori-torifuku/" data-cursor><div><h4>炭火焼鳥 とり福</h4><p>熾火が明滅し、熱が隣へ移る（熱の計算）</p></div><span>Yakitori</span></a>
+      <a class="s-item" href="./okinawa-izakaya/" data-cursor><div><h4>琉球酒場 なんくる</h4><p>グラスの底に光が集まる（水面の屈折）</p></div><span>Izakaya</span></a>
+      <a class="s-item" href="./yoga-studio/" data-cursor><div><h4>ヨガスタジオ 凪</h4><p>4秒吸って6秒吐く。写真は0枚（呼吸の周期）</p></div><span>Yoga</span></a>
+      <a class="s-item" href="./seitai-yui/" data-cursor><div><h4>整体院 結</h4><p>絡んだ線がほどけていく。写真は0枚（物理）</p></div><span>Seitai</span></a>
+      <a class="s-item" href="./lab/" data-cursor><div><h4>Lab の詳しい説明</h4><p>料金・進め方・よくあるご質問</p></div><span>Lab</span></a>
+    </div>
+    <p class="note">※ 掲載しているお店はすべて架空です。実在の店舗・団体とは関係ありません。<br>
+      5枚とも、背景に使っている技術を変えています。同じ作り方を繰り返すと、
+      見る人にはすべて同じに見えるためです。<b>凪と結には、写真を1枚も使っていません。</b></p>
+  </section>
+
+  <section id="contact" class="contact">
+    <h2 class="split mincho">つくりたいものが<br>決まっていなくても、<br>だいじょうぶです。</h2>
+    <div class="contact-links">
+      <a href="https://www.instagram.com/yutaka.ai.lab/" target="_blank" rel="noopener" data-cursor>Instagram @yutaka.ai.lab</a>
+      <a href="./lab/" data-cursor>Lab の料金を見る</a>
+      <span>まずは、いまお持ちのページのURLだけでも。</span>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <span>&copy; 2026 Web制作 ゆたか</span>
+  <span>Yutaka Web Works</span>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+<script>
+(function(){
+  "use strict";
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var hasGSAP = typeof window.gsap !== "undefined";
+  if (hasGSAP && window.ScrollTrigger) gsap.registerPlugin(ScrollTrigger);
+
+  /* ───────── 1. ヒーローの背景：反応拡散 ─────────
+     2026-08-21 差し替え。
+     前は fbm ノイズを流していたが、それは [002] 墨と同じ引き出しだった。
+     7つの作品でレイマーチング／流体／粒子／熱／コースティクス／呼吸／物理 を使ったので、
+     ここは8つ目として「反応拡散」を使う。
+
+     グレイ・スコット系。2種類の物質AとBがあり、
+       ① A + 2B → 3B （Bが自分を増やす反応）
+       ② それぞれ違う速さで広がる（拡散）
+       ③ Aは外から供給され、Bは少しずつ取り除かれる
+     この3つを繰り返すだけで、何もない一様な状態から模様が勝手に生まれて育つ。
+     設計図はどこにもない。生まれる形は毎回ちがう。
+     「作る」というのがどういうことか、そのまま画面にした。 */
+  (function(){
+    var c=document.getElementById('gl'); if(!c) return;
+    var ctx=c.getContext('2d',{alpha:false});
+    if(!ctx){ c.style.background='radial-gradient(120% 80% at 70% 10%, rgba(201,162,39,.18), transparent 60%), #0a0a0b'; return; }
+
+    var GW=0,GH=0,W=0,H=0,DPR=1,SC=2.6;      /* SC:1画素あたりの表示倍率。粗く計算して大きく描く */
+    var a=null,b=null,a2=null,b2=null,img=null,px=null,buf=null;
+    var DA=1.0, DB=0.5, FEED=0.0545, KILL=0.0620;   /* 線が伸びて枝分かれしていく組み合わせ */
+
+    function seed(){
+      for(var i=0;i<GW*GH;i++){ a[i]=1; b[i]=0; }
+      /* 種を何箇所か置く。ここから模様が育つ */
+      for(var k=0;k<80;k++){
+        var cx=(Math.random()*GW)|0, cy=(Math.random()*GH)|0, r=2+((Math.random()*3)|0);
+        for(var y=-r;y<=r;y++) for(var x=-r;x<=r;x++){
+          var xx=cx+x, yy=cy+y;
+          if(xx<1||yy<1||xx>=GW-1||yy>=GH-1) continue;
+          if(x*x+y*y>r*r) continue;
+          b[yy*GW+xx]=1;
+        }
+      }
+    }
+    function size(){
+      DPR=Math.min(devicePixelRatio||1,1.5);
+      var w=Math.round(c.clientWidth*DPR), h=Math.round(c.clientHeight*DPR);
+      if(w===W&&h===H) return;
+      W=w;H=h;c.width=W;c.height=H;
+      GW=Math.max(60,Math.round(W/SC/DPR)); GH=Math.max(40,Math.round(H/SC/DPR));
+      a=new Float32Array(GW*GH); b=new Float32Array(GW*GH);
+      a2=new Float32Array(GW*GH); b2=new Float32Array(GW*GH);
+      img=ctx.createImageData(GW,GH); px=img.data;
+      buf=document.createElement('canvas'); buf.width=GW; buf.height=GH;
+      seed();
+      /* 読み込み演出のあいだに、ここで一気に育てる（訪問者は最初の数秒しか見ない） */
+      for(var i=0;i<620;i++) step();
+    }
+
+    function step(){
+      for(var y=1;y<GH-1;y++){
+        for(var x=1;x<GW-1;x++){
+          var i=y*GW+x;
+          /* ② 拡散。まわり8マスとの差を取る（ラプラシアン） */
+          var la=-a[i], lb=-b[i];
+          la+=0.2*(a[i-1]+a[i+1]+a[i-GW]+a[i+GW]);
+          la+=0.05*(a[i-GW-1]+a[i-GW+1]+a[i+GW-1]+a[i+GW+1]);
+          lb+=0.2*(b[i-1]+b[i+1]+b[i-GW]+b[i+GW]);
+          lb+=0.05*(b[i-GW-1]+b[i-GW+1]+b[i+GW-1]+b[i+GW+1]);
+          var ab=a[i]*b[i]*b[i];          /* ① A + 2B → 3B */
+          var na=a[i]+DA*la-ab+FEED*(1-a[i]);          /* ③ Aは供給される */
+          var nb=b[i]+DB*lb+ab-(KILL+FEED)*b[i];       /*    Bは取り除かれる */
+          a2[i]=na<0?0:(na>1?1:na);
+          b2[i]=nb<0?0:(nb>1?1:nb);
+        }
+      }
+      var t;
+      t=a;a=a2;a2=t;
+      t=b;b=b2;b2=t;
+    }
+
+    var mx=-9999,my=-9999;
+    c.addEventListener('mousemove',function(e){
+      var rc=c.getBoundingClientRect();
+      mx=Math.round((e.clientX-rc.left)/rc.width*GW);
+      my=Math.round((e.clientY-rc.top)/rc.height*GH);
+      /* 触れたところに種を落とす。そこから新しい模様が育つ */
+      for(var y=-2;y<=2;y++) for(var x=-2;x<=2;x++){
+        var xx=mx+x, yy=my+y;
+        if(xx<1||yy<1||xx>=GW-1||yy>=GH-1) continue;
+        b[yy*GW+xx]=1;
+      }
+    },{passive:true});
+
+    function draw(){
+      var p=0;
+      for(var i=0;i<GW*GH;i++){
+        var v=b[i];
+        /* 濃さ → 色。地の黒から、金へ */
+        var k=v*3.2; if(k>1) k=1;
+        var kk=k*k;
+        px[p++]=10+kk*158;
+        px[p++]=10+kk*126;
+        px[p++]=11+kk*52;
+        px[p++]=255;
+      }
+      buf.getContext('2d').putImageData(img,0,0);
+      ctx.imageSmoothingEnabled=true; ctx.imageSmoothingQuality='high';
+      ctx.drawImage(buf,0,0,GW,GH,0,0,W,H);
+      /* 見出しの側を落として、文字を読みやすく保つ */
+      var g=ctx.createLinearGradient(0,H,W*0.92,0);
+      g.addColorStop(0,'rgba(10,10,11,.96)');
+      g.addColorStop(.42,'rgba(10,10,11,.72)');
+      g.addColorStop(1,'rgba(10,10,11,.22)');
+      ctx.fillStyle=g; ctx.fillRect(0,0,W,H);
+    }
+
+    var vis=true;
+    if('IntersectionObserver' in window){
+      new IntersectionObserver(function(e){vis=e[0].isIntersecting;},{threshold:0}).observe(c);
+    }
+    if(reduce){ size(); draw(); return; }
+    (function f(){
+      requestAnimationFrame(f);
+      if(!vis) return;
+      size();
+      for(var i=0;i<6;i++) step();   /* 1フレームに6回進める。ゆっくりすぎると育って見えない */
+      draw();
+    })();
+  })();
+
+  /* ───────── 2. ローディング（数字が上がりきってから開く） ───────── */
+  var pct = document.getElementById("pct"), loader = document.getElementById("loader"),
+      bar = loader.querySelector(".l-bar"), val = {n:0};
+
+  function openSite(){
+    document.body.classList.remove("is-loading");
+    if (!hasGSAP){ loader.style.display = "none"; heroIn(); return; }
+    gsap.timeline()
+      .to(loader.querySelector(".l-row"), {y:-18, opacity:0, duration:.5, ease:"power2.in"})
+      .to(loader, {yPercent:-100, duration:1.0, ease:"expo.inOut"}, "-=.15")
+      .set(loader, {display:"none"})
+      .add(heroIn, "-=.55");
+  }
+
+  if (hasGSAP && !reduce){
+    gsap.to(val, {
+      n:100, duration:1.5, ease:"power2.inOut",
+      onUpdate:function(){
+        var v = Math.round(val.n);
+        pct.textContent = v;
+        bar.style.width = v + "%";
+      },
+      onComplete:openSite
+    });
+  } else {
+    pct.textContent = "100"; bar.style.width = "100%";
+    setTimeout(openSite, reduce ? 0 : 300);
+  }
+
+  /* ───────── 3. 見出しを行ごとに立ち上げる ───────── */
+  /* SplitText を使わず自前で行に割る。読み込むファイルを増やさないため */
+  function splitLines(el){
+    if (el.dataset.split) return;
+    var html = el.innerHTML.split(/<br\s*\/?>/i);
+    el.innerHTML = html.map(function(line){
+      return '<span class="l"><span>' + line.trim() + '</span></span>';
+    }).join("");
+    el.dataset.split = "1";
+  }
+  Array.prototype.forEach.call(document.querySelectorAll(".split"), splitLines);
+
+  function heroIn(){
+    if (!hasGSAP || reduce) return;
+    gsap.from(".hero h1 .split .l>span, .hero h1 .l>span", {yPercent:112, duration:1.25, ease:"expo.out", stagger:.09});
+    gsap.from(".hero-meta", {y:26, opacity:0, duration:1.0, ease:"power3.out", delay:.45});
+    gsap.from("header", {y:-20, opacity:0, duration:.9, ease:"power3.out", delay:.3});
+    gsap.from(".scroll-hint", {opacity:0, duration:.9, delay:.9});
+  }
+
+  /* ───────── 4. 慣性スクロール（Lenis）＋ スクロール連動 ───────── */
+  if (window.Lenis && !reduce){
+    var lenis = new Lenis({duration:1.15, smoothWheel:true,
+      easing:function(x){ return Math.min(1, 1.001 - Math.pow(2, -10 * x)); }});
+    if (hasGSAP && window.ScrollTrigger){
+      lenis.on("scroll", ScrollTrigger.update);
+      gsap.ticker.add(function(time){ lenis.raf(time * 1000); });
+      gsap.ticker.lagSmoothing(0);
+    } else {
+      requestAnimationFrame(function raf(t){ lenis.raf(t); requestAnimationFrame(raf); });
+    }
+    document.querySelectorAll('a[href^="#"]').forEach(function(a){
+      a.addEventListener("click", function(e){
+        var el = document.querySelector(a.getAttribute("href"));
+        if (el){ e.preventDefault(); lenis.scrollTo(el, {offset:0, duration:1.4}); }
+      });
+    });
+  }
+
+  if (hasGSAP && window.ScrollTrigger && !reduce){
+    Array.prototype.forEach.call(document.querySelectorAll(".split"), function(el){
+      if (el.closest(".hero")) return;
+      gsap.from(el.querySelectorAll(".l>span"), {
+        yPercent:110, duration:1.15, ease:"expo.out", stagger:.08,
+        scrollTrigger:{trigger:el, start:"top 82%"}
+      });
+    });
+    [".sec-head",".work-card",".svc-item",".how-item",".s-item",".contact-links",".note"]
+      .forEach(function(sel){
+        gsap.utils.toArray(sel).forEach(function(el){
+          gsap.from(el, {y:34, opacity:0, duration:.95, ease:"power3.out",
+            scrollTrigger:{trigger:el, start:"top 88%"}});
+        });
+      });
+    /* ヒーローは、スクロールに対して少しだけ遅れて動く */
+    gsap.to(".hero-inner", {yPercent:-13, opacity:.25, ease:"none",
+      scrollTrigger:{trigger:".hero", start:"top top", end:"bottom top", scrub:true}});
+  }
+
+  /* ───────── 5. カーソル ───────── */
+  var dot = document.querySelector(".cursor"), ring = document.querySelector(".cursor-ring");
+  if (dot && window.matchMedia("(hover:hover)").matches){
+    var mx=innerWidth/2, my=innerHeight/2, rx=mx, ry=my;
+    addEventListener("mousemove", function(e){
+      mx = e.clientX; my = e.clientY;
+      dot.style.transform = "translate(" + mx + "px," + my + "px) translate(-50%,-50%)";
+    }, {passive:true});
+    (function loop(){
+      rx += (mx - rx) * .16; ry += (my - ry) * .16;
+      ring.style.transform = "translate(" + rx + "px," + ry + "px) translate(-50%,-50%)";
+      requestAnimationFrame(loop);
+    })();
+    document.querySelectorAll("a,[data-cursor],button").forEach(function(el){
+      el.addEventListener("mouseenter", function(){ ring.classList.add("is-wide"); });
+      el.addEventListener("mouseleave", function(){ ring.classList.remove("is-wide"); });
+    });
+  }
+})();
+</script>
 </body>
 </html>

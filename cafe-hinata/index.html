@@ -2,349 +2,575 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>ひなた珈琲店｜自家焙煎コーヒーと手作りおやつ（サンプルサイト）</title>
-<meta name="description" content="住宅街の小さな自家焙煎コーヒー店。丁寧に淹れる一杯と、毎朝焼くおやつでほっとひと息。">
+<meta name="description" content="挽きたては、光る。自家焙煎コーヒーと、毎朝焼くおやつの店。ひなた珈琲店のサンプルサイトです。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --cream: #faf6ef;
-    --milk: #ffffff;
-    --coffee: #4a3428;
-    --caramel: #b9825a;
-    --caramel-soft: #f0e2d4;
-    --leaf: #7a8b6f;
-    --ink: #443a32;
-  }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body {
-    font-family: "Hiragino Sans", "Yu Gothic", sans-serif;
-    background: var(--cream);
-    color: var(--ink);
-    line-height: 1.95;
-    letter-spacing: 0.04em;
-    overflow-x: hidden;
-  }
+/* ═══════════════════════════════════════════════════════════════
+   ひなた珈琲店 — サンプルサイト｜2026-08-21 三度目の作り直し
 
-  header {
-    position: sticky; top: 0; z-index: 20;
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 16px 22px;
-    background: rgba(250, 246, 239, 0.88);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-  }
-  .logo {
-    font-family: "Hiragino Mincho ProN", serif;
-    font-size: 19px; letter-spacing: 0.28em; color: var(--coffee);
-  }
-  nav a {
-    color: var(--ink); text-decoration: none; font-size: 12.5px;
-    margin-left: 20px; letter-spacing: 0.12em;
-    border-bottom: 1px solid transparent; transition: 0.2s;
-  }
-  nav a:hover { color: var(--caramel); border-color: var(--caramel); }
+   一度目：黄色い丸と絵文字。社長「ダサすぎる」
+   二度目：写真を主役に置き直した。社長「直ってない。一から」
+   三度目（これ）：構成から立て直す。
 
-  /* ヒーロー */
-  .hero {
-    min-height: 96vh;
-    display: flex; flex-direction: column; justify-content: center; align-items: center;
-    text-align: center; padding: 100px 20px 60px;
-    position: relative;
-    background:
-      radial-gradient(circle at 82% 18%, #f6e7ca 0%, transparent 34%),
-      radial-gradient(circle at 12% 78%, #e9eee4 0%, transparent 36%),
-      var(--cream);
-  }
-  .hero .sun {
-    width: 130px; height: 130px; border-radius: 50%;
-    background: radial-gradient(circle at 38% 34%, #ffe9b8, #f3c876);
-    box-shadow: 0 0 70px rgba(243, 200, 118, 0.55);
-    margin-bottom: 34px;
-    animation: floaty 5.5s ease-in-out infinite;
-  }
-  @keyframes floaty {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-13px); }
-  }
-  .hero h1 {
-    font-family: "Hiragino Mincho ProN", serif;
-    font-size: clamp(30px, 7vw, 52px);
-    color: var(--coffee); font-weight: 600;
-    letter-spacing: 0.3em; line-height: 1.6;
-    opacity: 0; animation: fadeUp 1s ease 0.25s forwards;
-  }
-  .hero p.catch {
-    margin-top: 20px; font-size: clamp(13.5px, 3vw, 16px);
-    letter-spacing: 0.22em; color: #7d6d5d;
-    opacity: 0; animation: fadeUp 1s ease 0.6s forwards;
-  }
-  .hero .hours-chip {
-    margin-top: 36px; display: inline-block;
-    background: var(--milk); border: 1.5px solid var(--caramel-soft);
-    border-radius: 999px; padding: 10px 30px;
-    font-size: 13.5px; color: var(--coffee);
-    box-shadow: 0 8px 22px rgba(74, 52, 40, 0.08);
-    opacity: 0; animation: fadeUp 1s ease 0.95s forwards;
-  }
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
+   Lab [001] 凛 が「酒は注ぐたびに違う形になる。止まった写真では消える」
+   だったのと同じ立て方を、珈琲店でやる。
+     → 「一滴が落ちて、渦になる。同じ渦は二度とできない」
+   カップを真上から見た液面を、計算で描く。写真の上の飾りではなく、これが主役。
+   ═══════════════════════════════════════════════════════════════ */
+:root{
+  --c50:#f7f1e8; --c100:#ecdfcc; --c200:#d8c0a0; --c300:#bd9a70;
+  --c400:#9d7448; --c500:#7d5733; --c600:#5f4126; --c700:#452f1c;
+  --c800:#2d1f14; --c900:#17100b;
+  --n0:#fffdf9; --n50:#faf6ef; --n100:#f1ebe0; --n200:#ded5c6;
+  --n300:#bdb2a0; --n400:#8f8577; --n500:#68604f; --n700:#3d372c; --n900:#1b1710;
 
-  .reveal {
-    opacity: 0; transform: translateY(40px);
-    transition: opacity 0.9s ease, transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
-  }
-  .reveal.show { opacity: 1; transform: translateY(0); }
-  .reveal.delay-1 { transition-delay: 0.12s; }
-  .reveal.delay-2 { transition-delay: 0.24s; }
+  --t-d:clamp(2.7rem,7.8vw,7rem);
+  --t-1:clamp(1.85rem,3.8vw,3rem);
+  --t-2:clamp(1.4rem,2.6vw,2rem);
+  --t-3:1.26rem; --t-4:1.08rem; --t-b:1rem; --t-s:.875rem; --t-x:.75rem;
+  --lh-d:1.2; --lh-h:1.42; --lh-b:1.95; --lh-s:1.7;
+  --s1:.5rem; --s2:1rem; --s3:1.5rem; --s4:2.25rem;
+  --s5:3.5rem; --s6:5rem; --s7:7.5rem; --s8:11rem;
+  --gut:clamp(20px,5.4vw,72px);
+  --wrap:1140px;
+  --ease:cubic-bezier(.19,1,.22,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--c900);color:var(--n100);
+  font-family:"Zen Kaku Gothic New",-apple-system,"Hiragino Sans",sans-serif;
+  line-height:var(--lh-b);letter-spacing:.035em;overflow-x:hidden}
+body.lock{overflow:hidden;height:100vh}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+.mn{font-family:"Shippori Mincho",serif;font-weight:400}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 var(--gut)}
 
-  section { padding: 84px 20px; }
-  .inner { max-width: 880px; margin: 0 auto; }
-  .sec-title { text-align: center; margin-bottom: 46px; }
-  .sec-title .en {
-    display: block; font-size: 11px; letter-spacing: 0.42em;
-    color: var(--caramel); text-transform: uppercase; margin-bottom: 8px;
-  }
-  .sec-title h2 {
-    font-family: "Hiragino Mincho ProN", serif;
-    font-size: 25px; letter-spacing: 0.28em; color: var(--coffee); font-weight: 600;
-  }
+.bar{position:relative;z-index:120;background:var(--c900);color:var(--n400);
+  font-size:var(--t-x);letter-spacing:.09em;text-align:center;padding:10px 16px;line-height:1.7;
+  border-bottom:1px solid rgba(255,255,255,.07)}
 
-  /* コンセプト */
-  .concept { background: var(--milk); }
-  .concept .lead {
-    text-align: center; font-size: 15.5px; line-height: 2.4;
-    font-family: "Hiragino Mincho ProN", serif;
-  }
-  .concept .lead b { color: var(--caramel); font-weight: 600; }
+/* ── 読み込み：一滴が落ちる ── */
+#ld{position:fixed;inset:0;z-index:9990;background:var(--c900);
+  display:flex;align-items:center;justify-content:center;flex-direction:column;
+  transition:opacity .9s ease,visibility .9s}
+#ld .drop{width:7px;height:7px;border-radius:50% 50% 50% 50%/60% 60% 40% 40%;
+  background:var(--c300);opacity:0}
+#ld.go .drop{animation:fall 1.5s cubic-bezier(.5,0,.85,.5) forwards}
+@keyframes fall{
+  0%{opacity:0;transform:translateY(-90px) scaleY(1.5)}
+  22%{opacity:1}
+  70%{opacity:1;transform:translateY(0) scaleY(1)}
+  100%{opacity:0;transform:translateY(4px) scale(2.4,.25)}
+}
+#ld .nm{margin-top:22px;font-family:"Shippori Mincho",serif;
+  font-size:clamp(16px,2.4vw,22px);letter-spacing:.3em;color:var(--c200);
+  opacity:0;transition:opacity 1s ease .95s}
+#ld.go .nm{opacity:1}
+#ld.done{opacity:0;visibility:hidden}
 
-  /* メニュー */
-  .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; }
-  .menu-card {
-    background: var(--milk); border-radius: 18px; overflow: hidden;
-    box-shadow: 0 10px 28px rgba(74, 52, 40, 0.08);
-    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s;
-  }
-  .menu-card:hover { transform: translateY(-8px); box-shadow: 0 22px 40px rgba(74, 52, 40, 0.14); }
-  .menu-card .ph { height: 170px; overflow: hidden; }
-  .menu-card .ph img {
-    width: 100%; height: 100%; object-fit: cover; display: block;
-    transition: transform 0.5s ease;
-  }
-  .menu-card:hover .ph img { transform: scale(1.07); }
-  .menu-card .body { padding: 20px 22px 24px; }
-  .menu-card h3 {
-    font-family: "Hiragino Mincho ProN", serif;
-    font-size: 17px; color: var(--coffee); letter-spacing: 0.1em;
-  }
-  .menu-card ul { list-style: none; margin-top: 10px; font-size: 13.5px; }
-  .menu-card li {
-    display: flex; justify-content: space-between;
-    padding: 6px 0; border-bottom: 1px dotted var(--caramel-soft);
-  }
-  .menu-card .price { color: var(--caramel); }
+/* ── ヘッダ ── */
+header{position:fixed;top:var(--bar-h,39px);left:0;width:100%;z-index:100;
+  padding:20px 0;transition:background .6s ease,padding .6s ease}
+header .wrap{display:flex;align-items:center;justify-content:space-between;gap:18px}
+header.on{background:rgba(23,16,11,.9);backdrop-filter:blur(14px);padding:12px 0}
+.logo{font-family:"Shippori Mincho",serif;font-size:1.12rem;letter-spacing:.24em;color:var(--n0)}
+nav{display:flex;gap:clamp(16px,2.7vw,36px);font-size:var(--t-s);letter-spacing:.11em}
+nav a{color:rgba(255,253,249,.66);transition:color .4s ease;position:relative}
+nav a:hover{color:var(--n0)}
+nav a::after{content:"";position:absolute;left:0;bottom:-5px;width:0;height:1px;
+  background:var(--c300);transition:width .5s var(--ease)}
+nav a:hover::after{width:100%}
+@media(max-width:760px){nav a:nth-child(n+3){display:none}}
 
-  /* 店内・写真 */
-  .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 14px; }
-  .shot {
-    height: 190px; width: 100%; border-radius: 14px; object-fit: cover; display: block;
-    transition: transform 0.3s; box-shadow: 0 8px 20px rgba(74, 52, 40, 0.1);
-  }
-  .shot:hover { transform: scale(1.04) rotate(-1deg); }
-  .gallery-note { text-align: center; font-size: 12.5px; color: #97836f; margin-top: 18px; }
+/* ── ヒーロー：液面そのもの ── */
+.hero{position:relative;min-height:calc(100svh - var(--bar-h,39px));
+  display:flex;align-items:center;overflow:hidden}
+#cup{position:absolute;inset:0;width:100%;height:100%;z-index:0}
+.hero::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:radial-gradient(120% 90% at 50% 50%,transparent 24%,rgba(23,16,11,.62) 82%)}
+.hero .wrap{position:relative;z-index:3;width:100%}
+.hero .eye{display:block;font-size:var(--t-x);letter-spacing:.3em;color:var(--c200);
+  margin-bottom:var(--s3);opacity:0;transition:opacity 1.1s ease .3s}
+.hero .eye.in{opacity:1}
+.hero h1{font-family:"Shippori Mincho",serif;font-weight:400;color:var(--n0);
+  font-size:var(--t-d);line-height:var(--lh-d);letter-spacing:.03em;
+  text-shadow:0 2px 40px rgba(23,16,11,.5)}
+.hero h1 .l{display:block;overflow:hidden}
+.hero h1 .l>i{display:block;font-style:normal;transform:translateY(110%);
+  transition:transform 1.3s var(--ease)}
+.hero h1.in .l>i{transform:translateY(0)}
+.hero h1 .l:nth-child(2)>i{transition-delay:.12s}
+.hero .sub{margin-top:var(--s4);max-width:26em;color:rgba(255,253,249,.74);
+  font-size:var(--t-4);opacity:0;transform:translateY(16px);
+  transition:opacity 1.1s ease .7s,transform 1.2s var(--ease) .7s}
+.hero .sub.in{opacity:1;transform:none}
+.hero .scroll{position:absolute;left:var(--gut);bottom:clamp(28px,5vh,54px);z-index:3;
+  font-size:var(--t-x);letter-spacing:.24em;color:rgba(255,253,249,.45);
+  display:flex;align-items:center;gap:12px;opacity:0;transition:opacity 1s ease 1.2s}
+.hero .scroll.in{opacity:1}
+.hero .scroll::after{content:"";width:52px;height:1px;
+  background:linear-gradient(90deg,var(--c300),transparent)}
 
-  /* お知らせ */
-  .news { background: var(--milk); }
-  .news-list { max-width: 640px; margin: 0 auto; }
-  .news-item {
-    display: flex; gap: 18px; padding: 16px 6px;
-    border-bottom: 1px solid var(--caramel-soft); font-size: 14px;
-    flex-wrap: wrap;
-  }
-  .news-item .date { color: var(--caramel); flex: 0 0 90px; }
+/* ── 共通 ── */
+section{padding:clamp(80px,13vh,165px) 0;position:relative}
+.head{margin-bottom:clamp(34px,6vh,70px);padding-bottom:var(--s2);
+  border-bottom:1px solid rgba(255,255,255,.13);
+  display:flex;align-items:baseline;gap:18px;flex-wrap:wrap}
+.head .en{font-size:var(--t-x);letter-spacing:.26em;color:var(--c300)}
+.head h2{font-family:"Shippori Mincho",serif;font-weight:400;color:var(--n0);
+  font-size:var(--t-2);line-height:var(--lh-h);letter-spacing:.07em}
+.rv{opacity:0;transform:translateY(28px);
+  transition:opacity 1s ease,transform 1.1s var(--ease)}
+.rv.in{opacity:1;transform:none}
+.rv.d1{transition-delay:.1s}.rv.d2{transition-delay:.2s}.rv.d3{transition-delay:.3s}
 
-  /* 店舗情報 */
-  .info-table { width: 100%; max-width: 640px; margin: 0 auto; border-collapse: collapse; font-size: 14.5px; }
-  .info-table th, .info-table td { padding: 14px 10px; border-bottom: 1px solid var(--caramel-soft); text-align: left; }
-  .info-table th { width: 30%; color: var(--caramel); font-weight: 600; letter-spacing: 0.12em; }
-  .map-box {
-    max-width: 640px; margin: 26px auto 0; height: 210px; border-radius: 14px;
-    background: repeating-linear-gradient(45deg, #efe6d8, #efe6d8 12px, #f5eee2 12px, #f5eee2 24px);
-    display: flex; align-items: center; justify-content: center;
-    color: #97836f; font-size: 13px; letter-spacing: 0.2em;
-  }
+/* ── 一杯のこと ── */
+.story .grid{display:grid;gap:clamp(30px,5vw,72px);align-items:center}
+@media(min-width:920px){.story .grid{grid-template-columns:1fr 1fr}}
+.story figure{overflow:hidden;position:relative}
+.story figure img{width:100%;aspect-ratio:4/5;object-fit:cover;
+  transition:transform 1.8s var(--ease);filter:saturate(.9) contrast(1.03)}
+.story figure:hover img{transform:scale(1.05)}
+.story h3{font-family:"Shippori Mincho",serif;font-weight:400;color:var(--n0);
+  font-size:var(--t-1);line-height:var(--lh-h);margin-bottom:var(--s3);letter-spacing:.04em}
+.story p{color:var(--n300);max-width:31em}
+.story p + p{margin-top:var(--s2)}
+.story .mark{margin-top:var(--s4);padding-top:var(--s3);
+  border-top:1px solid rgba(255,255,255,.11);
+  font-size:var(--t-s);color:var(--c200);letter-spacing:.1em}
 
-  footer {
-    background: var(--coffee); color: rgba(250, 246, 239, 0.75);
-    text-align: center; padding: 30px 20px; font-size: 12px; letter-spacing: 0.12em;
-  }
-  .sample-note {
-    background: var(--caramel); color: #fff; text-align: center;
-    font-size: 12px; padding: 6px; letter-spacing: 0.15em;
-    position: relative; z-index: 30;
-  }
-  @media (max-width: 600px) {
-    header { flex-direction: column; gap: 4px; padding: 10px 12px; }
-    .logo { font-size: 16px; letter-spacing: 0.2em; white-space: nowrap; }
-    nav { display: flex; justify-content: center; }
-    nav a { margin: 0 7px; font-size: 11px; white-space: nowrap; }
-    section { padding: 60px 16px; }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after { animation: none !important; transition: none !important; }
-    .reveal { opacity: 1; transform: none; }
-  }
+/* ── メニュー ── */
+.menu{background:var(--n50);color:var(--n900)}
+.menu .head{border-bottom-color:var(--n200)}
+.menu .head h2{color:var(--n900)}
+.menu .head .en{color:var(--c400)}
+.menu .cols{display:grid;gap:clamp(28px,4vw,56px)}
+@media(min-width:840px){.menu .cols{grid-template-columns:repeat(3,1fr)}}
+.menu h3{font-size:var(--t-4);letter-spacing:.12em;color:var(--c500);
+  padding-bottom:var(--s1);margin-bottom:var(--s2);border-bottom:1px solid var(--n200)}
+.menu ul{list-style:none}
+.menu li{display:flex;justify-content:space-between;gap:14px;align-items:baseline;
+  padding:12px 0;border-bottom:1px dotted var(--n200);font-size:var(--t-s);color:var(--n700)}
+.menu li span{color:var(--n400);white-space:nowrap;font-variant-numeric:tabular-nums}
+.menu .pics{display:grid;gap:14px;grid-template-columns:1fr 1fr;margin-top:var(--s5)}
+.menu .pics figure{overflow:hidden}
+.menu .pics img{width:100%;aspect-ratio:3/2;object-fit:cover;
+  transition:transform 1.6s var(--ease)}
+.menu .pics figure:hover img{transform:scale(1.055)}
+
+/* ── 店内 ── */
+.shop .big{overflow:hidden;margin-top:var(--s4)}
+.shop .big img{width:100%;aspect-ratio:16/7;object-fit:cover;
+  transition:transform 2s var(--ease);filter:saturate(.92)}
+.shop .big:hover img{transform:scale(1.045)}
+.shop .lead{max-width:33em;color:var(--n300)}
+
+/* ── アクセス ── */
+.access{background:var(--n50);color:var(--n900)}
+.access .head{border-bottom-color:var(--n200)}
+.access .head h2{color:var(--n900)}
+.access .head .en{color:var(--c400)}
+.access .grid{display:grid;gap:clamp(28px,4vw,60px)}
+@media(min-width:840px){.access .grid{grid-template-columns:1fr 1fr}}
+.access dl{display:grid;grid-template-columns:6.5em 1fr;gap:15px 22px;font-size:var(--t-s)}
+.access dt{color:var(--c500);letter-spacing:.12em}
+.access dd{color:var(--n700)}
+.access .note{margin-top:var(--s4);padding:17px 19px;background:var(--n100);
+  font-size:var(--t-x);color:var(--n500);line-height:var(--lh-s)}
+.access figure{overflow:hidden}
+.access figure img{width:100%;aspect-ratio:4/3;object-fit:cover;
+  transition:transform 1.6s var(--ease)}
+.access figure:hover img{transform:scale(1.05)}
+
+footer{background:var(--c900);color:var(--n400);padding:var(--s5) 0 var(--s4);
+  border-top:1px solid rgba(255,255,255,.08)}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+  font-size:var(--t-x);letter-spacing:.12em}
+footer .fn{font-family:"Shippori Mincho",serif;font-size:var(--t-4);
+  color:var(--n100);letter-spacing:.24em}
+
+.cur{position:fixed;top:0;left:0;width:7px;height:7px;border-radius:50%;
+  background:var(--c200);pointer-events:none;z-index:9999;
+  transform:translate(-50%,-50%);mix-blend-mode:difference}
+.cur-r{position:fixed;top:0;left:0;width:34px;height:34px;border-radius:50%;
+  border:1px solid rgba(189,154,112,.55);pointer-events:none;z-index:9998;
+  transform:translate(-50%,-50%);
+  transition:width .5s var(--ease),height .5s var(--ease),background .5s ease}
+.cur-r.on{width:66px;height:66px;background:rgba(189,154,112,.1)}
+@media (hover:none),(max-width:820px){.cur,.cur-r{display:none}}
+
+@media(prefers-reduced-motion:reduce){
+  #ld{display:none}
+  .rv,.hero .eye,.hero .sub,.hero .scroll{opacity:1;transform:none}
+  .hero h1 .l>i{transform:none}
+  .cur,.cur-r{display:none}
+}
 </style>
 </head>
-<body>
+<body class="lock">
 
-<div class="sample-note">※これはデザインサンプルです。店舗・住所・電話番号はすべて架空のものです。</div>
-
-<header>
-  <div class="logo">ひなた珈琲店</div>
-  <nav>
-    <a href="#concept">私たちのこと</a>
-    <a href="#menu">メニュー</a>
-    <a href="#shop">店内</a>
-    <a href="#access">アクセス</a>
-  </nav>
-</header>
-
-<div class="hero">
-  <div class="sun" aria-hidden="true"></div>
-  <h1>今日も、<br>ひとやすみ。</h1>
-  <p class="catch">自家焙煎コーヒーと、毎朝焼くおやつの店</p>
-  <span class="hours-chip">☕ 8:00 − 18:00｜水曜おやすみ</span>
+<div id="ld">
+  <div class="drop"></div>
+  <div class="nm">ひなた珈琲店</div>
 </div>
 
-<section class="concept" id="concept">
-  <div class="inner">
-    <div class="sec-title reveal">
-      <span class="en">About</span>
-      <h2>私たちのこと</h2>
-    </div>
-    <p class="lead reveal">
-      商店街のはずれ、住宅街のまんなかにある小さな喫茶店です。<br>
-      店の奥の焙煎機で、週に三度、豆を焼いています。<br>
-      <b>いちばん美味しい瞬間のコーヒー</b>と、<br>
-      甘さひかえめの手作りおやつをご用意して、<br>
-      あなたの「ひとやすみ」をお待ちしています。
-    </p>
-  </div>
-</section>
+<div class="bar">※これはデザインサンプルです。店舗・住所・電話番号はすべて架空のものです。</div>
 
-<section id="menu">
-  <div class="inner">
-    <div class="sec-title reveal">
-      <span class="en">Menu</span>
-      <h2>メニュー</h2>
+<header id="hd">
+  <div class="wrap">
+    <a href="#top" class="logo">ひなた珈琲店</a>
+    <nav>
+      <a href="#story">一杯のこと</a>
+      <a href="#menu">メニュー</a>
+      <a href="#shop">店内</a>
+      <a href="#access">アクセス</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <div class="hero">
+    <canvas id="cup" aria-hidden="true"></canvas>
+    <div class="wrap">
+      <span class="eye" id="eye">SELF-ROASTED ・ 自家焙煎</span>
+      <h1 id="h1">挽きたては、<br>光る。</h1>
+      <p class="sub" id="sub">舞っている粉のひとつひとつが、位置と速さを持っています。
+        写真でも動画でもありません。<br>
+        マウスを動かすと、そこに風が起きます。</p>
     </div>
-    <div class="menu-grid">
-      <div class="menu-card reveal">
-        <div class="ph"><img src="images/coffee.jpg" alt="ラテアートのカフェラテ"></div>
-        <div class="body">
+    <div class="scroll" id="scr">SCROLL</div>
+  </div>
+
+  <section class="story" id="story">
+    <div class="wrap">
+      <div class="head rv"><span class="en">ABOUT</span><h2>一杯のこと</h2></div>
+      <div class="grid">
+        <figure class="rv"><img src="./images/coffee.jpg" alt="木のテーブルに並ぶラテ" loading="lazy"></figure>
+        <div class="rv d1">
+          <h3>焙煎したての短さを、<br>そのまま出す。</h3>
+          <p>焙煎したての豆がいちばん美味しいのは、思っているよりずっと短いあいだです。
+            だからここでは、週に二度、そのぶんだけを焼いています。</p>
+          <p>おやつは毎朝、店の奥で焼いています。大きな仕掛けはありません。
+            コーヒーに合う甘さを、その日の気温を見ながら決めているだけです。</p>
+          <p>お一人でも、長居していただいて構いません。
+            そのためのカウンター席と、静かな時間を用意しています。</p>
+          <div class="mark">週2回焙煎 ・ 豆の量り売り 100g〜 ・ 水曜おやすみ</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="menu" id="menu">
+    <div class="wrap">
+      <div class="head rv"><span class="en">MENU</span><h2>メニュー</h2></div>
+      <div class="cols">
+        <div class="rv">
           <h3>コーヒー</h3>
           <ul>
-            <li><span>本日のハンドドリップ</span><span class="price">520円</span></li>
-            <li><span>カフェラテ</span><span class="price">580円</span></li>
-            <li><span>水出しアイスコーヒー</span><span class="price">560円</span></li>
-            <li><span>豆の量り売り（100g〜）</span><span class="price">750円〜</span></li>
+            <li>本日のハンドドリップ<span>580円</span></li>
+            <li>水出しアイスコーヒー<span>620円</span></li>
+            <li>カフェラテ<span>650円</span></li>
+            <li>豆の量り売り（100g〜）<span>900円〜</span></li>
           </ul>
         </div>
-      </div>
-      <div class="menu-card reveal delay-1">
-        <div class="ph"><img src="images/cake.jpg" alt="ラズベリーのケーキ"></div>
-        <div class="body">
+        <div class="rv d1">
           <h3>おやつ</h3>
           <ul>
-            <li><span>バスクチーズケーキ</span><span class="price">520円</span></li>
-            <li><span>本日の焼き菓子</span><span class="price">380円〜</span></li>
-            <li><span>厚切りバタートースト</span><span class="price">450円</span></li>
-            <li><span>季節のプリン</span><span class="price">480円</span></li>
+            <li>バスクチーズケーキ<span>580円</span></li>
+            <li>本日の焼き菓子<span>380円</span></li>
+            <li>厚切りバタートースト<span>480円</span></li>
+            <li>季節のプリン<span>520円</span></li>
           </ul>
         </div>
-      </div>
-      <div class="menu-card reveal delay-2">
-        <div class="ph"><img src="images/latte.jpg" alt="カフェラテを注ぐようす"></div>
-        <div class="body">
+        <div class="rv d2">
           <h3>コーヒー以外も</h3>
           <ul>
-            <li><span>ほうじ茶ラテ</span><span class="price">560円</span></li>
-            <li><span>自家製レモネード</span><span class="price">540円</span></li>
-            <li><span>りんごジュース</span><span class="price">480円</span></li>
-            <li><span>お子さまミルク</span><span class="price">200円</span></li>
+            <li>ほうじ茶ラテ<span>600円</span></li>
+            <li>自家製レモネード<span>580円</span></li>
+            <li>りんごジュース<span>480円</span></li>
+            <li>お子さまミルク<span>200円</span></li>
           </ul>
         </div>
       </div>
+      <div class="pics">
+        <figure class="rv"><img src="./images/latte.jpg" alt="カフェラテ" loading="lazy"></figure>
+        <figure class="rv d1"><img src="./images/cake.jpg" alt="焼き菓子" loading="lazy"></figure>
+      </div>
     </div>
+  </section>
+
+  <section class="shop" id="shop">
+    <div class="wrap">
+      <div class="head rv"><span class="en">SHOP</span><h2>店内のようす</h2></div>
+      <p class="lead rv d1">窓際の席は、午前中がいちばん明るくなります。
+        カウンターは6席、テーブルは4卓。ゆっくりお過ごしください。</p>
+      <figure class="big rv d2"><img src="./images/interior.jpg" alt="窓際の席" loading="lazy"></figure>
+    </div>
+  </section>
+
+  <section class="access" id="access">
+    <div class="wrap">
+      <div class="head rv"><span class="en">ACCESS</span><h2>店舗情報</h2></div>
+      <div class="grid">
+        <div class="rv">
+          <dl>
+            <dt>店名</dt><dd>ひなた珈琲店</dd>
+            <dt>住所</dt><dd>（架空の住所が入ります）</dd>
+            <dt>営業時間</dt><dd>8:00 − 18:00（ラストオーダー 17:30）</dd>
+            <dt>定休日</dt><dd>水曜日</dd>
+            <dt>席数</dt><dd>カウンター6席・テーブル4卓</dd>
+            <dt>お支払い</dt><dd>現金・各種キャッシュレス</dd>
+          </dl>
+        </div>
+        <div class="rv d1">
+          <figure><img src="./images/cake.jpg" alt="店内の焼き菓子" loading="lazy"></figure>
+          <p class="note">このページは、Web制作 ゆたか が制作したデザインサンプルです。
+            掲載している店舗名・住所・電話番号・料金はすべて架空のもので、実在の店舗とは関係ありません。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="fn">ひなた珈琲店</span>
+    <span>SAMPLE SITE ・ Web制作 ゆたか</span>
   </div>
-</section>
+</footer>
 
-<section id="shop">
-  <div class="inner">
-    <div class="sec-title reveal">
-      <span class="en">Gallery</span>
-      <h2>店内のようす</h2>
-    </div>
-    <div class="gallery">
-      <img class="shot reveal" src="images/interior.jpg" alt="店内のようす">
-      <img class="shot reveal delay-1" src="images/latte.jpg" alt="ラテを淹れるようす">
-      <img class="shot reveal delay-2" src="images/coffee.jpg" alt="コーヒーと観葉植物">
-      <img class="shot reveal delay-2" src="images/cake.jpg" alt="本日のおやつ">
-    </div>
-    <p class="gallery-note reveal">※写真はイメージです。実際の制作ではお店の写真に差し替えます（スマホ写真でOK）。</p>
-  </div>
-</section>
-
-<section class="news">
-  <div class="inner">
-    <div class="sec-title reveal">
-      <span class="en">News</span>
-      <h2>お知らせ</h2>
-    </div>
-    <div class="news-list">
-      <div class="news-item reveal"><span class="date">7月1日</span><span>夏限定「水出しコーヒーゼリー」はじめました</span></div>
-      <div class="news-item reveal"><span class="date">6月20日</span><span>エチオピアの新豆、量り売りに登場です</span></div>
-      <div class="news-item reveal"><span class="date">6月10日</span><span>7月の連休は通常どおり営業します</span></div>
-    </div>
-  </div>
-</section>
-
-<section id="access">
-  <div class="inner">
-    <div class="sec-title reveal">
-      <span class="en">Access</span>
-      <h2>店舗情報</h2>
-    </div>
-    <table class="info-table reveal">
-      <tr><th>店名</th><td>ひなた珈琲店</td></tr>
-      <tr><th>住所</th><td>東京都〇〇区ひなた町4-5-6（〇〇駅 徒歩7分）</td></tr>
-      <tr><th>営業時間</th><td>8:00〜18:00（L.O. 17:30）</td></tr>
-      <tr><th>定休日</th><td>水曜日</td></tr>
-      <tr><th>席数</th><td>14席（ベビーカーのまま入れます）</td></tr>
-      <tr><th>お支払い</th><td>現金・クレジットカード・QRコード決済</td></tr>
-    </table>
-    <div class="map-box reveal">（ここに Googleマップ が入ります）</div>
-  </div>
-</section>
-
-<footer>© ひなた珈琲店（このページはHP制作サービスのデザインサンプルです）</footer>
-
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js"></script>
 <script>
-(function () {
-  var observer = new IntersectionObserver(function (entries) {
-    entries.forEach(function (entry) {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('show');
-        observer.unobserve(entry.target);
+(function(){
+  "use strict";
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ═══ 挽きたての粉 ═══
+     2026-08-21 三度目の作り直し。
+     前の版は渦（domain warping）で描いていたが、それは [002] 墨とまったく同じ引き出しだった。
+     色を変えた焼き直しでは、見た人に「前と一緒」と伝わってしまう。
+
+     珈琲の本質は「渦」ではなく「挽く」こと。
+     斜めに差す光の中を、挽きたての粉が舞い落ちる。粒はひとつずつ位置と速度を持っていて、
+     気流に流され、下で積もり、また上から降ってくる。マウスを動かすと、そこに風が起きる。
+     計算しているのは粒の運動そのもので、模様を描いているわけではない。 */
+  (function(){
+    var c = document.getElementById('cup');
+    if(!c) return;
+    var ctx = c.getContext('2d', {alpha:false});
+    if(!ctx){ c.style.background='#17100b'; return; }
+
+    var W=0,H=0,DPR=1;
+    var N = 0, ps = [];
+    var mouse = {x:-9999, y:-9999, px:-9999, py:-9999, vx:0, vy:0};
+
+    function reset(p, first){
+      p.x = Math.random()*W;
+      p.y = first ? Math.random()*H : -20*DPR - Math.random()*H*0.35;
+      p.z = Math.random();                       /* 奥行き。小さいほど遠い */
+      p.r = (0.7 + p.z*2.9) * DPR;               /* 近い粒ほど大きい */
+      p.vy = (10 + p.z*30) * DPR;                /* 近い粒ほど速く落ちる */
+      p.vx = (Math.random()-0.5) * 6 * DPR;
+      p.sp = Math.random()*Math.PI*2;            /* 横揺れの位相 */
+      p.sw = (0.25 + Math.random()*0.7);         /* 横揺れの幅 */
+      p.a  = 0.22 + p.z*0.78;                    /* 近いほど濃い */
+    }
+
+    function size(){
+      DPR = Math.min(devicePixelRatio||1, 2);
+      var w = Math.round(c.clientWidth*DPR), h = Math.round(c.clientHeight*DPR);
+      if(w===W && h===H) return;
+      W=w; H=h; c.width=W; c.height=H;
+      /* 画面の広さに応じて粒の数を決める。狭い画面で無駄に重くしない */
+      var want = Math.round((W*H)/(6200*DPR));
+      want = Math.max(160, Math.min(want, 1100));
+      if(want !== N){
+        ps.length = 0;
+        for(var i=0;i<want;i++){ var p={}; reset(p, true); ps.push(p); }
+        N = want;
       }
+    }
+
+    /* 斜めに差す光。粉はこの帯の中でだけ、はっきり見える */
+    function drawLight(){
+      var g = ctx.createLinearGradient(W*0.16, 0, W*0.78, H);
+      g.addColorStop(0.00, 'rgba(226,186,124,0.165)');
+      g.addColorStop(0.42, 'rgba(198,160,114,0.085)');
+      g.addColorStop(1.00, 'rgba(23,16,11,0)');
+      ctx.fillStyle = g;
+      ctx.beginPath();
+      ctx.moveTo(W*0.06, 0); ctx.lineTo(W*0.52, 0);
+      ctx.lineTo(W*1.02, H); ctx.lineTo(W*0.34, H);
+      ctx.closePath(); ctx.fill();
+    }
+
+    var last = performance.now();
+    var vis = true;
+    if('IntersectionObserver' in window){
+      new IntersectionObserver(function(e){ vis = e[0].isIntersecting; },{threshold:0}).observe(c);
+    }
+
+    addEventListener('mousemove', function(e){
+      var rc = c.getBoundingClientRect();
+      mouse.px = mouse.x; mouse.py = mouse.y;
+      mouse.x = (e.clientX-rc.left)*DPR; mouse.y = (e.clientY-rc.top)*DPR;
+      if(mouse.px > -9000){
+        mouse.vx = mouse.x-mouse.px; mouse.vy = mouse.y-mouse.py;
+      }
+    },{passive:true});
+
+    function frame(now){
+      requestAnimationFrame(frame);
+      if(!vis) return;
+      size();
+      var dt = Math.min((now-last)/1000, 0.05); last = now;
+
+      /* 地の色。豆を煎ったあとの、深い茶 */
+      var bg = ctx.createRadialGradient(W*0.42, H*0.34, 0, W*0.42, H*0.34, Math.max(W,H)*0.78);
+      bg.addColorStop(0, '#241811'); bg.addColorStop(1, '#120c08');
+      ctx.fillStyle = bg; ctx.fillRect(0,0,W,H);
+      drawLight();
+
+      /* 指の動きは、風になって少しずつ弱まる */
+      mouse.vx *= 0.90; mouse.vy *= 0.90;
+
+      ctx.globalCompositeOperation = 'lighter';
+      for(var i=0;i<N;i++){
+        var p = ps[i];
+        p.sp += dt*(0.7 + p.z);
+        p.x += (p.vx + Math.sin(p.sp)*p.sw*22*DPR*p.z) * dt;
+        p.y += p.vy * dt;
+
+        /* 指のまわりに風。近い粒ほど強く流される */
+        var dx = p.x-mouse.x, dy = p.y-mouse.y;
+        var d2 = dx*dx+dy*dy, rr = 150*DPR;
+        if(d2 < rr*rr){
+          var f = (1 - Math.sqrt(d2)/rr) * p.z;
+          p.x += (mouse.vx*0.55 + dx*0.012) * f;
+          p.y += (mouse.vy*0.45 + dy*0.008) * f;
+        }
+
+        if(p.y > H+30*DPR || p.x < -40*DPR || p.x > W+40*DPR) reset(p, false);
+
+        /* 光の帯の中にいるほど、はっきり見える */
+        var t = p.y/H;
+        var beam = W*(0.06+0.28*t), beamW = W*(0.46+0.22*t);
+        var inb = 1 - Math.min(Math.abs(p.x-(beam+beamW*0.5))/(beamW*0.72), 1);
+        var al = p.a * (0.14 + inb*0.86);
+
+        if(inb > 0.45 && p.z > 0.5){
+          /* 光の帯の中にいる、手前の粒だけ、まわりがふわっと光る */
+          var gl2 = ctx.createRadialGradient(p.x,p.y,0,p.x,p.y,p.r*5.5);
+          gl2.addColorStop(0,'rgba(255,224,170,'+(al*0.46).toFixed(3)+')');
+          gl2.addColorStop(1,'rgba(255,224,170,0)');
+          ctx.fillStyle=gl2;
+          ctx.beginPath(); ctx.arc(p.x,p.y,p.r*5.5,0,6.2832); ctx.fill();
+        }
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, 6.2832);
+        ctx.fillStyle = 'rgba(238,208,164,'+al.toFixed(3)+')';
+        ctx.fill();
+      }
+      ctx.globalCompositeOperation = 'source-over';
+    }
+
+    if(reduce){
+      size();
+      var bg2 = ctx.createRadialGradient(W*0.42,H*0.34,0,W*0.42,H*0.34,Math.max(W,H)*0.78);
+      bg2.addColorStop(0,'#241811'); bg2.addColorStop(1,'#120c08');
+      ctx.fillStyle=bg2; ctx.fillRect(0,0,W,H); drawLight();
+      ctx.globalCompositeOperation='lighter';
+      for(var k=0;k<N;k++){ var q=ps[k];
+        ctx.beginPath(); ctx.arc(q.x,q.y,q.r,0,6.2832);
+        ctx.fillStyle='rgba(224,190,142,'+(q.a*0.6).toFixed(3)+')'; ctx.fill(); }
+      ctx.globalCompositeOperation='source-over';
+    } else {
+      requestAnimationFrame(frame);
+    }
+  })();
+
+  /* ── 見出しを行ごとに ── */
+  var h1=document.getElementById('h1');
+  if(h1){
+    h1.innerHTML=h1.innerHTML.split(/<br\s*\/?>/i)
+      .map(function(x){return '<span class="l"><i>'+x.trim()+'</i></span>';}).join('');
+  }
+
+  /* ── 読み込み → 本編 ── */
+  var ld=document.getElementById('ld');
+  function open_(){
+    if(!ld) return;
+    ld.classList.add('done');
+    document.body.classList.remove('lock');
+    setTimeout(function(){ if(ld.parentNode) ld.parentNode.removeChild(ld); },1000);
+    if(h1) h1.classList.add('in');
+    ['eye','sub','scr'].forEach(function(id){
+      var e=document.getElementById(id); if(e) e.classList.add('in');
     });
-  }, { threshold: 0.14 });
-  document.querySelectorAll('.reveal').forEach(function (el) { observer.observe(el); });
+  }
+  if(reduce){ document.body.classList.remove('lock'); }
+  else{
+    requestAnimationFrame(function(){ ld && ld.classList.add('go'); });
+    var t0=Date.now();
+    addEventListener('load',function(){ setTimeout(open_, Math.max(0,2000-(Date.now()-t0))); });
+    setTimeout(open_,4600);
+  }
+
+  /* 注記バーの実寸をCSSへ */
+  (function(){
+    var bar=document.querySelector('.bar');
+    function fit(){ if(bar) document.documentElement.style.setProperty('--bar-h', bar.offsetHeight+'px'); }
+    fit(); addEventListener('resize',fit); addEventListener('load',fit);
+  })();
+
+  /* ── 画面に入ったら出す ── */
+  if('IntersectionObserver' in window && !reduce){
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }});
+    },{threshold:.16});
+    document.querySelectorAll('.rv').forEach(function(el){ io.observe(el); });
+    setTimeout(function(){ document.querySelectorAll('.rv:not(.in)').forEach(function(el){el.classList.add('in');}); },5200);
+  } else { document.querySelectorAll('.rv').forEach(function(el){ el.classList.add('in'); }); }
+
+  var hd=document.getElementById('hd');
+  function onScroll(){ hd.classList.toggle('on', scrollY>60); }
+  addEventListener('scroll',onScroll,{passive:true}); onScroll();
+
+  if(!reduce && matchMedia('(hover:hover)').matches){
+    var d=document.createElement('div');d.className='cur';
+    var rr=document.createElement('div');rr.className='cur-r';
+    document.body.appendChild(d);document.body.appendChild(rr);
+    var cx=innerWidth/2,cy=innerHeight/2,rx=cx,ry=cy;
+    addEventListener('mousemove',function(e){cx=e.clientX;cy=e.clientY;
+      d.style.transform='translate('+cx+'px,'+cy+'px) translate(-50%,-50%)';},{passive:true});
+    (function loop(){rx+=(cx-rx)*.17;ry+=(cy-ry)*.17;
+      rr.style.transform='translate('+rx+'px,'+ry+'px) translate(-50%,-50%)';
+      requestAnimationFrame(loop);})();
+    document.querySelectorAll('a,figure,li').forEach(function(el){
+      el.addEventListener('mouseenter',function(){rr.classList.add('on');});
+      el.addEventListener('mouseleave',function(){rr.classList.remove('on');});
+    });
+  }
+
+  if(window.Lenis && !reduce){
+    var le=new Lenis({duration:1.2,smoothWheel:true,
+      easing:function(x){return Math.min(1,1.001-Math.pow(2,-10*x));}});
+    requestAnimationFrame(function raf(t){le.raf(t);requestAnimationFrame(raf);});
+    document.querySelectorAll('a[href^="#"]').forEach(function(a){
+      a.addEventListener('click',function(ev){
+        var el=document.querySelector(a.getAttribute('href'));
+        if(el){ev.preventDefault();le.scrollTo(el,{offset:-64,duration:1.4});}
+      });
+    });
+  }
 })();
 </script>
-
 </body>
 </html>
